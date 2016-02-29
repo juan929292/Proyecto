@@ -46,19 +46,19 @@ include_once("./db_configuration.php");
 							echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
 						}
 					/*peliculas*/
-					$result0=$connection->query("SELECT * FROM Peliculas where peliculas.id_pelicula=".$_GET['id'].";");
+					$result0=$connection->query("SELECT * FROM peliculas where peliculas.id_pelicula=".$_GET['id'].";");
 					/*peliculas-es-generos*/
-					$result1=$connection->query("SELECT * FROM Peliculas join Es on peliculas.id_pelicula=Es.id_pelicula join Generos
-					on Es.id_genero=Generos.id_genero where peliculas.id_pelicula=".$_GET['id'].";");
+					$result1=$connection->query("SELECT * FROM peliculas join es on peliculas.id_pelicula=es.id_pelicula join generos
+					on es.id_genero=generos.id_genero where peliculas.id_pelicula=".$_GET['id'].";");
 					/*peliculas-dirigida_por-directores*/
-					$result2=$connection->query("SELECT directores.nombre FROM Peliculas join dirigida_por on peliculas.id_pelicula=dirigida_por.id_pelicula join directores
+					$result2=$connection->query("SELECT directores.nombre FROM peliculas join dirigida_por on peliculas.id_pelicula=dirigida_por.id_pelicula join directores
 					on dirigida_por.id_director=directores.id_director where peliculas.id_pelicula=".$_GET['id'].";");
 					/*peliculas-tienen-comentarios-usuarios*/
-					$result3=$connection->query("SELECT usuarios.nombre,comentarios.contenido,comentarios.fecha FROM Peliculas join tienen on peliculas.id_pelicula=tienen.id_pelicula join comentarios 
+					$result3=$connection->query("SELECT usuarios.nombre,comentarios.contenido,comentarios.fecha FROM peliculas join tienen on peliculas.id_pelicula=tienen.id_pelicula join comentarios 
 					on tienen.id_comentario=comentarios.id_comentario join usuarios 
 					on comentarios.id_usuario=usuarios.id_usuario where peliculas.id_pelicula=".$_GET['id'].";");
 					/*peliculas-posee-valoraciones-usuarios*/
-					$result4=$connection->query("SELECT ROUND(AVG(valoraciones.nota), 1) as media FROM Peliculas join posee on peliculas.id_pelicula=posee.id_pelicula join valoraciones 
+					$result4=$connection->query("SELECT ROUND(AVG(valoraciones.nota), 1) as media FROM peliculas join posee on peliculas.id_pelicula=posee.id_pelicula join valoraciones 
 					on posee.id_valoracion=valoraciones.id_valoracion join usuarios on 
 					valoraciones.id_usuario=usuarios.id_usuario where peliculas.id_pelicula=".$_GET['id'].";");
 					echo "<div id='cont' style='float:right;padding-right:20%;'>";
