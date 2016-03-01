@@ -50,7 +50,7 @@ echo "<h3>Editar Registro de 'Posee'</h3>";
                 echo "<td>$obj->id_valoracion</td>";
                 echo "<td>$obj->nota</td>";
                 echo "<td>$obj->nombre</td>";
-                echo "<td><a href='edita_bd.php?id1=$obj->id_pelicula&id2=$obj->id_valoracion'><img width=26 src='/proyecto/img/edita.png'/></a></td>";
+                echo "<td><a href='edita_bd.php?id1=$obj->id_pelicula&id2=$obj->id_valoracion'><img width=26 src='/Proyecto/img/edita.PNG'/></a></td>";
                 echo "</tr>";   
             }
         ?>

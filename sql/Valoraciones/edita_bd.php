@@ -49,7 +49,7 @@ echo "<h3>Editar Valoracion</h3>";		?>
 				while($obj2=$result3->fetch_object()){
 				echo "<td>$obj2->id_usuario</td>";
 				echo "<td>$obj2->nombre</td>";
-				echo "<td><a href='edita_bd.php?idd=$obj->id_valoracion'><img width=26 src='/proyecto/img/edita.png'/></a></td>";
+				echo "<td><a href='edita_bd.php?idd=$obj->id_valoracion'><img width=26 src='/Proyecto/img/edita.PNG'/></a></td>";
 				}  
             }
                 echo "</tr>";   

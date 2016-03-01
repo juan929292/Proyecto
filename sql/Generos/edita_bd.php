@@ -40,7 +40,7 @@ echo "<h3>Editar Genero</h3>";
                 echo "<tr>";
                 echo "<td>$obj->id_genero</td>";
                 echo "<td>$obj->nombre</td>";
-                echo "<td><a href='edita_bd.php?idd=$obj->id_genero'><img width=26 src='/proyecto/img/edita.png'/></a></td>";
+                echo "<td><a href='edita_bd.php?idd=$obj->id_genero'><img width=26 src='/Proyecto/img/edita.PNG'/></a></td>";
                 echo "</tr>";   
             }
         ?>

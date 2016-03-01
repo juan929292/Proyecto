@@ -43,7 +43,7 @@ echo "<h3>Editar Director</h3>";
                 echo "<td>$obj->id_director</td>";
                 echo "<td>$obj->nombre</td>";
                 echo "<td>$obj->pais</td>";
-                echo "<td><a href='edita_bd.php?idd=$obj->id_director'><img width=26 src='/proyecto/img/edita.png'/></a></td>";
+                echo "<td><a href='edita_bd.php?idd=$obj->id_director'><img width=26 src='/Proyecto/img/edita.PNG'/></a></td>";
                 echo "</tr>";   
             }
         ?>

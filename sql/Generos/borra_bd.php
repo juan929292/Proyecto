@@ -41,7 +41,7 @@ echo "<h3>Borrar Genero</h3>";
                 echo "<tr>";
                 echo "<td>$obj->id_genero</td>";
                 echo "<td>$obj->nombre</td>";
-                echo "<td><a href='borra_bd.php?idd=$obj->id_genero'><img width=26 src='/proyecto/img/borra.png'/></a></td>";
+                echo "<td><a href='borra_bd.php?idd=$obj->id_genero'><img width=26 src='/Proyecto/img/borra.PNG'/></a></td>";
                 echo "</tr>";   
             }
         ?>

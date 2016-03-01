@@ -50,7 +50,7 @@ echo "<h3>Borrar Valoracion</h3>";
 				while($obj2=$result3->fetch_object()){
 				echo "<td>$obj2->id_usuario</td>";
 				echo "<td>$obj2->nombre</td>";
-				echo "<td><a href='borra_bd.php?idd=$obj->id_valoracion'><img width=26 src='/proyecto/img/borra.png'/></a></td>";
+				echo "<td><a href='borra_bd.php?idd=$obj->id_valoracion'><img width=26 src='/Proyecto/img/borra.PNG'/></a></td>";
 				}  
             }
                 echo "</tr>";   
