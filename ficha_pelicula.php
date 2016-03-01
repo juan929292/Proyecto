@@ -95,7 +95,7 @@ include_once("./db_configuration.php");
 					on tienen.id_comentario=comentarios.id_comentario join usuarios 
 					on comentarios.id_usuario=usuarios.id_usuario where peliculas.id_pelicula=".$_GET['id'].";");
 					/*peliculas-posee-valoraciones-usuarios*/
-					$result4=$connection->query("SELECT ROUND(AVG(valoraciones.nota), 1) as media FROM peliculas join posee on peliculas.id_pelicula=posee.id_pelicula join valoraciones 
+					$result4=$connection->query("SELECT round(avg(valoraciones.nota), 1) as media FROM peliculas join posee on peliculas.id_pelicula=posee.id_pelicula join valoraciones 
 					on posee.id_valoracion=valoraciones.id_valoracion join usuarios on 
 					valoraciones.id_usuario=usuarios.id_usuario where peliculas.id_pelicula=".$_GET['id'].";");
 					echo "<div id='cont' style='float:right;padding-right:20%;'>";
