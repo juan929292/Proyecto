@@ -14,27 +14,28 @@ include_once("./db_configuration.php");
 			<div id="login">
 				<h2>Bienvenido <?php
 				//<?php if (!isset($_GET["idd"])) : 
-				 if (isset($_SESSION["nombresesion"])){
-						$connection = new mysqli($db_host, $db_user, $db_password, $db_name);
-						if($connection->connect_errno){
-							echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
-						}
-						$consulta7="select posee.id_pelicula,usuarios.nombre from posee join valoraciones on posee.id_valoracion=valoraciones.id_valoracion
-						join usuarios on valoraciones.id_usuario=usuarios.id_usuario;";
-						$result7=$connection->query($consulta7);
-						while($obj7=$result7->fetch_object()){
+			 if (isset($_SESSION["nombresesion"])){
+					$connection = new mysqli($db_host, $db_user, $db_password, $db_name);
+					if($connection->connect_errno){
+						echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
+					}
+					$consulta7="select posee.id_pelicula,usuarios.nombre from posee join valoraciones on posee.id_valoracion=valoraciones.id_valoracion
+					join usuarios on valoraciones.id_usuario=usuarios.id_usuario;";
+					$result7=$connection->query($consulta7);
+					while($obj7=$result7->fetch_object()){
 						$compara1=$obj7->id_pelicula;
 						$compara2=$obj7->nombre;
 						}
-					echo $_SESSION['nombresesion']."</br>"."</br>";
-					echo "<a href='sesiondestroy.php'>Cerrar Sesi&oacute;n</a>";
-					echo "<style>#invitadaso{display:none;}</style>";
-						if (($compara1==$_GET['id'])&($compara2==$_SESSION['nombresesion'])){
-							echo "<style>#estrellas{display:none;}#valorada{display:inherit;}#mostrar1{display:none;}</style>";
-						}
-						else{
-							echo "<style>#estrellas{display:inherit;}#valorada{display:none;}</style>";
-						}
+						echo $_SESSION['nombresesion']."</br>"."</br>";
+						echo "<a href='sesiondestroy.php'>Cerrar Sesi&oacute;n</a>";
+						echo "<style>#invitadaso{display:none;}</style>";
+							if (($compara1==$_GET['id'])&($compara2==$_SESSION['nombresesion'])){
+								echo "<style>#estrellas{display:none;}#valorada{display:inherit;}#mostrar1{display:none;}</style>";
+							}
+							else{
+								echo "<style>#estrellas{display:inherit;}#valorada{display:none;}</style>";
+							}
+					
 				}
 					else{
 						echo "Invitado";
@@ -109,7 +110,7 @@ include_once("./db_configuration.php");
 							echo "<h3>Año: ".$obj->anio ."</h3>"."</br>";
 							while($obj3=$result4->fetch_object()){
 								$medi=$obj3->media;
-									if ($medi='NULL'){
+									if ($medi=='NULL'){
 									echo "<h3>Nota media Usuarios Film Review:</br></br> (Esta Pelicula aun no ha sido valorada)</h3>"."</br>";
 								}else{
 								echo "<h3>Nota media Usuarios Film Review: "."<h1>".$medi ."</h1>"."</h3>"."</br>";
