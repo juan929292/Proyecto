@@ -2,6 +2,17 @@
 session_start();
 include_once("../../db_configuration.php");
 ?>
+<?php
+	if (isset($_SESSION['tiposesion'])&&($_SESSION['tiposesion']=='admin')){
+		echo "";
+	}
+	else {
+		echo "<h2>Acceso denegado, redireccionando...</h2>";
+		echo "<style>div {display:none;}<style>";
+	header('Refresh:1; url=/Proyecto/login.php',True,303);
+}
+?>
+
 <html>
 <head>
     <title></title>
@@ -53,7 +64,7 @@ echo "<h3>Borrar Registro de 'Posee'</h3>";
 								}
 								$idpelic=$_GET['id1'];
 								$idvalor=$_GET['id2'];
-								$consulta="DELETE FROM Posee WHERE (id_pelicula=$idpelic) and (id_valoracion=$idvalor);";
+								$consulta="DELETE FROM posee WHERE (id_pelicula=$idpelic) and (id_valoracion=$idvalor);";
 								echo "</br>";
 								if($connection->query($consulta)==true){
 									echo "<h2>Borrado realizado correctamente, Redireccionando...</h2>";

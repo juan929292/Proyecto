@@ -2,6 +2,17 @@
 session_start();
 include_once("../../db_configuration.php");
 ?>
+<?php
+	if (isset($_SESSION['tiposesion'])&&($_SESSION['tiposesion']=='admin')){
+		echo "";
+	}
+	else {
+		echo "<h2>Acceso denegado, redireccionando...</h2>";
+		echo "<style>div {display:none;}<style>";
+	header('Refresh:1; url=/Proyecto/login.php',True,303);
+}
+?>
+
 <html>
 <head>
     <title></title>
@@ -18,7 +29,7 @@ include_once("../../db_configuration.php");
 								$idepel=$_POST['val3'];
 								echo $iddir."</br>";
 								echo $idpel."</br>";
-								$consulta="update Dirigida_por set id_director=$iddir, id_pelicula=$idpel WHERE (id_director=$idedir) and (id_pelicula=$idepel);";
+								$consulta="update dirigida_por set id_director=$iddir, id_pelicula=$idpel WHERE (id_director=$idedir) and (id_pelicula=$idepel);";
 								echo $consulta;
 								echo "</br>";
 								if($connection->query($consulta)==true){

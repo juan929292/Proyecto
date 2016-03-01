@@ -2,6 +2,17 @@
 session_start();
 include_once("../../db_configuration.php");
 ?>
+<?php
+	if (isset($_SESSION['tiposesion'])&&($_SESSION['tiposesion']=='admin')){
+		echo "";
+	}
+	else {
+		echo "<h2>Acceso denegado, redireccionando...</h2>";
+		echo "<style>div {display:none;}<style>";
+	header('Refresh:1; url=/Proyecto/login.php',True,303);
+}
+?>
+
 <html>
 <head>
     <title></title>
@@ -51,7 +62,7 @@ echo "<h3>Borrar Pelicula</h3>";
                             echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
 								}
 								$idpeli=$_GET['idd'];
-								$consulta="DELETE FROM Peliculas WHERE id_pelicula=$idpeli;";
+								$consulta="DELETE FROM peliculas WHERE id_pelicula=$idpeli;";
 								echo "</br>";
 								if($connection->query($consulta)==true){
 									echo "<h2>Borrado realizado correctamente, Redireccionando...</h2>";

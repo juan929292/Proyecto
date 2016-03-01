@@ -2,6 +2,17 @@
 session_start();
 include_once("../../db_configuration.php");
 ?>
+<?php
+	if (isset($_SESSION['tiposesion'])&&($_SESSION['tiposesion']=='admin')){
+		echo "";
+	}
+	else {
+		echo "<h2>Acceso denegado, redireccionando...</h2>";
+		echo "<style>div {display:none;}<style>";
+	header('Refresh:1; url=/Proyecto/login.php',True,303);
+}
+?>
+
 <html>
 <head>
     <title></title>
@@ -15,7 +26,7 @@ include_once("../../db_configuration.php");
 								$idval=$_POST['val1'];
 								$not=$_POST['val2'];
 								$idusu=$_POST['val3'];
-								$consulta="update Valoraciones set nota=$not WHERE id_valoracion=$idval;";
+								$consulta="update valoraciones set nota=$not WHERE id_valoracion=$idval;";
 								echo "</br>";
 								if($connection->query($consulta)==true){
 									echo "<h2>Actualizacion realizada correctamente, Redireccionando...</h2>";

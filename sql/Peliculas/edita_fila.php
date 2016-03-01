@@ -2,6 +2,17 @@
 session_start();
 include_once("../../db_configuration.php");
 ?>
+<?php
+	if (isset($_SESSION['tiposesion'])&&($_SESSION['tiposesion']=='admin')){
+		echo "";
+	}
+	else {
+		echo "<h2>Acceso denegado, redireccionando...</h2>";
+		echo "<style>div {display:none;}<style>";
+	header('Refresh:1; url=/Proyecto/login.php',True,303);
+}
+?>
+
 <html>
 <head>
     <title></title>
@@ -19,7 +30,7 @@ include_once("../../db_configuration.php");
 								$not=$_POST['val5'];
 								$img= '"'."<img width='150' height='200' src='/Proyecto/img/".$_POST['val6']."'>".'"';
 
-								$consulta="update Peliculas set titulo='$titu',duracion='$dura',anio=$ani,nota_media=$not WHERE id_pelicula=$idpel;";
+								$consulta="update peliculas set titulo='$titu',duracion='$dura',anio=$ani,nota_media=$not WHERE id_pelicula=$idpel;";
 								echo "</br>";
 								if($connection->query($consulta)==true){
 									echo "<h2>Actualizacion realizada correctamente, Redireccionando...</h2>";

@@ -7,9 +7,21 @@ include_once("./db_configuration.php");
     <title>Film Review</title>
 </head>
 <body>
+<?php
+	if (isset($_SESSION['tiposesion'])&&($_SESSION['tiposesion']=='admin')){
+		echo "";
+	}
+	else {
+		echo "<h2>Acceso denegado, redireccionando...</h2>";
+		echo "<style>page {display:none;}<style>";
+	header('Refresh:1; url=login.php',True,303);
+}
+?>
    <div id="page" style="float:left;">
 	<div id="info1">
 		    <?php
+			echo "</br>"."<a href='index.php'>"."<input type='button' value='Volver a Inicio Film Review' style='font-family: Verdana; font-size: 10 pt'>"."</a>"."</br>";
+			echo "</br>";
 			echo "<table border=1>";
 						echo "<tr>";
 				echo "<td>"."<h2>Tablas de 'Cine'</h2>"."</td>"."<td>"."<h3>Añadir</h3>"."</td>";
@@ -114,6 +126,7 @@ include_once("./db_configuration.php");
 				echo "<td>"."<a href='sql/Dirigida_por/resultado.php?id=Dirigida_por'><img width=40 src='/Proyecto/img/ojo.png'/></a>"."</td>";
 			echo "</tr>";
 			echo "</table>";
+		echo "<h4>*Algunas tablas al mostrarlas muestran campos adicionales, de otras tablas,</br> para entender mejor el contexto de algunas tablas</h4>";
 		?>
 		
 	</div>

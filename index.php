@@ -12,10 +12,20 @@ include_once("./db_configuration.php");
    <div id="page">
         <div id="header">  
 			<div id="login">
-				<h2>Bienvenido <?php echo $_SESSION['nombresesion'];?></h2>
-				</br>
-
-				<h3><p><a href="login.php">Inicia Sesi&oacute;n</a> ó <a href="registro.php">reg&iacute;strate</a></p></h3>
+				<h2>Bienvenido <?php
+				//<?php if (!isset($_GET["idd"])) : 
+				 if (isset($_SESSION["nombresesion"])){  
+					echo $_SESSION['nombresesion']."</br>"."</br>";
+					echo "<a href='sesiondestroy.php'>Cerrar Sesi&oacute;n</a>";
+					}
+					else{
+						echo "Invitado";
+					
+				echo "</h2>";
+				echo "</br>";
+				echo "<h3><p><a href='login.php'>Inicia Sesi&oacute;n</a> o <a href='registro.php'>reg&iacute;strate</a></p></h3>";
+				}
+				?>
 			</div>
 		</div>
         <div id="main">
@@ -25,8 +35,11 @@ include_once("./db_configuration.php");
                 <ul>
                     <li><a href="index.php">Inicio</a></li>
 					<?php
-						if ($_SESSION['tipousu']=='admin'){
+						if (isset($_SESSION['tiposesion'])&&($_SESSION['tiposesion']=='admin')){
 					echo "<li><a href='administracion_bd.php'>Panel Administraci&oacute;n</a></li>";
+						}
+						else{
+							echo " ";
 						}
 					?>
 					

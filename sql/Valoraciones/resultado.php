@@ -2,6 +2,16 @@
 session_start();
 include_once("../../db_configuration.php");
 ?>
+<?php
+	if (isset($_SESSION['tiposesion'])&&($_SESSION['tiposesion']=='admin')){
+		echo "";
+	}
+	else {
+		echo "<h2>Acceso denegado, redireccionando...</h2>";
+		echo "<style>div {display:none;}<style>";
+	header('Refresh:1; url=/Proyecto/login.php',True,303);
+}
+?>
 <html>
 <head> 
     <title>Film Review</title>
@@ -21,7 +31,8 @@ include_once("../../db_configuration.php");
 		?>
 		<table border=1 class="centered bordered card-panel white"  style="text-align:center;float:left;">
             <tr class="card-panel teal lighten-2 white-text" style="font-weight:bold">
-                <td>Id_valoracion</td>
+                <td>Titulo(Peliculas)</td>
+				<td>Id_valoracion</td>
                 <td>nota</td>
                 <td>id_usuario</td>
 				<td>id_usuario(Usuarios)</td>
@@ -33,6 +44,12 @@ include_once("../../db_configuration.php");
 					echo "</br>"."<a href='../../../Proyecto/administracion_bd.php'>"."<input type='button' value='Volver a panel' style='font-family: Verdana; font-size: 10 pt'>"."</a>"."</br>";
             while($obj=$result->fetch_object()){
                 echo "<tr>";
+				$result3=$connection->query("SELECT peliculas.titulo FROM usuarios join valoraciones on
+					usuarios.id_usuario=valoraciones.id_usuario join posee on
+					valoraciones.id_valoracion=posee.id_valoracion join peliculas on posee.id_pelicula=peliculas.id_pelicula where valoraciones.id_usuario=".$obj->id_usuario .";");
+				while($obj3=$result3->fetch_object()){
+					echo "<td>$obj3->titulo</td>";
+				
                 echo "<td>$obj->id_valoracion</td>";
                 echo "<td>$obj->nota</td>";
                 echo "<td>$obj->id_usuario</td>";
@@ -40,6 +57,7 @@ include_once("../../db_configuration.php");
 				while($obj2=$result3->fetch_object()){
 				echo "<td>$obj2->id_usuario</td>";
 				echo "<td>$obj2->nombre</td>";
+				}
 				}
                 echo "</tr>";   
             }

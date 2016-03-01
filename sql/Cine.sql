@@ -139,7 +139,7 @@ CREATE TABLE `generos` (
   `id_genero` int(10) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   PRIMARY KEY (`id_genero`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -203,7 +203,7 @@ CREATE TABLE `posee` (
 
 LOCK TABLES `posee` WRITE;
 /*!40000 ALTER TABLE `posee` DISABLE KEYS */;
-INSERT INTO `posee` VALUES (1,1),(4,7);
+INSERT INTO `posee` VALUES (1,1),(1,5),(1,6);
 /*!40000 ALTER TABLE `posee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -257,7 +257,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'velasco','velasco','velasco@velasco.com','admin'),(2,'sanchez','sanchez','sanchez@sanchez.com','estandar'),(4,'torres','Manolo_1','torres@torres.com','estandar'),(10,'Manolo','Manolo_1','manolo@manolo.com','estandar');
+INSERT INTO `usuarios` VALUES (1,'velasco','velasco','velasco@velasco.com','admin'),(2,'sanchez','sanchez','sanchez@sanchez.com','estandar');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -275,7 +275,7 @@ CREATE TABLE `valoraciones` (
   PRIMARY KEY (`id_valoracion`),
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `valoraciones_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -284,7 +284,7 @@ CREATE TABLE `valoraciones` (
 
 LOCK TABLES `valoraciones` WRITE;
 /*!40000 ALTER TABLE `valoraciones` DISABLE KEYS */;
-INSERT INTO `valoraciones` VALUES (1,4,1),(2,5,4),(3,0,2),(6,0,1),(7,5,1);
+INSERT INTO `valoraciones` VALUES (1,4,1),(5,7,1),(6,6,1);
 /*!40000 ALTER TABLE `valoraciones` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -297,4 +297,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-02-29  3:49:47
+-- Dump completed on 2016-03-01 15:17:38
