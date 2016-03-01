@@ -47,7 +47,7 @@ echo "<h3>Borrar Comentario</h3>";
                 echo "<td>$obj->fecha</td>";
                 echo "<td>$obj->id_usuario</td>";
                 echo "<td>$obj->id_pelicula</td>";
-                echo "<td><a href='borra_bd.php?idd=$obj->id_comentario'><img width=26 src='/Proyecto/img/borra.PNG'/></a></td>";
+                echo "<td><a href='borra_bd.php?idd=$obj->id_comentario'><img width=26 src='../../img/borra.png'/></a></td>";
                 echo "</tr>";   
             }
         ?>

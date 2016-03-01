@@ -47,7 +47,7 @@ echo "<h3>Editar Usuario</h3>";
                 echo "<td>$obj->contrasena</td>";
                 echo "<td>$obj->correo</td>";
                 echo "<td>$obj->tipo</td>";
-                echo "<td><a href='edita_bd.php?idd=$obj->id_usuario'><img width=26 src='/Proyecto/img/edita.PNG'/></a></td>";
+                echo "<td><a href='edita_bd.php?idd=$obj->id_usuario'><img width=26 src='../../img/edita.png'/></a></td>";
                 echo "</tr>";   
             }
         ?>

@@ -47,7 +47,7 @@ echo "<h3>Borrar Usuario</h3>";
                 echo "<td>$obj->contrasena</td>";
                 echo "<td>$obj->correo</td>";
                 echo "<td>$obj->tipo</td>";
-                echo "<td><a href='borra_bd.php?idd=$obj->id_usuario'><img width=26 src='/Proyecto/img/borra.PNG'/></a></td>";
+                echo "<td><a href='borra_bd.php?idd=$obj->id_usuario'><img width=26 src='../../img/borra.png'/></a></td>";
                 echo "</tr>";   
             }
         ?>

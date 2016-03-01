@@ -47,7 +47,7 @@ echo "<h3>Comentarios</h3>";
                 echo "<td>$obj->fecha</td>";
                 echo "<td>$obj->id_usuario</td>";
                 echo "<td>$obj->id_pelicula</td>";
-                echo "<td><a href='edita_bd.php?idd=$obj->id_comentario'><img width=26 src='/Proyecto/img/edita.PNG'/></a></td>";
+                echo "<td><a href='edita_bd.php?idd=$obj->id_comentario'><img width=26 src='../../img/edita.png'/></a></td>";
                 echo "</tr>";   
             }
         ?>

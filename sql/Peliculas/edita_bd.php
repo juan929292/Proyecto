@@ -49,7 +49,7 @@ echo "<h3>Peliculas</h3>";
                 echo "<td>$obj->anio</td>";
                 echo "<td>$obj->nota_media</td>";
                 echo "<td>$obj->imagen</td>";
-                echo "<td><a href='edita_bd.php?idd=$obj->id_pelicula'><img width=26 src='/Proyecto/img/edita.PNG'/></a></td>";
+                echo "<td><a href='edita_bd.php?idd=$obj->id_pelicula'><img width=26 src='../../img/edita.png'/></a></td>";
                 echo "</tr>";   
             }
         ?>

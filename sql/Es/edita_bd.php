@@ -45,7 +45,7 @@ include_once("../../db_configuration.php");
                 echo "<td>$obj->titulo</td>";
                 echo "<td>$obj->id_genero</td>";
                 echo "<td>$obj->nombre</td>";
-                echo "<td><a href='edita_bd.php?id1=$obj->id_pelicula&id2=$obj->id_genero'><img width=26 src='/Proyecto/img/edita.PNG'/></a></td>";
+                echo "<td><a href='edita_bd.php?id1=$obj->id_pelicula&id2=$obj->id_genero'><img width=26 src='../../img/edita.png'/></a></td>";
                 echo "</tr>";   
             }
         ?>

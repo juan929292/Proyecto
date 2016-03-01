@@ -43,7 +43,7 @@ echo "<h3>Borrar Director</h3>";
                 echo "<td>$obj->id_director</td>";
                 echo "<td>$obj->nombre</td>";
                 echo "<td>$obj->pais</td>";
-                echo "<td><a href='borra_bd.php?idd=$obj->id_director'><img width=26 src='/Proyecto/img/borra.PNG'/></a></td>";
+                echo "<td><a href='borra_bd.php?idd=$obj->id_director'><img width=26 src='../../img/borra.png'/></a></td>";
                 echo "</tr>";   
             }
         ?>
