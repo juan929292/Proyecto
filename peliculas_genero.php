@@ -62,7 +62,7 @@ include_once("./db_configuration.php");
 						if($connection->connect_errno){
 							echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
 						}
-					$result=$connection->query("SELECT * FROM Peliculas join Es on peliculas.id_pelicula=Es.id_pelicula join Generos on Es.id_genero=Generos.id_genero where Generos.nombre="."'".$_GET['id']."'".";");
+					$result=$connection->query("SELECT * FROM peliculas join es on peliculas.id_pelicula=es.id_pelicula join generos on es.id_genero=generos.id_genero where generos.nombre="."'".$_GET['id']."'".";");
 					echo "<h2 id='titu'>G&eacute;nero: ".$_GET['id']."</h2>";
 						while($obj=$result->fetch_object()){
 						echo "<div class='cajas'>";

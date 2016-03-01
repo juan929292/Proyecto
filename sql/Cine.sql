@@ -36,7 +36,7 @@ CREATE TABLE `comentarios` (
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_pelicula`) REFERENCES `peliculas` (`id_pelicula`),
   CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `comentarios` (
 
 LOCK TABLES `comentarios` WRITE;
 /*!40000 ALTER TABLE `comentarios` DISABLE KEYS */;
-INSERT INTO `comentarios` VALUES (1,'votando sin parar','2016-02-28 01:23:07',1,1),(3,'me acuesto pero ya','2016-02-28 03:19:02',1,1),(5,'dadadadad','2016-02-28 03:21:19',2,1),(6,'pelicula malisimaaaaaaa','2016-02-29 00:19:24',1,1);
+INSERT INTO `comentarios` VALUES (1,'votando sin parar','2016-02-28 01:23:07',1,1),(3,'me acuesto pero ya','2016-02-28 03:19:02',1,1),(6,'pelicula malisimaaaaaaa','2016-02-29 00:19:24',1,1),(12,'no te rindas','2016-03-01 18:41:01',1,1),(13,'lo conseguiste','2016-03-01 18:41:47',1,1);
 /*!40000 ALTER TABLE `comentarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,7 +203,7 @@ CREATE TABLE `posee` (
 
 LOCK TABLES `posee` WRITE;
 /*!40000 ALTER TABLE `posee` DISABLE KEYS */;
-INSERT INTO `posee` VALUES (1,1),(1,5),(1,6);
+INSERT INTO `posee` VALUES (1,27);
 /*!40000 ALTER TABLE `posee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -230,7 +230,7 @@ CREATE TABLE `tienen` (
 
 LOCK TABLES `tienen` WRITE;
 /*!40000 ALTER TABLE `tienen` DISABLE KEYS */;
-INSERT INTO `tienen` VALUES (4,1),(1,3),(1,6);
+INSERT INTO `tienen` VALUES (4,1),(1,3),(1,6),(1,12),(1,13);
 /*!40000 ALTER TABLE `tienen` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -275,7 +275,7 @@ CREATE TABLE `valoraciones` (
   PRIMARY KEY (`id_valoracion`),
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `valoraciones_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -284,7 +284,7 @@ CREATE TABLE `valoraciones` (
 
 LOCK TABLES `valoraciones` WRITE;
 /*!40000 ALTER TABLE `valoraciones` DISABLE KEYS */;
-INSERT INTO `valoraciones` VALUES (1,4,1),(5,7,1),(6,6,1);
+INSERT INTO `valoraciones` VALUES (27,10,1);
 /*!40000 ALTER TABLE `valoraciones` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -297,4 +297,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-01 15:17:38
+-- Dump completed on 2016-03-01 19:51:58
