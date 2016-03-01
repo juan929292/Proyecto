@@ -20,30 +20,37 @@ include_once("./db_configuration.php");
 						echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
 					}
 					$consulta7="select posee.id_pelicula,usuarios.nombre from posee join valoraciones on posee.id_valoracion=valoraciones.id_valoracion
-					join usuarios on valoraciones.id_usuario=usuarios.id_usuario;";
+					join usuarios on valoraciones.id_usuario=usuarios.id_usuario where usuarios.id_usuario=".$_SESSION['nombresesion']." and
+					posee.id_pelicula=".$_GET['id'].";";
+					$consulta8="select count(usuarios.nombre) from posee join valoraciones on posee.id_valoracion=valoraciones.id_valoracion
+					join usuarios on valoraciones.id_usuario=usuarios.id_usuario where usuarios.id_usuario=".$_SESSION['nombresesion']." and
+					posee.id_pelicula=".$_GET['id'].";";
 					$result7=$connection->query($consulta7);
-					while($obj7=$result7->fetch_object()){
-						$compara1=$obj7->id_pelicula;
-						$compara2=$obj7->nombre;
-						}
-						echo $_SESSION['nombresesion']."</br>"."</br>";
-						echo "<a href='sesiondestroy.php'>Cerrar Sesi&oacute;n</a>";
-						echo "<style>#invitadaso{display:none;}</style>";
-							if (($compara1==$_GET['id'])&&($compara2==$_SESSION['nombresesion'])){
-								echo "<style>#estrellas{display:none;}#valorada{display:inherit;}#mostrar1{display:none;}</style>";
+					if($connection->query($consulta7)==true){
+						while($obj7=$result7->fetch_object()){
+							$compara1=$obj7->id_pelicula;
+							$compara2=$obj7->nombre;
 							}
-							else{
-								echo "<style>#estrellas{display:inherit;}#valorada{display:none;}</style>";
-							}
-					
-				}
-					else{
+							echo $_SESSION['nombresesion']."</br>"."</br>";
+							echo "<a href='sesiondestroy.php'>Cerrar Sesi&oacute;n</a>";
+							echo "<style>#invitadaso{display:none;}</style>";
+								if (($compara1==$_GET['id'])&&($compara2==$_SESSION['nombresesion'])){
+									echo "<style>#estrellas{display:none;}#valorada{display:block;}#mostrar1{display:none;}</style>";
+								}
+								
+					}else{
+							echo $_SESSION['nombresesion']."</br>"."</br>";
+							echo "<a href='sesiondestroy.php'>Cerrar Sesi&oacute;n</a>";
+							echo "<style>#estrellas{display:none;}#valorada{display:inherit;}#invitadaso{display:none;}#mostrar1{display:none;}</style>";
+					}
+				}else{
 						echo "Invitado";
 						echo "<style>#valorada{display:none;}#mostrar1{display:none;}#estrellas{display:none;}#formulariaso{display:none;}</style>";
 				echo "</h2>";
 				echo "</br>";
 				echo "<h3><p><a href='login.php'>Inicia Sesi&oacute;n</a> o <a href='registro.php'>reg&iacute;strate</a></p></h3>";
 				}
+			 
 				?>
 			</div>
 		</div>
