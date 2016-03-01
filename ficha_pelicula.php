@@ -108,7 +108,12 @@ include_once("./db_configuration.php");
 							}
 							echo "<h3>Año: ".$obj->anio ."</h3>"."</br>";
 							while($obj3=$result4->fetch_object()){
-								echo "<h3>Nota media Usuarios Film Review: "."<h1>".$obj3->media ."</h1>"."</h3>"."</br>";
+								$medi=$obj3->media;
+									if ($medi='NULL'){
+									echo "<h3>Nota media Usuarios Film Review:</br></br> (Esta Pelicula aun no ha sido valorada)</h3>"."</br>";
+								}else{
+								echo "<h3>Nota media Usuarios Film Review: "."<h1>".$medi ."</h1>"."</h3>"."</br>";
+								}
 							}
 							
 						}
