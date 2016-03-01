@@ -29,7 +29,7 @@ include_once("./db_configuration.php");
 						echo $_SESSION['nombresesion']."</br>"."</br>";
 						echo "<a href='sesiondestroy.php'>Cerrar Sesi&oacute;n</a>";
 						echo "<style>#invitadaso{display:none;}</style>";
-							if (($compara1==$_GET['id'])&($compara2==$_SESSION['nombresesion'])){
+							if (($compara1==$_GET['id'])&&($compara2==$_SESSION['nombresesion'])){
 								echo "<style>#estrellas{display:none;}#valorada{display:inherit;}#mostrar1{display:none;}</style>";
 							}
 							else{
