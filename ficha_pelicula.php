@@ -22,18 +22,23 @@ include_once("./db_configuration.php");
 					$consulta7="select posee.id_pelicula,usuarios.nombre from posee join valoraciones on posee.id_valoracion=valoraciones.id_valoracion
 					join usuarios on valoraciones.id_usuario=usuarios.id_usuario where usuarios.id_usuario=".$_SESSION['idsesion']." and
 					posee.id_pelicula=".$_GET['id'].";";
-					$consulta8="select count(usuarios.nombre) from posee join valoraciones on posee.id_valoracion=valoraciones.id_valoracion
-					join usuarios on valoraciones.id_usuario=usuarios.id_usuario where usuarios.id_usuario=".$_SESSION['idsesion']." and
+					$consulta8="select count(usuarios.nombre) as valorsiono from posee join valoraciones on posee.id_valoracion=valoraciones.id_valoracion
+					join usuarios on valoraciones.id_usuario=usuarios.id_usuario where valoraciones.id_usuario=".$_SESSION['idsesion']." and
 					posee.id_pelicula=".$_GET['id'].";";
 					$result7=$connection->query($consulta8);
-					if($connection->query($consulta8)==='0'){
-							echo $_SESSION['nombresesion']."</br>"."</br>";
+					while($obj10=$result7->fetch_object()){
+								$valoradasino=$obj10->valorsiono;
+							}
+					/*si no ha votado*/if($valoradasino=='0'){
+						echo $_SESSION['nombresesion']."</br>"."</br>";
 							echo "<a href='sesiondestroy.php'>Cerrar Sesi&oacute;n</a>";
-							echo "<style>#invitadaso{display:none;}#estrellas{display:inherit;}#valorada{display:none;}#mostrar1{display:inherit;}</style>";	
-					}else{		
-							echo $_SESSION['nombresesion']."</br>"."</br>";
+							echo "<style>#estrellas{display:inherit;}#valorada{display:none;}#invitadaso{display:none;}#mostrar1{display:inherit;}</style>";
+									
+					/*si ha votado*/}else{
+						echo $_SESSION['nombresesion']."</br>"."</br>";
 							echo "<a href='sesiondestroy.php'>Cerrar Sesi&oacute;n</a>";
-							echo "<style>#estrellas{display:none;}#valorada{display:inherit;}#invitadaso{display:none;}#mostrar1{display:none;}</style>";
+							echo "<style>#invitadaso{display:none;}#estrellas{display:none;}#valorada{display:inherit;}#mostrar1{display:none;}</style>";	
+							
 						}
 				}else{
 						echo "Invitado";
@@ -99,6 +104,7 @@ include_once("./db_configuration.php");
 					on posee.id_valoracion=valoraciones.id_valoracion join usuarios on 
 					valoraciones.id_usuario=usuarios.id_usuario where peliculas.id_pelicula=".$_GET['id'].";");
 					echo "<div id='cont' style='float:right;padding-right:20%;'>";
+					
 						while($obj=$result0->fetch_object()){
 							echo "<h2>".$obj->titulo ."</h2>"."</br>";
 							echo $obj->imagen ."</br>"."</br>";
@@ -109,10 +115,11 @@ include_once("./db_configuration.php");
 							echo "<h3>Año: ".$obj->anio ."</h3>"."</br>";
 							while($obj3=$result4->fetch_object()){
 								$medi=$obj3->media;
-									if ($medi=='NULL'){
-									echo "<h3>Nota media Usuarios Film Review:</br></br> (Esta Pelicula aun no ha sido valorada)</h3>"."</br>";
+									if ($medi> 0){
+									echo "<h3>Nota media Usuarios Film Review: "."<h1>".$medi ."</h1>"."</h3>"."</br>";
+									//echo "media es: ".$medi;
 								}else{
-								echo "<h3>Nota media Usuarios Film Review: "."<h1>".$medi ."</h1>"."</h3>"."</br>";
+									echo "<h3>Nota media Usuarios Film Review:</br></br> (Esta Pelicula aun no ha sido valorada)</h3>"."</br>";
 								}
 							}
 							
