@@ -147,7 +147,7 @@ include_once("./db_configuration.php");
 								echo "<h4>".$obj3->fecha ." ".$obj3->nombre .": </h4>";
 								echo "<p style='background-color:white;color:black;'>".$obj3->contenido ." </p>"."</br>";
 							}
-							echo "<form id='formulariaso' method='post' action='ficha_pelicula.php'>";
+							echo "<form id='formulariaso' method='post' action='ficha_pelicula.php?id=".$_GET['id']."'>";
 							echo "<input value='NULL' type='hidden' placeholder='NULL' name='id_coment'>";
 							echo "<input value='NULL' type='hidden' placeholder='NULL' name='fechaso'>";
 							echo "<input value=".$_GET['id']." type='hidden' placeholder='NULL' name='id_pelic'>";

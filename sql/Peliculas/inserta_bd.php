@@ -22,9 +22,10 @@ include_once("../../db_configuration.php");
     <?php if (!isset($_POST["val2"])) : ?>
 		<h2>Añadir Pelicula</h2>
                     <?php
-							echo "<form method='post' action='#'>";
+					$connection = new mysqli($db_host, $db_user, $db_password, $db_name);
+							echo "<form method='post' enctype='multipart/form-data' action='inserta_bd.php'>";
 								//echo "<h3>id_pelicula:</h3>";
-								echo "<input required value='NULL' type='hidden' placeholder='NULL' name='val1' readonly='readonly'>"."</br>";
+								echo "<input required value='NULL' type='hidden' placeholder='NULL' name='val1'>"."</br>";
 								echo "<h3>titulo:</h3>";
 								echo "<input required type='text' name='val2'>"."</br>";
 								echo "<h3>duracion:</h3>";
@@ -34,7 +35,22 @@ include_once("../../db_configuration.php");
 								//echo "<h3>nota_media:</h3>";
 								echo "<input type='hidden' value='0' placeholder='NULL' name='val5'>"."</br>";
 								echo "<h3>imagen:</h3>";
+								echo "<input type='hidden' name='MAX_FILE_SIZE' value='3000000' />";
 								echo "<input required type='file' name='val6'>"."</br>";
+								echo "<h3>Director:</h3>";
+								echo "<select required name='val7'>";
+								$result3=$connection->query("SELECT * FROM directores;");
+								$result4=$connection->query("SELECT * FROM generos;");
+								while($obj=$result3->fetch_object()){
+									echo "<option value=".$obj->id_director .">".$obj->id_director ." ".$obj->nombre ."</option>";
+								}
+								echo "</select>";
+								echo "<h3>Genero:</h3>";
+								echo "<select required name='val8'>";
+								while($obj2=$result4->fetch_object()){
+									echo "<option value=".$obj2->id_genero .">".$obj2->id_genero ." ".$obj2->nombre ."</option>";
+								}
+								echo "</select>"."</br>";
 							echo "</br>"."<input type='submit' value='Enviar'>";
 							echo "</form>";
                     ?>
@@ -45,7 +61,26 @@ include_once("../../db_configuration.php");
 							$dur=$_POST['val3']." min";
 							$ani=$_POST['val4'];
 							$not=$_POST['val5'];
-							$img= '"'."<img width='150' height='200' src='/Proyecto/img/".$_POST['val6']."'>".'"';
+							
+							$dir_subida = 'C:\xampp\htdocs\Proyecto\img';
+							$fichero_subido = $dir_subida . basename($_FILES['val6']['name']);
+
+							echo '<pre>';
+							if (move_uploaded_file($_FILES['val6']['tmp_name'], $fichero_subido)) {
+								echo "El fichero es válido y se subió con éxito.\n";
+							} else {
+								echo "¡Posible ataque de subida de ficheros!\n";
+							}
+
+							echo 'Más información de depuración:';
+							print_r($_FILES);
+
+							print "</pre>";
+
+
+							$img= '"'."<img width='150' height='200' src='".$fichero_subido."'>".'"';
+							$director=$_POST['val7'];
+							$genero=$_POST['val8'];
 							
 							//echo $id."</br>";
 							//echo $tit."</br>";
@@ -60,13 +95,15 @@ include_once("../../db_configuration.php");
 								$consulta="insert into peliculas(id_pelicula,titulo,duracion,anio,nota_media,imagen) VALUES($id,'$tit','$dur',$ani,$not,$img);";
 								echo "</br>";
 								if($connection->query($consulta)==true){
-									echo "<h2>Inserción realizada correctamente, Redireccionando...</h2>";
+									echo "<h2>Inserción pelicula parte1, Redireccionando...</h2>";
+									
 								}else{
 									echo $connection->error;   
 								}
-								unset($connection);
-
-								header('Refresh:3; url=/Proyecto/sql/Peliculas/resultado.php',True,303)
+								$result5=$connection->query("SELECT * FROM peliculas where peliculas.titulo=$tit".";");
+								$ruta="Refresh:3; Location: inserta_bd_2.php?tit=$tit&dir=$director&gen=$genero,True,303";
+								//$ruta='Refresh:3; url=resultado.php',True,303;
+								header("$ruta")
 						?>
 					<?php endif ?>
     </div>
