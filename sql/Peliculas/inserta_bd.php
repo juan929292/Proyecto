@@ -62,9 +62,11 @@ include_once("../../db_configuration.php");
 							$ani=$_POST['val4'];
 							$not=$_POST['val5'];
 							
-							$dir_subida = 'C:\xampp\htdocs\Proyecto\img';
+							$dir_subida = '/Proyecto/img/';
 							$fichero_subido = $dir_subida . basename($_FILES['val6']['name']);
-
+							
+							var_dump($fichero_subido);
+							var_dump($_FILES);
 							echo '<pre>';
 							if (move_uploaded_file($_FILES['val6']['tmp_name'], $fichero_subido)) {
 								echo "El fichero es válido y se subió con éxito.\n";
@@ -94,16 +96,17 @@ include_once("../../db_configuration.php");
 								} 
 								$consulta="insert into peliculas(id_pelicula,titulo,duracion,anio,nota_media,imagen) VALUES($id,'$tit','$dur',$ani,$not,$img);";
 								echo "</br>";
+								$ruta="Refresh:3; Location: inserta_bd_2.php?tit=$tit&dir=$director&gen=$genero,True,303";
 								if($connection->query($consulta)==true){
 									echo "<h2>Inserción pelicula parte1, Redireccionando...</h2>";
-									
+									header("$ruta");
 								}else{
 									echo $connection->error;   
 								}
 								$result5=$connection->query("SELECT * FROM peliculas where peliculas.titulo=$tit".";");
-								$ruta="Refresh:3; Location: inserta_bd_2.php?tit=$tit&dir=$director&gen=$genero,True,303";
+								
 								//$ruta='Refresh:3; url=resultado.php',True,303;
-								header("$ruta")
+								
 						?>
 					<?php endif ?>
     </div>
