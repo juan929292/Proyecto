@@ -65,39 +65,18 @@ echo "<h3>Peliculas</h3>";
         $result=$connection->query("SELECT * FROM peliculas where id_pelicula=".$_GET['idd'].";");
 							echo "<form method='post' action='edita_fila.php'>";
 							while($obj=$result->fetch_object()){
-								echo "<h3>Editar pelicula: ".$obj->titulo ."</h3>"."</br>";
-								echo $obj->imagen."</br>";
+								echo "<h3>Editar pelicula: ".$obj->titulo ."</h3>";
 								echo "<input required type='hidden' value=".$obj->id_pelicula ." name='val1' readonly='readonly'>"."</br>";
 								echo "<h3>titulo:</h3>";
 								echo "<input required type='text' placeholder="."'".$obj->titulo ."'"." name='val2'>"."</br>";
 								echo "<h3>duracion:</h3>";
-								echo "<input required type='text' name='val3'"." placeholder="."'".$obj->duracion ."'>"."</br>";
+								echo "<input required type='text' name='val3'>"."</br>";
 								echo "<h3>anio:</h3>";
 								echo "<input required type='text' placeholder="."'".$obj->anio ."'"." name='val4'>"."</br>";
 								echo "<h3>nota_media:</h3>";
 								echo "<input required type='text' placeholder=".$obj->nota_media ." name='val5'>"."</br>";
 								echo "<h3>imagen:</h3>";
-								echo "<input type='hidden' name='MAX_FILE_SIZE' value='3000000' />";
 								echo "<input required type='file' name='val6'>"."</br>";
-								echo "<h3>Director:</h3>";
-								$result3=$connection->query("SELECT * FROM directores;");
-								$result4=$connection->query("SELECT * FROM generos;");
-								$result5=$connection->query("SELECT * FROM directores join dirigida_por on directores.id_director=dirigida_por.id_director where dirigida_por.id_pelicula=".$obj->id_pelicula.";");
-								$result6=$connection->query("SELECT * FROM generos join es on generos.id_genero=es.id_genero where es.id_pelicula=".$obj->id_pelicula.";");
-									while($obj4=$result5->fetch_object()){
-								echo "<select placeholder=".$obj4->id_director . $obj4->nombre ." required name='val7'>";
-								
-								while($obj2=$result3->fetch_object()){		
-									echo "<option value=".$obj2->id_director .">".$obj2->id_director ." ".$obj2->nombre ."</option>";		
-									}
-								}
-								echo "</select>";
-								echo "<h3>Genero:</h3>";
-								echo "<select required name='val8'>";
-								while($obj3=$result4->fetch_object()){
-									echo "<option value=".$obj3->id_genero .">".$obj3->id_genero ." ".$obj3->nombre ."</option>";
-								}
-								echo "</select>"."</br>";
 							echo "</br>"."<input type='submit' value='Enviar'>";
 							}
 							echo "</form>";

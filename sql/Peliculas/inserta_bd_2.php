@@ -27,7 +27,8 @@ include_once("../../db_configuration.php");
 								//$idep=$_GET['idp'];
 								$result0=$connection->query("insert into es (id_pelicula,id_genero) VALUES($idpeliculaso,$gene)".";");
 								$result0=$connection->query("insert into dirigida_por (id_director,id_pelicula) VALUES($dire,$idpeliculaso)".";");
-								echo "<h2>Pelicula insertada correctamente, Redireccionando...</h2>";
+								echo "<h2>(inserta_bd_2) Pelicula insertada correctamente, Redireccionando...</h2>";
+								print_r($_FILES);
 								header('Refresh:3; url=resultado.php',True,303);
 
 ?>

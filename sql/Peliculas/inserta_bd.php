@@ -62,7 +62,7 @@ include_once("../../db_configuration.php");
 							$ani=$_POST['val4'];
 							$not=$_POST['val5'];
 							
-							$dir_subida = '/Proyecto/img/';
+							$dir_subida ='../../img/';
 							$fichero_subido = $dir_subida . basename($_FILES['val6']['name']);
 							
 							var_dump($fichero_subido);
@@ -80,7 +80,7 @@ include_once("../../db_configuration.php");
 							print "</pre>";
 
 
-							$img= '"'."<img width='150' height='200' src='".$fichero_subido."'>".'"';
+							$img= '"'."<img width='150' height='200' src='/Proyecto/img/".$_FILES['val6']['name']."'>".'"';
 							$director=$_POST['val7'];
 							$genero=$_POST['val8'];
 							
@@ -96,7 +96,7 @@ include_once("../../db_configuration.php");
 								} 
 								$consulta="insert into peliculas(id_pelicula,titulo,duracion,anio,nota_media,imagen) VALUES($id,'$tit','$dur',$ani,$not,$img);";
 								echo "</br>";
-								$ruta="Refresh:3; Location: inserta_bd_2.php?tit=$tit&dir=$director&gen=$genero,True,303";
+								$ruta="Location: inserta_bd_2.php?tit=$tit&dir=$director&gen=$genero,True,303";
 								if($connection->query($consulta)==true){
 									echo "<h2>Inserción pelicula parte1, Redireccionando...</h2>";
 									header("$ruta");

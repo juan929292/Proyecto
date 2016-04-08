@@ -131,6 +131,6 @@ include_once("./db_configuration.php");
 		
 	</div>
 	</div>
-	<img src='/Proyecto/sql/BD_vista_grafica.jpg' style='float:left;height:500px;width:700;margin-left:10px;'/>
+	<img src='/Proyecto/sql/BD_vista_grafica.jpg' style='float:left;height:500px;width:650;margin-left:10px;'/>
 </body>
 </html>
