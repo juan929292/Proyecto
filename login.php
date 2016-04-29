@@ -4,6 +4,7 @@ include_once("db_configuration.php");
 ?>
 <html>
 <head> 
+<meta charset="utf-8">
     <title>Film Review</title>
     <link href="css/general.css" rel="stylesheet" type="text/css" />
 </head>
