@@ -4,7 +4,6 @@ include_once("db_configuration.php");
 ?>
 <html>
 <head> 
-<meta charset="utf-8">
     <title>Film Review</title>
     <link href="css/general.css" rel="stylesheet" type="text/css" />
 </head>
@@ -70,12 +69,6 @@ include_once("db_configuration.php");
 							$connection = new mysqli($db_host, $db_user, $db_password, $db_name);
 						if($connection->connect_errno){
 							echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
-							if (!$connection->set_charset("utf8")) {
-								printf("Error cargando el conjunto de caracteres utf8: %s\n", $mysqli->error);
-								exit();
-							} else {
-								printf("Conjunto de caracteres actual: %s\n", $mysqli->character_set_name());
-							}
 						}
 						if (isset($_POST['nombre'])){
 							$consulta="select * from usuarios where nombre='".$_POST['nombre']."' and contrasena='".$_POST['clave']."';";

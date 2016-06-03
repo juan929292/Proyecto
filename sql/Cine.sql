@@ -42,7 +42,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'velasco','velasco','velasco@velasco.com','admin'),(2,'sanchez','sanchez','sanchez@sanchez.com','estandar');
+INSERT INTO `usuarios` VALUES (1,'velasco','velasco','velasco@velasco.com','admin'),(2,'sanchez','sanchez','sanchez@sanchez.com','estandar'),(3,'jdiego','jdiego','jdiego@jdiego.com','admin');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,8 +57,7 @@ CREATE TABLE `valoraciones` (
   `id_valoracion` int(10) NOT NULL AUTO_INCREMENT,
   `nota` int(10) NOT NULL,
   `id_usuario` int(10) NOT NULL,
-  PRIMARY KEY (`id_valoracion`),
-  KEY `id_usuario` (`id_usuario`),
+  PRIMARY KEY (`id_valoracion`, `id_usuario`),
   CONSTRAINT `valoraciones_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

@@ -18,17 +18,30 @@ include_once("../../db_configuration.php");
                         if($connection->connect_errno){
                             echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
 								} 
-									$result5=$connection->query("SELECT * FROM peliculas where peliculas.titulo="."'".$_GET['tit']."'".";");
+									$result5=$connection->query("SELECT max(id_pelicula) as id_pel from peliculas;");
 									while($obj4=$result5->fetch_object()){
-								$idpeliculaso=$obj4->id_pelicula;
+								$idpeliculaso=$obj4->id_pel;
 									}
 								$dire=$_GET['dir'];
 								$gene=$_GET['gen'];
 								//$idep=$_GET['idp'];
-								$result0=$connection->query("insert into es (id_pelicula,id_genero) VALUES($idpeliculaso,$gene)".";");
-								$result0=$connection->query("insert into dirigida_por (id_director,id_pelicula) VALUES($dire,$idpeliculaso)".";");
-								echo "<h2>(inserta_bd_2) Pelicula insertada correctamente, Redireccionando...</h2>";
-								print_r($_FILES);
-								header('Refresh:3; url=resultado.php',True,303);
+								$consulta5="insert into es (id_pelicula,id_genero) VALUES($idpeliculaso,$gene);";
+									if($connection->query($consulta5)==true){
+									}
+									else{
+										echo $connection->error;
+									}
+									$consulta6="insert into dirigida_por (id_director,id_pelicula) VALUES($dire,$idpeliculaso);";
+									if($connection->query($consulta6)==true){
+									}
+									else{
+										echo $connection->error;
+									}
+									
+									echo "<h2>(inserta_bd_2) Pelicula insertada correctamente, Redireccionando...</h2>";
+									//echo "id peliculas es --> ".$_GET['idp'];
+									echo "id pelicula -->".$idpeliculaso."</br>"."</br>";
+									echo "id genero -->".$gene;
+									header('Refresh:3; url=resultado.php',True,303);
 
 ?>

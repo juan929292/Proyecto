@@ -79,34 +79,24 @@ include_once("../../db_configuration.php");
 
 							print "</pre>";
 
-
 							$img= '"'."<img width='150' height='200' src='/Proyecto/img/".$_FILES['val6']['name']."'>".'"';
 							$director=$_POST['val7'];
 							$genero=$_POST['val8'];
-							
-							//echo $id."</br>";
-							//echo $tit."</br>";
-							//echo $dur."</br>";
-							//echo $ani."</br>";
-							//echo $not."</br>";
-							//echo $img."</br>";
+
 							$connection = new mysqli($db_host, $db_user, $db_password, $db_name);
                         if($connection->connect_errno){
                             echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
 								} 
 								$consulta="insert into peliculas(id_pelicula,titulo,duracion,anio,nota_media,imagen) VALUES($id,'$tit','$dur',$ani,$not,$img);";
 								echo "</br>";
-								$ruta="Location: inserta_bd_2.php?tit=$tit&dir=$director&gen=$genero,True,303";
+								
 								if($connection->query($consulta)==true){
 									echo "<h2>Inserción pelicula parte1, Redireccionando...</h2>";
+									$ruta="Location: inserta_bd_2.php?tit=$tit&dir=$director&gen=$genero";
 									header("$ruta");
 								}else{
 									echo $connection->error;   
 								}
-								$result5=$connection->query("SELECT * FROM peliculas where peliculas.titulo=$tit".";");
-								
-								//$ruta='Refresh:3; url=resultado.php',True,303;
-								
 						?>
 					<?php endif ?>
     </div>

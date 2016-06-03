@@ -5,8 +5,12 @@ include_once("./db_configuration.php");
 <html>
 <head> 
     <title>Film Review</title>
+	<link href="css/general_admin_bd.css" rel="stylesheet" type="text/css" />
+	<meta charset="utf-8"/>
 </head>
 <body>
+<div id="page">
+<div id="header"></div>
 <?php
 	if (isset($_SESSION['tiposesion'])&&($_SESSION['tiposesion']=='admin')){
 		echo "";
@@ -17,8 +21,11 @@ include_once("./db_configuration.php");
 	header('Refresh:1; url=login.php',True,303);
 }
 ?>
-   <div id="page" style="float:left;">
-	<div id="info1">
+
+   
+	<div id="main">
+		<div id="contenido" style="float:right;">
+			<div id="info1">
 		    <?php
 			echo "</br>"."<a href='index.php'>"."<input type='button' value='Volver a Inicio Film Review' style='font-family: Verdana; font-size: 10 pt'>"."</a>"."</br>";
 			echo "</br>";
@@ -126,11 +133,13 @@ include_once("./db_configuration.php");
 				echo "<td>"."<a href='sql/Dirigida_por/resultado.php?id=Dirigida_por'><img width=40 src='/Proyecto/img/ojo.png'/></a>"."</td>";
 			echo "</tr>";
 			echo "</table>";
-		echo "<h4>*Algunas tablas al mostrarlas muestran campos adicionales, de otras tablas,</br> para entender mejor el contexto de algunas tablas</h4>";
+			echo "</br>";
+			echo "<br>";
 		?>
 		
 	</div>
 	</div>
-	<img src='/Proyecto/sql/BD_vista_grafica.jpg' style='float:left;height:500px;width:650;margin-left:10px;'/>
+	</div>
+	</div>
 </body>
 </html>

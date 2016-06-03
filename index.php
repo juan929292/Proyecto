@@ -28,6 +28,7 @@ include_once("./db_configuration.php");
 				?>
 			</div>
 		</div>
+		<div id="page">
         <div id="main">
 		<div id="sidebaraso">
             <div id="sidebar">
@@ -80,6 +81,7 @@ include_once("./db_configuration.php");
                 <p>Copyright &copy; 2016, Desarrollada por <a href="">Velasco</a></p>
             </div>
 		</div>
+	</div>
 	</div>
 </body>
 </html>

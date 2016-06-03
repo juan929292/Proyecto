@@ -16,9 +16,26 @@ include_once("../../db_configuration.php");
 <html>
 <head> 
     <title>Film Review</title>
+	<link href="../../css/general_admin_bd.css" rel="stylesheet" type="text/css" />
+	<meta charset="utf-8"/>
 </head>
 <body>
-   <div id="page" style="float:left;">
+   <div id="page">
+<div id="header"></div>
+<?php
+	if (isset($_SESSION['tiposesion'])&&($_SESSION['tiposesion']=='admin')){
+		echo "";
+	}
+	else {
+		echo "<h2>Acceso denegado, redireccionando...</h2>";
+		echo "<style>page {display:none;}<style>";
+	header('Refresh:1; url=login.php',True,303);
+}
+?>
+
+   
+	<div id="main">
+		<div id="contenido" style="float:right;">
 	<div id="info1" style="">
 		    <?php
         //conexion a la base de datos-peliculas
@@ -56,6 +73,8 @@ include_once("../../db_configuration.php");
         </table>
 	</div>
 	</div>
-	<img src='/Proyecto/sql/BD_vista_grafica.jpg' style='float:left;height:500px;width:600;margin-left:10px;'/>
+	</div>
+	</div>
+	</div>
 	</body>
 	</html>
