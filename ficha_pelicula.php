@@ -179,10 +179,10 @@ include_once("./db_configuration.php");
 								}
 								unset($connection);
 						?>
-						
+						<?php endif ?>
 			</div>
         </div>
-        <div id="footer">
+		<div id="footer">
             <div id="footerleft">
           
             </div>
@@ -190,7 +190,7 @@ include_once("./db_configuration.php");
                 <p>Copyright &copy; 2016, Desarrollada por <a href="">Velasco</a></p>
             </div>
 		</div>
+		
 	</div>
-	<?php endif ?>
 </body>
 </html>

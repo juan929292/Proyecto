@@ -68,7 +68,16 @@ ul {
 	margin-bottom: 10px;
 }
 
+#login{
+	height:100px;
+	width:200px;
+	background: #B0D9F9;
+	color:black;
+	}
+#login h4{
+	color: black;
 
+	}
 
 /* main */
 
@@ -151,10 +160,11 @@ ul {
 
 #footerleft {
     float: left;
-    width: 230px;
-	height: auto;
+    width: 0px;
+	height: 0px;
 	padding-left:30px;
-    background: #AECAE0;
+    background: #B0D9F9;
+	float: left;
 }
 
 #footerleft p {
@@ -163,8 +173,8 @@ ul {
 }
 
 #footerright {
-    float: right;
-    width: 720px;
+    float: left;
+    width: 950px;
 	height: 40px;
     background: #4C5070 url(../img/content.jpg) repeat-y;
 }

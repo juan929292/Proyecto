@@ -10,7 +10,8 @@ include_once("./db_configuration.php");
 </head>
 <body>
 <div id="page">
-<div id="header"></div>
+<div id="header">
+<div id="login">
 <?php
 	if (isset($_SESSION['tiposesion'])&&($_SESSION['tiposesion']=='admin')){
 		echo "";
@@ -21,7 +22,21 @@ include_once("./db_configuration.php");
 	header('Refresh:1; url=login.php',True,303);
 }
 ?>
-
+				<h2>Bienvenido <?php
+				//<?php if (!isset($_GET["idd"])) : 
+				 if (isset($_SESSION["nombresesion"])){  
+					echo $_SESSION['nombresesion']."</br>"."</br>";
+					echo "<a href='sesiondestroy.php'>Cerrar Sesi&oacute;n</a>";
+					}
+					else{
+						echo "Usted no es Administrador";
+				echo "</h2>";
+				echo "</br>";
+				echo "<h3><p><a href='login.php'>Inicia Sesi&oacute;n</a> o <a href='registro.php'>reg&iacute;strate</a></p></h3>";
+				}
+				?>
+			</div>
+</div>
    
 	<div id="main">
 		<div id="contenido" style="float:right;">
@@ -29,7 +44,7 @@ include_once("./db_configuration.php");
 		    <?php
 			echo "</br>"."<a href='index.php'>"."<input type='button' value='Volver a Inicio Film Review' style='font-family: Verdana; font-size: 10 pt'>"."</a>"."</br>";
 			echo "</br>";
-			echo "<table border=1>";
+			echo "<table border=1 style='background-color:grey;'>";
 						echo "<tr>";
 				echo "<td>"."<h2>Tablas de 'Cine'</h2>"."</td>"."<td>"."<h3>Añadir</h3>"."</td>";
 				echo "<td>"."<h3>Borrar</h3>"."</td>";
@@ -47,7 +62,7 @@ include_once("./db_configuration.php");
 		<div id="info2" style="">
 				    <?php
 			echo "<tr>";
-				echo "<td>"."<h3>Generos</h3>"."</td>"."<td>"."<a href='sql/Generos/inserta_bd.php?id=Generos'><img width=40 src='/Proyecto/img/inserta.jpg'/></a>"."</td>";
+				echo "<td>"."<h3>Géneros</h3>"."</td>"."<td>"."<a href='sql/Generos/inserta_bd.php?id=Generos'><img width=40 src='/Proyecto/img/inserta.jpg'/></a>"."</td>";
 				echo "<td>"."<a href='sql/Generos/borra_bd.php?id=Generos'><img width=40 src='/Proyecto/img/borra.png'/></a>"."</td>";
 				echo "<td>"."<a href='sql/Generos/edita_bd.php?id=Generos'><img width=40 src='/Proyecto/img/edita.png'/></a>"."</td>";
 				echo "<td>"."<a href='sql/Generos/resultado.php?id=Generos'><img width=40 src='/Proyecto/img/ojo.png'/></a>"."</td>";
@@ -96,50 +111,58 @@ include_once("./db_configuration.php");
 	</div>
 		<div id="info7" style="">
 		      <?php
-			echo "<tr>";
-				echo "<td>"."<h3>Es(Peliculas-Generos)</h3>"."</td>"."<td>"."<a href='sql/Es/inserta_bd.php?id=Es'><img width=40 src='/Proyecto/img/inserta.jpg'/></a>"."</td>";
-				echo "<td>"."<a href='sql/Es/borra_bd.php?id=Es'><img width=40 src='/Proyecto/img/borra.png'/></a>"."</td>";
-				echo "<td>"."<a href='sql/Es/edita_bd.php?id=Es'><img width=40 src='/Proyecto/img/edita.png'/></a>"."</td>";
-				echo "<td>"."<a href='sql/Es/resultado.php?id=Es'><img width=40 src='/Proyecto/img/ojo.png'/></a>"."</td>";
-			echo "</tr>";
+		//	echo "<tr>";
+			//	echo "<td>"."<h3>Es(Peliculas-Generos)</h3>"."</td>"."<td>"."<a href='sql/Es/inserta_bd.php?id=Es'><img width=40 src='/Proyecto/img/inserta.jpg'/></a>"."</td>";
+			//	echo "<td>"."<a href='sql/Es/borra_bd.php?id=Es'><img width=40 src='/Proyecto/img/borra.png'/></a>"."</td>";
+			//	echo "<td>"."<a href='sql/Es/edita_bd.php?id=Es'><img width=40 src='/Proyecto/img/edita.png'/></a>"."</td>";
+			//	echo "<td>"."<a href='sql/Es/resultado.php?id=Es'><img width=40 src='/Proyecto/img/ojo.png'/></a>"."</td>";
+		//	echo "</tr>";
 		?>
 	</div>
 		<div id="info8" style="">
 		      <?php
-			echo "<tr>";
-				echo "<td>"."<h3>Tienen(Peliculas-Comentarios)</h3>"."</td>"."<td>"."<a href='sql/Tienen/inserta_bd.php?id=Tienen'><img width=40 src='/Proyecto/img/inserta.jpg'/></a>"."</td>";
-				echo "<td>"."<a href='sql/Tienen/borra_bd.php?id=Tienen'><img width=40 src='/Proyecto/img/borra.png'/></a>"."</td>";
-				echo "<td>"."<a href='sql/Tienen/edita_bd.php?id=Tienen'><img width=40 src='/Proyecto/img/edita.png'/></a>"."</td>";
-				echo "<td>"."<a href='sql/Tienen/resultado.php?id=Tienen'><img width=40 src='/Proyecto/img/ojo.png'/></a>"."</td>";
-			echo "</tr>";
+		//	echo "<tr>";
+			//	echo "<td>"."<h3>Tienen(Peliculas-Comentarios)</h3>"."</td>"."<td>"."<a href='sql/Tienen/inserta_bd.php?id=Tienen'><img width=40 src='/Proyecto/img/inserta.jpg'/></a>"."</td>";
+			//	echo "<td>"."<a href='sql/Tienen/borra_bd.php?id=Tienen'><img width=40 src='/Proyecto/img/borra.png'/></a>"."</td>";
+			//	echo "<td>"."<a href='sql/Tienen/edita_bd.php?id=Tienen'><img width=40 src='/Proyecto/img/edita.png'/></a>"."</td>";
+			//	echo "<td>"."<a href='sql/Tienen/resultado.php?id=Tienen'><img width=40 src='/Proyecto/img/ojo.png'/></a>"."</td>";
+		//	echo "</tr>";
 		?>
 	</div>
 		<div id="info9" style="">
 		      <?php
-			echo "<tr>";
-				echo "<td>"."<h3>Posee(Peliculas-Valoraciones)</h3>"."</td>"."<td>"."<a href='sql/Posee/inserta_bd.php?id=Posee'><img width=40 src='/Proyecto/img/inserta.jpg'/></a>"."</td>";
-				echo "<td>"."<a href='sql/Posee/borra_bd.php?id=Posee'><img width=40 src='/Proyecto/img/borra.png'/></a>"."</td>";
-				echo "<td>"."<a href='sql/Posee/edita_bd.php?id=Posee'><img width=40 src='/Proyecto/img/edita.png'/></a>"."</td>";
-				echo "<td>"."<a href='sql/Posee/resultado.php?id=Posee'><img width=40 src='/Proyecto/img/ojo.png'/></a>"."</td>";
-			echo "</tr>";
+		//	echo "<tr>";
+			//	echo "<td>"."<h3>Posee(Peliculas-Valoraciones)</h3>"."</td>"."<td>"."<a href='sql/Posee/inserta_bd.php?id=Posee'><img width=40 src='/Proyecto/img/inserta.jpg'/></a>"."</td>";
+			//	echo "<td>"."<a href='sql/Posee/borra_bd.php?id=Posee'><img width=40 src='/Proyecto/img/borra.png'/></a>"."</td>";
+			//	echo "<td>"."<a href='sql/Posee/edita_bd.php?id=Posee'><img width=40 src='/Proyecto/img/edita.png'/></a>"."</td>";
+			//	echo "<td>"."<a href='sql/Posee/resultado.php?id=Posee'><img width=40 src='/Proyecto/img/ojo.png'/></a>"."</td>";
+		//	echo "</tr>";
 		?>
 	</div>
 	<div id="info10" style="">
 		      <?php
-			echo "<tr>";
-				echo "<td>"."<h3>Dirigida_por(Peliculas-Directores)</h3>"."</td>"."<td>"."<a href='sql/Dirigida_por/inserta_bd.php?id=Dirigida_por'><img width=40 src='/Proyecto/img/inserta.jpg'/></a>"."</td>";
-				echo "<td>"."<a href='sql/Dirigida_por/borra_bd.php?id=Dirigida_por'><img width=40 src='/Proyecto/img/borra.png'/></a>"."</td>";
-				echo "<td>"."<a href='sql/Dirigida_por/edita_bd.php?id=Dirigida_por'><img width=40 src='/Proyecto/img/edita.png'/></a>"."</td>";
-				echo "<td>"."<a href='sql/Dirigida_por/resultado.php?id=Dirigida_por'><img width=40 src='/Proyecto/img/ojo.png'/></a>"."</td>";
-			echo "</tr>";
+		//	echo "<tr>";
+			//	echo "<td>"."<h3>Dirigida_por(Peliculas-Directores)</h3>"."</td>"."<td>"."<a href='sql/Dirigida_por/inserta_bd.php?id=Dirigida_por'><img width=40 src='/Proyecto/img/inserta.jpg'/></a>"."</td>";
+			//	echo "<td>"."<a href='sql/Dirigida_por/borra_bd.php?id=Dirigida_por'><img width=40 src='/Proyecto/img/borra.png'/></a>"."</td>";
+			//	echo "<td>"."<a href='sql/Dirigida_por/edita_bd.php?id=Dirigida_por'><img width=40 src='/Proyecto/img/edita.png'/></a>"."</td>";
+			//	echo "<td>"."<a href='sql/Dirigida_por/resultado.php?id=Dirigida_por'><img width=40 src='/Proyecto/img/ojo.png'/></a>"."</td>";
+		//	echo "</tr>";
 			echo "</table>";
 			echo "</br>";
-			echo "<br>";
+			echo "</br>";
 		?>
 		
 	</div>
 	</div>
 	</div>
+	<div id="footer">
+            <div id="footerleft">
+          
+            </div>
+            <div id="footerright">
+                <p>Copyright &copy; 2016, Desarrollada por <a href="">Velasco</a></p>
+            </div>
+		</div>
 	</div>
 </body>
 </html>

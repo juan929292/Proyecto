@@ -21,7 +21,8 @@ include_once("../../db_configuration.php");
 </head>
 <body>
 <div id="page">
-<div id="header"></div>
+<div id="header">
+<div id="login">
 <?php
 	if (isset($_SESSION['tiposesion'])&&($_SESSION['tiposesion']=='admin')){
 		echo "";
@@ -32,6 +33,21 @@ include_once("../../db_configuration.php");
 	header('Refresh:1; url=login.php',True,303);
 }
 ?>
+				<h2>Bienvenido <?php
+				//<?php if (!isset($_GET["idd"])) : 
+				 if (isset($_SESSION["nombresesion"])){  
+					echo $_SESSION['nombresesion']."</br>"."</br>";
+					echo "<a href='sesiondestroy.php'>Cerrar Sesi&oacute;n</a>";
+					}
+					else{
+						echo "Usted no es Administrador";
+				echo "</h2>";
+				echo "</br>";
+				echo "<h3><p><a href='login.php'>Inicia Sesi&oacute;n</a> o <a href='registro.php'>reg&iacute;strate</a></p></h3>";
+				}
+				?>
+			</div>
+			</div>
 
    
 	<div id="main">
@@ -56,6 +72,15 @@ include_once("../../db_configuration.php");
 					?>
 						</div>
 	</div>
+	<div id="footer">
+		
+            <div id="footerleft">
+          
+            </div>
+            <div id="footerright">
+                <p>Copyright &copy; 2016, Desarrollada por <a href="">Velasco</a></p>
+            </div>
+		</div>
 	</div>		
 </body>
 </html>

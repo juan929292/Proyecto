@@ -28,7 +28,7 @@ include_once("./db_configuration.php");
 				?>
 			</div>
 		</div>
-		<div id="page">
+		<div id="page2">
         <div id="main">
 		<div id="sidebaraso">
             <div id="sidebar">

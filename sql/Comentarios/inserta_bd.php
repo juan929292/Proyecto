@@ -21,7 +21,8 @@ include_once("../../db_configuration.php");
 </head>
 <body>
 <div id="page">
-<div id="header"></div>
+<div id="header">
+<div id="login">
 <?php
 	if (isset($_SESSION['tiposesion'])&&($_SESSION['tiposesion']=='admin')){
 		echo "";
@@ -32,34 +33,50 @@ include_once("../../db_configuration.php");
 	header('Refresh:1; url=login.php',True,303);
 }
 ?>
-
-   
+				<h2>Bienvenido <?php
+				//<?php if (!isset($_GET["idd"])) : 
+				 if (isset($_SESSION["nombresesion"])){  
+					echo $_SESSION['nombresesion']."</br>"."</br>";
+					echo "<a href='sesiondestroy.php'>Cerrar Sesi&oacute;n</a>";
+					}
+					else{
+						echo "Usted no es Administrador";
+				echo "</h2>";
+				echo "</br>";
+				echo "<h3><p><a href='login.php'>Inicia Sesi&oacute;n</a> o <a href='registro.php'>reg&iacute;strate</a></p></h3>";
+				}
+				?>
+			</div>
+			</div>
 	<div id="main">
 		<div id="contenido" style="float:right;">
    <div>
     <?php if (!isset($_POST["val1"])) : ?>
-		<h2>Añadir Comentario</h2>
+	</br>
+		<h2>Añadir Comentario:</h2>
 							    <?php
 					//conexion a la base de datos-peliculas
 					$connection = new mysqli($db_host, $db_user, $db_password, $db_name);
 					if($connection->connect_errno){
 						echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
 					}
+								echo "</br><a href='../../../Proyecto/administracion_bd.php'>"."<input type='button' value='Volver a panel administración' style='font-family: Verdana; font-size: 10 pt'></br></a></br>";
+
 					$result=$connection->query("SELECT * FROM usuarios");
 					$result2=$connection->query("SELECT * FROM peliculas");
 							echo "<form method='post' action='#'>";
 								echo "<input required value='NULL' type='hidden' placeholder='NULL' name='val1' readonly='readonly'>"."</br>";
-								echo "<h3>contenido:</h3>";
+								echo "<h3>Contenido:</h3>";
 								echo "<textarea required name='val2' size=32 style='width:400px;height:100px' cols='60' rows='8'></textarea>"."</br>";
 
 								echo "<input required type='hidden' value='NULL' name='val3'>"."</br>";
-								echo "<h3>usuario:</h3>"."</br>";
+								echo "<h3>Usuario:</h3>"."</br>";
 								echo "<select required multiple name='val4'>";
 								while($obj=$result->fetch_object()){
 								echo "<option value=".$obj->id_usuario .">".$obj->nombre ."</option>";
 								}
 								echo " </select></br>";
-								echo "<h3>Pelicula:</h3>"."</br>";
+								echo "</br><h3>Pelicula:</h3>"."</br>";
 								echo "<select required multiple name='val5'>";
 								while($obj=$result2->fetch_object()){
 								echo "<option value=".$obj->id_pelicula .">".$obj->titulo ."</option>";
@@ -91,9 +108,19 @@ include_once("../../db_configuration.php");
 								header('Refresh:3; url=/Proyecto/sql/Comentarios/resultado.php',True,303)
 						?>
 					<?php endif ?>
+					</br>
 					</div>
 	</div>
 	</div>
+		<div id="footer">
+		
+            <div id="footerleft">
+          
+            </div>
+            <div id="footerright">
+                <p>Copyright &copy; 2016, Desarrollada por <a href="">Velasco</a></p>
+            </div>
+		</div>
     </div>
 </body>
 </html>
