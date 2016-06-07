@@ -60,6 +60,7 @@ include_once("../../db_configuration.php");
 					if($connection->connect_errno){
 						echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
 					}
+					
 								echo "</br><a href='../../../Proyecto/administracion_bd.php'>"."<input type='button' value='Volver a panel administración' style='font-family: Verdana; font-size: 10 pt'></br></a></br>";
 
 					$result=$connection->query("SELECT * FROM usuarios");
@@ -99,13 +100,13 @@ include_once("../../db_configuration.php");
 								$consulta="insert into comentarios(id_comentario,contenido,fecha,id_usuario,id_pelicula) VALUES($id,'$con',$fec,$usu,$peli);";
 								echo "</br>";
 								if($connection->query($consulta)==true){
-									echo "<h2>Inserción realizada correctamente, Redireccionando...</h2>";
+									echo "<h2>Inserción parte 1 realizada correctamente, Redireccionando...</h2>";
+									$ruta="Location: /Proyecto/sql/Comentarios/inserta_bd2.php?idaso=$peli";
+								header($ruta);
 								}else{
 									echo $connection->error;   
 								}
 								unset($connection);
-
-								header('Refresh:3; url=/Proyecto/sql/Comentarios/resultado.php',True,303)
 						?>
 					<?php endif ?>
 					</br>
