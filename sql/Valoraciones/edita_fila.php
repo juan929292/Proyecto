@@ -58,7 +58,6 @@ include_once("../../db_configuration.php");
 								}
 								$idval=$_POST['val1'];
 								$not=$_POST['val2'];
-								$idusu=$_POST['val3'];
 								$consulta="update valoraciones set nota=$not WHERE id_valoracion=$idval;";
 								echo "</br>";
 								if($connection->query($consulta)==true){

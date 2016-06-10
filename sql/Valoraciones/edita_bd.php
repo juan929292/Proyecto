@@ -92,22 +92,24 @@ echo "<h3>Editar Valoracion:</h3></br>";		?>
         </table>
 	</div>
 	<?php else : ?>
+		<?php echo "</br><a href='../../../Proyecto/administracion_bd.php'>"."<input type='button' value='Volver a panel administración' style='font-family: Verdana; font-size: 10 pt'></br></a></br>";
+?>
 	  <?php
         //conexion a la base de datos-peliculas
         $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
         if($connection->connect_errno){
             echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
         }
-							$result=$connection->query("SELECT * FROM valoraciones where id_valoracion=".$_GET['idd'].";");
+							$result=$connection->query("SELECT valoraciones.id_valoracion, usuarios.nombre, valoraciones.nota FROM valoraciones join usuarios on valoraciones.id_usuario=usuarios.id_usuario where id_valoracion=".$_GET['idd'].";");
 							echo "<form method='post' action='edita_fila.php'>";
 							while($obj=$result->fetch_object()){
-								$result3=$connection->query("SELECT nombre,id_usuario FROM usuarios where id_usuario=".$obj->id_usuario .";");
-								while($obj2=$result3->fetch_object()){
-								echo "<h3>Editar valoracion de usuario: ".$obj2->nombre ." y id=>".$obj->id_valoracion."</h3>";
-								}
+								//$result3=$connection->query("SELECT nombre,id_usuario FROM usuarios where id_usuario=".$obj->id_usuario .";");
+								//while($obj2=$result3->fetch_object()){
+								echo "<h3>Editar valoracion de usuario: ".'"'.$obj->nombre .'"'." y nota=>".$obj->nota."</h3>";
+								
 								echo "<input required type='hidden' value=".$obj->id_valoracion ." name='val1' readonly='readonly'>"."</br>";
-								echo "<h3>nota:</h3>";
-								echo "<select required multiple name='val2'>";
+								echo "<h3>Nota:</h3></br>";
+								echo "<select required name='val2'>";
 								echo "<option value='0'>0</option>";
 								echo "<option value='1'>1</option>";
 								echo "<option value='2'>2</option>";
@@ -119,13 +121,10 @@ echo "<h3>Editar Valoracion:</h3></br>";		?>
 								echo "<option value='7'>7</option>";
 								echo "<option value='8'>8</option>";
 								echo "<option value='9'>9</option>";
-								echo "<option value='10'>10</option>";
-								echo " </select></br>";
-								echo "<input required type='hidden' value=".$obj->id_usuario ." name='val3' readonly='readonly'>"."</br>";
-								echo " </select></br>";
+								echo "<option value='10'>10</option></select></br>";
 							echo "</br>"."<input type='submit' value='Enviar'>";
 							}
-							echo "</form>";
+							echo "</form></br>";
                     ?>
 					<?php endif ?>
 </br>

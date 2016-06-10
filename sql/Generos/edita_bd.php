@@ -95,7 +95,7 @@ echo "</br><h3>Editar Genero:</h3></br>";
 							while($obj=$result->fetch_object()){
 								echo "<h3>Editar genero: ".$obj->nombre ."</h3>";
 								echo "<input required type='hidden' value=".$obj->id_genero ." name='val1' readonly='readonly'>"."</br>";
-								echo "<h3>Titulo:</h3></br>";
+								echo "<h3>Nombre del género:</h3></br>";
 								echo "<input required type='text' placeholder="."'".$obj->nombre ."'"." name='val2'>"."</br>";
 							echo "</br>"."<input type='submit' value='Enviar'>";
 							}

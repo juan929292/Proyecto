@@ -52,7 +52,6 @@ include_once("../../db_configuration.php");
 	<div id="main">
 		<div id="contenido" style="float:right;">
 				<?php
-				echo "</br><a href='../../../Proyecto/administracion_bd.php'>"."<input type='button' value='Volver a panel administración' style='font-family: Verdana; font-size: 10 pt'></br></a>";
 
         $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
                         if($connection->connect_errno){

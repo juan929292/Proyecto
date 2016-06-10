@@ -48,12 +48,15 @@ include_once("./db_configuration.php");
                 </ul>
                 <h2>G&eacute;neros</h2>
 				<?php
+				$connection = new mysqli($db_host, $db_user, $db_password, $db_name);
+						if($connection->connect_errno){
+							echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
+						}
+					$result7=$connection->query("SELECT nombre FROM generos");
                 echo "<ul>";
-					echo "<li><a href='peliculas_genero.php?id=Accion'>Acci&oacute;n</a></li>";
-                    echo "<li><a href='peliculas_genero.php?id=Aventura'>Aventura</a></li>";
-                    echo "<li><a href='peliculas_genero.php?id=Belico'>B&eacute;lico</a></li>";   
-                    echo "<li><a href='peliculas_genero.php?id=Comedia'>Comedia</a></li>";
-                    echo "<li><a href='peliculas_genero.php?id=Thriller'>Thriller</a></li>";
+				while($obj7=$result7->fetch_object()){
+					echo "<li><a href='peliculas_genero.php?id=".$obj7->nombre ."'>".$obj7->nombre ."</a></li>";
+				}
 				echo "</ul>";
 				?>
             </div>

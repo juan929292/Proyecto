@@ -62,13 +62,21 @@ include_once("../../db_configuration.php");
 								$ani=$_POST['val4'];
 								$not=$_POST['val5'];
 								$gen=$_POST['val8'];
-								$antiguogen=$_POST['val9'];
 								$img= '"'."<img width='150' height='200' src='/Proyecto/img/".$_POST['val6']."'>".'"';
+									if (isset($_POST['val9'])){ 
+										$antiguogen=$_POST['val9'];
+										$consulta2="update es set id_pelicula=$idpel,id_genero=$gen WHERE id_pelicula=$idpel and id_genero=$antiguogen;";
+										}
+									else {
+										$consulta2="insert into es (id_pelicula, id_genero) values ($idpel,$gen);";
+									}
+
 
 								$consulta="update peliculas set titulo='$titu',duracion='$dura',anio=$ani,nota_media=$not WHERE id_pelicula=$idpel;";
-								$consulta2="update es set id_pelicula=$idpel,id_genero=$gen WHERE id_pelicula=$idpel and id_genero=$;";
+								
 								echo "</br>";
 								if($connection->query($consulta)==true){
+									$result3=$connection->query($consulta2);
 									echo "<h2>Actualizacion realizada correctamente, Redireccionando...</h2>";
 								}else{
 									echo $connection->error;   

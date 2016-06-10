@@ -69,7 +69,7 @@ include_once("../../db_configuration.php");
 								echo "</br></br><h3>Correo:</h3></br>";
 								echo "<input required type='email' placeholder='example@example.com' name='val4'>"."</br>";
 								echo "</br><h3>Tipo de usuario:</h3></br>";
-								echo "<select required multiple name='val5'>";
+								echo "<select required name='val5'>";
 								echo "<option value='admin'>Administrador</option>";
 								echo "<option value='estandar'>Estandar</option>";
 								echo " </select></br>";

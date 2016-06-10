@@ -64,10 +64,10 @@ include_once("../../db_configuration.php");
 								echo "<input required value='NULL' type='hidden' placeholder='NULL' name='val1'>"."</br>";
 								echo "<h3>Titulo:</h3></br>";
 								echo "<input required type='text' name='val2'>"."</br>";
-								echo "</br><h3>Duracion:</h3></br>";
-								echo "<input required type='text' name='val3'>"."</br>";
+								echo "</br><h3>Duración:</h3></br>";
+								echo "<input required type='text' maxlength='3' name='val3' onKeypress='if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;'></br>";
 								echo "</br><h3>Año:</h3></br>";
-								echo "<input required type='text' name='val4'>"."</br>";
+								echo "<input required type='text' maxlength='4' name='val4' onKeypress='if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;'>"."</br>";
 								//echo "<h3>nota_media:</h3>";
 								echo "<input type='hidden' value='0' placeholder='NULL' name='val5'>"."</br>";
 								echo "<h3>Imagen:</h3></br>";
@@ -81,7 +81,7 @@ include_once("../../db_configuration.php");
 									echo "<option value=".$obj->id_director .">".$obj->id_director ." ".$obj->nombre ."</option>";
 								}
 								echo "</select>";
-								echo "</br></br><h3>Genero:</h3></br>";
+								echo "</br></br><h3>Género:</h3></br>";
 								echo "<select required name='val8'>";
 								while($obj2=$result4->fetch_object()){
 									echo "<option value=".$obj2->id_genero .">".$obj2->id_genero ." ".$obj2->nombre ."</option>";

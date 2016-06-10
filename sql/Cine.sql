@@ -140,8 +140,8 @@ CREATE TABLE `comentarios` (
   PRIMARY KEY (`id_comentario`),
   KEY `id_pelicula` (`id_pelicula`),
   KEY `id_usuario` (`id_usuario`),
-  CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_pelicula`) REFERENCES `peliculas` (`id_pelicula`),
-  CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`)
+  CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_pelicula`) REFERENCES `peliculas` (`id_pelicula`) on delete cascade,
+  CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) on delete cascade
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -286,7 +286,7 @@ CREATE TABLE `es` (
 
 LOCK TABLES `es` WRITE;
 /*!40000 ALTER TABLE `es` DISABLE KEYS */;
-INSERT INTO `es` VALUES (2,0),(4,0),(5,0),(6,0),(8,0),(9,0),(10,0),(18,0),(4,1),(1,2),(3,2),(7,2),(11,3),(4,4),(12,4);
+INSERT INTO `es` VALUES (2,0),(4,0),(5,0),(6,0),(8,0),(9,0),(10,0),(18,0),(1,2),(3,2),(7,2),(11,3),(12,4);
 /*!40000 ALTER TABLE `es` ENABLE KEYS */;
 UNLOCK TABLES;
 
