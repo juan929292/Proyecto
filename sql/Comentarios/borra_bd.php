@@ -9,7 +9,7 @@ include_once("../../db_configuration.php");
 	else {
 		echo "<h2>Acceso denegado, redireccionando...</h2>";
 		echo "<style>div {display:none;}<style>";
-	header('Refresh:1; url=/Proyecto/login.php',True,303);
+	header('Refresh:1; url=../../login.php',True,303);
 }
 ?>
 

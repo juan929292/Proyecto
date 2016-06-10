@@ -9,15 +9,48 @@ include_once("../../db_configuration.php");
 	else {
 		echo "<h2>Acceso denegado, redireccionando...</h2>";
 		echo "<style>div {display:none;}<style>";
-	header('Refresh:1; url=/Proyecto/login.php',True,303);
+	header('Refresh:1; url=../../login.php',True,303);
 }
 ?>
 
 <html>
-<head>
-    <title></title>
+<head> 
+    <title>Film Review</title>
+	<link href="../../css/general_admin_bd.css" rel="stylesheet" type="text/css" />
+	<meta charset="utf-8"/>
 </head>
 <body>
+<div id="page">
+<div id="header">
+<div id="login">
+<?php
+	if (isset($_SESSION['tiposesion'])&&($_SESSION['tiposesion']=='admin')){
+		echo "";
+	}
+	else {
+		echo "<h2>Acceso denegado, redireccionando...</h2>";
+		echo "<style>page {display:none;}<style>";
+	header('Refresh:1; url=../../login.php',True,303);
+}
+?>
+				<h2>Bienvenido <?php
+				//<?php if (!isset($_GET["idd"])) : 
+				 if (isset($_SESSION["nombresesion"])){  
+					echo $_SESSION['nombresesion']."</br>"."</br>";
+					echo "<a href='sesiondestroy.php'>Cerrar Sesi&oacute;n</a>";
+					}
+					else{
+						echo "Usted no es Administrador";
+				echo "</h2>";
+				echo "</br>";
+				echo "<h3><p><a href='../../login.php'>Inicia Sesi&oacute;n</a> o <a href='registro.php'>reg&iacute;strate</a></p></h3>";
+				}
+				?>
+			</div>
+</div>
+   
+	<div id="main">
+		<div id="contenido" style="float:right;">
 <?php if (!isset($_GET["idd"])) : ?>
 	<div id="info1" style="">
 		    <?php
@@ -27,10 +60,11 @@ include_once("../../db_configuration.php");
             echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
         }
         $result=$connection->query("SELECT * FROM usuarios");
+echo "</br><a href='../../../Proyecto/administracion_bd.php'>"."<input type='button' value='Volver a panel administración' style='font-family: Verdana; font-size: 10 pt'></br></a></br>";
 
-echo "<h3>Editar Usuario</h3>";
+echo "<h3>Editar Usuario:</h3></br>";
 		?>
-		<table class="centered bordered card-panel white"  style="text-align:center;">
+		<table class="centered bordered card-panel white" border=1 style="text-align:center;">
             <tr class="card-panel teal lighten-2 white-text" style="font-weight:bold">
                 <td>Id_Usuario</td>
                 <td>Nombre</td>
@@ -60,22 +94,24 @@ echo "<h3>Editar Usuario</h3>";
         if($connection->connect_errno){
             echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
         }
+		echo "</br><a href='../../../Proyecto/administracion_bd.php'>"."<input type='button' value='Volver a panel administración' style='font-family: Verdana; font-size: 10 pt'></br></a></br>";
+
         $result=$connection->query("SELECT * FROM usuarios where id_usuario=".$_GET['idd'].";");
 							echo "<form method='post' action='edita_fila.php' onsubmit='return checkForm(this);'>";
 							while($obj=$result->fetch_object()){
 								echo "<h3>Editar Usuario: ".$obj->nombre ."</h3>";
 								echo "<input required type='hidden' value=".$obj->id_usuario ." name='val1' readonly='readonly'>"."</br>";
-								echo "<h3>Nombre:</h3>";
+								echo "<h3>Nombre:</h3></br>";
 								echo "<input required pattern='\w+' type='text' placeholder="."'".$obj->nombre ."'"." name='val2'>"."</br>";
-								echo "<h3>contrasena:</h3>";
+								echo "</br><h3>Contraseña:</h3></br>";
 								echo "<input required type='password' title='La contrasena debe contener al menos 6 caracteres, incluyendo minusculas, mayusculas y numeros' pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}' onchange='this.setCustomValidity(this.validity.patternMismatch ? this.title : '');
   if(this.checkValidity()) form.pwd2.pattern = this.value;' name='val3'>"."</br>";
-								echo "<h3>confirmar contrasena:</h3>";
+								echo "</br><h3>Confirmar contraseña:</h3></br>";
 								echo "<input required type='password' title='Por favor introduzca la misma contrasena que antes' pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}' name='pwd2' onchange=".'"'."
   this.setCustomValidity(this.validity.patternMismatch ? this.title : '');>".'"'."</br>";
-								echo "<h3>Correo:</h3>";
+								echo "</br></br><h3>Correo:</h3></br>";
 								echo "<input required type='email' placeholder="."'".$obj->correo ."'"." name='val4'>"."</br>";
-								echo "<h3>Tipo de usuario:</h3>";
+								echo "</br><h3>Tipo de usuario:</h3></br>";
 								echo "<select required multiple placeholder="."'".$obj->tipo ."'"." name='val5'>";
 								echo "<option value='admin'>Administrador</option>";
 								echo "<option value='estandar'>Estandar</option>";
@@ -85,5 +121,21 @@ echo "<h3>Editar Usuario</h3>";
 							echo "</form>";
                     ?>
 					<?php endif ?>
+</br>
+</div>
+	</div>
+	
+		<div id="footer">
+		
+            <div id="footerleft">
+          
+            </div>
+            <div id="footerright">
+                <p>Copyright &copy; 2016, Desarrollada por <a href="">Velasco</a></p>
+            </div>
+		</div>
+	</div>
 </body>
 </html>
+
+
