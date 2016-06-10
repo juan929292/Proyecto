@@ -69,8 +69,10 @@ include_once("../../db_configuration.php");
                 <td>Titulo</td>
                 <td>Duracion</td>
                 <td>Año</td>
-                <td>nota_media</td>
-                <td>imagen</td>
+                <td>Nota_media</td>
+                <td>Imagen</td>
+				<td>Director</td>
+				<td>Género</td>
             </tr>
             
         <?php
@@ -82,11 +84,18 @@ include_once("../../db_configuration.php");
                 echo "<td>$obj->anio</td>";
                 echo "<td>$obj->nota_media</td>";
                 echo "<td>$obj->imagen</td>";
+					$result4=$connection->query("SELECT directores.nombre FROM peliculas join dirigida_por on peliculas.id_pelicula=dirigida_por.id_pelicula
+					join directores on dirigida_por.id_director=directores.id_director where dirigida_por.id_pelicula=$obj->id_pelicula;");
+					while($obj4=$result4->fetch_object()){
+						echo "<td>$obj4->nombre</td>";
+					}
+					$result5=$connection->query("SELECT generos.nombre FROM peliculas join es on peliculas.id_pelicula=es.id_pelicula
+					join generos on es.id_genero=generos.id_genero where es.id_pelicula=$obj->id_pelicula;");
+					while($obj5=$result5->fetch_object()){
+						echo "<td>$obj5->nombre</td>";
+					}
                 echo "</tr>";   
             }
-			$result->close();
-            unset($obj);
-            unset($connection);
         ?>
         </table>
 										</div>

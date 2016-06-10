@@ -62,22 +62,38 @@ include_once("../../db_configuration.php");
 								$ani=$_POST['val4'];
 								$not=$_POST['val5'];
 								$gen=$_POST['val8'];
+								$director=$_POST['val7'];
 								$img= '"'."<img width='150' height='200' src='/Proyecto/img/".$_POST['val6']."'>".'"';
 									if (isset($_POST['val9'])){ 
 										$antiguogen=$_POST['val9'];
-										$consulta2="update es set id_pelicula=$idpel,id_genero=$gen WHERE id_pelicula=$idpel and id_genero=$antiguogen;";
+										$consulta2="update es set id_pelicula=$idpel, id_genero=$gen WHERE id_pelicula=$idpel and id_genero=$antiguogen;";
 										}
 									else {
 										$consulta2="insert into es (id_pelicula, id_genero) values ($idpel,$gen);";
 									}
-
+									
+									if (isset($_POST['val10'])){ 
+										$antiguodir=$_POST['val10'];
+										$consulta3="update dirigida_por set id_pelicula=$idpel, id_director=$director WHERE id_pelicula=$idpel and id_director=$antiguodir;";
+										}
+									else {
+										$consulta3="insert into dirigida_por (id_pelicula, id_director) values ($idpel,$director);";
+									}
 
 								$consulta="update peliculas set titulo='$titu',duracion='$dura',anio=$ani,nota_media=$not WHERE id_pelicula=$idpel;";
-								
 								echo "</br>";
 								if($connection->query($consulta)==true){
-									$result3=$connection->query($consulta2);
-									echo "<h2>Actualizacion realizada correctamente, Redireccionando...</h2>";
+									if($connection->query($consulta2)==true){
+												if($connection->query($consulta3)==true){
+												echo "<h2>Actualizacion 1 realizada correctamente, Redireccionando...</h2>";
+											}else{
+											echo $connection->error; 
+											}
+										echo "<h2>Actualizacion 2 realizada correctamente, Redireccionando...</h2>";
+									}else{
+									echo $connection->error; 
+									}
+									echo "<h2>Actualizacion 3 realizada correctamente, Redireccionando...</h2>";
 								}else{
 									echo $connection->error;   
 								}

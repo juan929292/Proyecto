@@ -51,7 +51,7 @@ include_once("../../db_configuration.php");
    
 	<div id="main">
 		<div id="contenido" style="float:center;">
-?>
+
 <?php
 	//$ruta="Location: inserta_bd_2.php?tit=$tit&dir=$director&gen=$genero";
 	$connection = new mysqli($db_host, $db_user, $db_password, $db_name);

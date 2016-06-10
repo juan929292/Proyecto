@@ -71,13 +71,13 @@ include_once("../../db_configuration.php");
 
 								echo "<input required type='hidden' value='NULL' name='val3'>"."</br>";
 								echo "<h3>Usuario:</h3>"."</br>";
-								echo "<select required multiple name='val4'>";
+								echo "<select required name='val4'>";
 								while($obj=$result->fetch_object()){
 								echo "<option value=".$obj->id_usuario .">".$obj->nombre ."</option>";
 								}
 								echo " </select></br>";
 								echo "</br><h3>Pelicula:</h3>"."</br>";
-								echo "<select required multiple name='val5'>";
+								echo "<select required name='val5'>";
 								while($obj=$result2->fetch_object()){
 								echo "<option value=".$obj->id_pelicula .">".$obj->titulo ."</option>";
 								}

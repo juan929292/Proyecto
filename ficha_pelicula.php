@@ -108,7 +108,7 @@ include_once("./db_configuration.php");
 					on posee.id_valoracion=valoraciones.id_valoracion join usuarios on 
 					valoraciones.id_usuario=usuarios.id_usuario where peliculas.id_pelicula=".$_GET['id'].";");
 					echo "<div id='cont' style='float:right;padding-right:20%;'>";
-					
+					echo "</br>";
 						while($obj=$result0->fetch_object()){
 							echo "<h2>".$obj->titulo ."</h2>"."</br>";
 							echo $obj->imagen ."</br>"."</br>";

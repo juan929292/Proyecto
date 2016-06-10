@@ -107,27 +107,27 @@ echo "<h3>Peliculas:</h3></br>";
 								echo "<h3>Titulo:</h3></br>";
 								echo "<input required type='text' placeholder="."'".$obj->titulo ."'"." name='val2'>"."</br>";
 								echo "</br><h3>Duracion:</h3></br>";
-								echo "<input required type='text' name='val3'"." placeholder="."'".$obj->duracion ."'>"."</br>";
+								echo "<input required type='text' maxlength='3' name='val3' onKeypress='if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;' placeholder="."'".$obj->duracion ."'>"."</br>";
 								echo "</br><h3>Año:</h3></br>";
-								echo "<input required type='text' placeholder="."'".$obj->anio ."'"." name='val4'>"."</br>";
-								echo "</br><h3>Nota media:</h3></br>";
-								echo "<input required type='text' placeholder=".$obj->nota_media ." name='val5'>"."</br>";
+								echo "<input required type='text' maxlength='4' name='val4' onKeypress='if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;' placeholder="."'".$obj->anio ."'>"."</br>";
+								//echo "</br><h3>Nota media:</h3></br>";
+								echo "<input required type='text' value='0' name='val5' hidden>";
 								echo "</br><h3>Imagen:</h3></br>";
 								echo "<input type='hidden' name='MAX_FILE_SIZE' value='3000000' />";
 								echo "<input required type='file' name='val6'>"."</br>";
 								echo "</br><h3>Director:</h3></br>";
 								$result3=$connection->query("SELECT * FROM directores;");
 								$result4=$connection->query("SELECT * FROM generos;");
-								$result8=$connection->query("SELECT * FROM generos join es on generos.id_genero=es.id_genero where es.id_pelicula=".$_GET['idd'].";");
+								$result8=$connection->query("SELECT generos.id_genero FROM generos join es on generos.id_genero=es.id_genero where es.id_pelicula=".$_GET['idd'].";");
 								$result5=$connection->query("SELECT * FROM directores join dirigida_por on directores.id_director=dirigida_por.id_director where dirigida_por.id_pelicula=".$obj->id_pelicula.";");
 								$result6=$connection->query("SELECT * FROM generos join es on generos.id_genero=es.id_genero where es.id_pelicula=".$obj->id_pelicula.";");
-									while($obj4=$result5->fetch_object()){
+							while($obj4=$result5->fetch_object()){
+								echo "<input required type='hidden' value=".$obj4->id_director ." name='val10'>";
 								echo "<select placeholder=".$obj4->id_director . $obj4->nombre ." required name='val7'>";
-								
-								while($obj2=$result3->fetch_object()){		
-									echo "<option value=".$obj2->id_director .">".$obj2->id_director ." ".$obj2->nombre ."</option>";		
-									}
-								}
+									while($obj2=$result3->fetch_object()){		
+										echo "<option value=".$obj2->id_director .">".$obj2->id_director ." ".$obj2->nombre ."</option>";		
+										}
+							}
 								echo "</select>";
 								echo "</br></br><h3>Genero:</h3></br>";
 								echo "<select required name='val8'>";
@@ -136,7 +136,7 @@ echo "<h3>Peliculas:</h3></br>";
 								}
 								echo "</select>"."</br>";
 								while($obj8=$result8->fetch_object()){		
-										echo	"<input required type='hidden' value=".$obj8->id_pelicula ." name='val9' readonly='readonly'>"."</br>";									
+										echo	"<input required type='hidden' value=".$obj8->id_genero ." name='val9' readonly='readonly'>"."</br>";									
 									}
 							echo "</br>"."<input type='submit' value='Enviar'>";
 							}

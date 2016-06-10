@@ -59,34 +59,36 @@ include_once("../../db_configuration.php");
         if($connection->connect_errno){
             echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
         }
-        $result=$connection->query("SELECT * FROM valoraciones join posee on valoraciones.id_valoracion=posee.id_valoracion join peliculas on posee.id_pelicula=peliculas.id_pelicula;");
-		$result2=$connection->query("SELECT * FROM valoraciones join usuarios on valoraciones.id_usuario=usuarios.id_usuario;");
-echo "</br><a href='../../../Proyecto/administracion_bd.php'>"."<input type='button' value='Volver a panel administración' style='font-family: Verdana; font-size: 10 pt'></br></a></br>";
+        //$result=$connection->query("SELECT * FROM valoraciones join posee on valoraciones.id_valoracion=posee.id_valoracion join peliculas on posee.id_pelicula=peliculas.id_pelicula;");
+		//$result2=$connection->query("SELECT * FROM valoraciones join usuarios on valoraciones.id_usuario=usuarios.id_usuario;");
+		$result=$connection->query("SELECT valoraciones.id_valoracion, valoraciones.nota, valoraciones.id_usuario, usuarios.nombre, peliculas.titulo FROM usuarios join valoraciones on usuarios.id_usuario=valoraciones.id_usuario
+		join posee on valoraciones.id_valoracion=posee.id_valoracion join peliculas on posee.id_pelicula=peliculas.id_pelicula;");
+		echo "</br><a href='../../../Proyecto/administracion_bd.php'>"."<input type='button' value='Volver a panel administración' style='font-family: Verdana; font-size: 10 pt'></br></a></br>";
 echo "<h3>Borrar Valoracion:</h3></br>";
 		?>
 		<table class="centered bordered card-panel white" border=1 style="text-align:center;">
             <tr class="card-panel teal lighten-2 white-text" style="font-weight:bold">
                 <td>Id_valoracion</td>
-                <td>nota</td>
-                <td>id_usuario</td>
-				<td>id_usuario(Usuarios)</td>
+                <td>Nota</td>
+                <td>Id_usuario</td>
 				<td>Nombre(Usuarios)</td>
+				<td>Titulo</td>
             </tr>
             
         <?php
-                echo "<tr>";
+				echo "<tr>";
 				while($obj=$result->fetch_object()){
                 echo "<tr>";
                 echo "<td>$obj->id_valoracion</td>";
                 echo "<td>$obj->nota</td>";
                 echo "<td>$obj->id_usuario</td>";
-				$result3=$connection->query("SELECT nombre,id_usuario FROM usuarios where id_usuario=".$obj->id_usuario .";");
-				while($obj2=$result3->fetch_object()){
-				echo "<td>$obj2->id_usuario</td>";
-				echo "<td>$obj2->nombre</td>";
+				//$result3=$connection->query("SELECT nombre,id_usuario FROM usuarios where id_usuario=".$obj->id_usuario .";");
+				//while($obj2=$result3->fetch_object()){
+				//echo "<td>$obj2->id_usuario</td>";
+				echo "<td>$obj->nombre</td>";
+				echo "<td>$obj->titulo</td>";  
 				echo "<td><a href='borra_bd.php?idd=$obj->id_valoracion'><img width=26 src='../../img/borra.png'/></a></td>";
 				}  
-            }
                 echo "</tr>";   
 
         ?>

@@ -63,27 +63,33 @@ include_once("../../db_configuration.php");
         //$result=$connection->query("SELECT valoraciones.id_valoracion, valoraciones.nota, valoraciones.id_usuario FROM valoraciones join posee on valoraciones.id_valoracion=posee.id_valoracion join peliculas on posee.id_pelicula=peliculas.id_pelicula;");
 		//$result2=$connection->query("SELECT * FROM valoraciones join usuarios on valoraciones.id_usuario=usuarios.id_usuario;");
 		echo "<h3>Valoraciones:</h3></br>";
+		$result=$connection->query("SELECT valoraciones.id_valoracion, valoraciones.nota, valoraciones.id_usuario, usuarios.nombre, peliculas.titulo FROM usuarios join valoraciones on usuarios.id_usuario=valoraciones.id_usuario
+		join posee on valoraciones.id_valoracion=posee.id_valoracion join peliculas on posee.id_pelicula=peliculas.id_pelicula;");
 		?>
 		<table border=1 class="centered bordered card-panel white" border=1 style="text-align:center;float:left;">
             <tr class="card-panel teal lighten-2 white-text" style="font-weight:bold">
                 <td>Id_valoracion</td>
-				<td>nota</td>
-                <td>Nombre Usuario</td>
-                <td>Titulo</td>
+                <td>Nota</td>
+                <td>Id_usuario</td>
+				<td>Nombre(Usuarios)</td>
+				<td>Titulo</td>
             </tr>
             
         <?php
-		$result3=$connection->query("SELECT valoraciones.id_valoracion, valoraciones.nota, usuarios.nombre, peliculas.titulo FROM usuarios join valoraciones on
-					usuarios.id_usuario=valoraciones.id_usuario join posee on
-					valoraciones.id_valoracion=posee.id_valoracion join peliculas on posee.id_pelicula=peliculas.id_pelicula;");
-            while($obj=$result3->fetch_object()){
+		echo "<tr>";
+				while($obj=$result->fetch_object()){
                 echo "<tr>";
-				echo "<td>".$obj->id_valoracion ."</td>";
-				echo "<td>".$obj->nota ."</td>";
-				echo "<td>".$obj->nombre ."</td>";
-				echo "<td>".$obj->titulo."</td>";
+                echo "<td>$obj->id_valoracion</td>";
+                echo "<td>$obj->nota</td>";
+                echo "<td>$obj->id_usuario</td>";
+				//$result3=$connection->query("SELECT nombre,id_usuario FROM usuarios where id_usuario=".$obj->id_usuario .";");
+				//while($obj2=$result3->fetch_object()){
+				//echo "<td>$obj2->id_usuario</td>";
+				echo "<td>$obj->nombre</td>";
+				echo "<td>$obj->titulo</td>";
+				}  
+            
                 echo "</tr>";   
-            }
 			echo "</table></br>";
         ?>
 					</div>
