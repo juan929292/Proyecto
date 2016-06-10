@@ -105,7 +105,7 @@ include_once("./db_configuration.php");
 								}
 								unset($connection);
 
-								header('Refresh:5; url=/Proyecto/login.php',True,303)
+								header('Refresh:3; url=/Proyecto/login.php',True,303)
 						?>
 					<?php endif ?>
 			</div>
