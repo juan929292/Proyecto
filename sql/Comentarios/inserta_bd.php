@@ -30,7 +30,7 @@ include_once("../../db_configuration.php");
 	else {
 		echo "<h2>Acceso denegado, redireccionando...</h2>";
 		echo "<style>page {display:none;}<style>";
-	header('Refresh:1; url=login.php',True,303);
+	header('Refresh:1; url=../../login.php',True,303);
 }
 ?>
 				<h2>Bienvenido <?php
@@ -43,7 +43,7 @@ include_once("../../db_configuration.php");
 						echo "Usted no es Administrador";
 				echo "</h2>";
 				echo "</br>";
-				echo "<h3><p><a href='login.php'>Inicia Sesi&oacute;n</a> o <a href='registro.php'>reg&iacute;strate</a></p></h3>";
+				echo "<h3><p><a href='../../login.php'>Inicia Sesi&oacute;n</a> o <a href='registro.php'>reg&iacute;strate</a></p></h3>";
 				}
 				?>
 			</div>
@@ -53,6 +53,8 @@ include_once("../../db_configuration.php");
    <div>
     <?php if (!isset($_POST["val1"])) : ?>
 	</br>
+	<?php 	echo "<a href='../../../Proyecto/administracion_bd.php'>"."<input type='button' value='Volver a panel administración' style='font-family: Verdana; font-size: 10 pt'></br></a></br>";
+ ?>
 		<h2>Añadir Comentario:</h2>
 							    <?php
 					//conexion a la base de datos-peliculas
@@ -60,9 +62,6 @@ include_once("../../db_configuration.php");
 					if($connection->connect_errno){
 						echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
 					}
-					
-								echo "</br><a href='../../../Proyecto/administracion_bd.php'>"."<input type='button' value='Volver a panel administración' style='font-family: Verdana; font-size: 10 pt'></br></a></br>";
-
 					$result=$connection->query("SELECT * FROM usuarios");
 					$result2=$connection->query("SELECT * FROM peliculas");
 							echo "<form method='post' action='#'>";

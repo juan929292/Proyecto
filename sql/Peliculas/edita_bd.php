@@ -14,10 +14,43 @@ include_once("../../db_configuration.php");
 ?>
 
 <html>
-<head>
-    <title></title>
+<head> 
+    <title>Film Review</title>
+	<link href="../../css/general_admin_bd.css" rel="stylesheet" type="text/css" />
+	<meta charset="utf-8"/>
 </head>
 <body>
+<div id="page">
+<div id="header">
+<div id="login">
+<?php
+	if (isset($_SESSION['tiposesion'])&&($_SESSION['tiposesion']=='admin')){
+		echo "";
+	}
+	else {
+		echo "<h2>Acceso denegado, redireccionando...</h2>";
+		echo "<style>page {display:none;}<style>";
+	header('Refresh:1; url=login.php',True,303);
+}
+?>
+				<h2>Bienvenido <?php
+				//<?php if (!isset($_GET["idd"])) : 
+				 if (isset($_SESSION["nombresesion"])){  
+					echo $_SESSION['nombresesion']."</br>"."</br>";
+					echo "<a href='sesiondestroy.php'>Cerrar Sesi&oacute;n</a>";
+					}
+					else{
+						echo "Usted no es Administrador";
+				echo "</h2>";
+				echo "</br>";
+				echo "<h3><p><a href='login.php'>Inicia Sesi&oacute;n</a> o <a href='registro.php'>reg&iacute;strate</a></p></h3>";
+				}
+				?>
+			</div>
+</div>
+   
+	<div id="main">
+		<div id="contenido" style="float:right;">
 <?php if (!isset($_GET["idd"])) : ?>
 	<div id="info1" style="">
 		    <?php
@@ -103,5 +136,13 @@ echo "<h3>Peliculas</h3>";
 							echo "</form>";
                     ?>
 					<?php endif ?>
+					<div id="footerleft">
+          
+            </div>
+            <div id="footerright">
+                <p>Copyright &copy; 2016, Desarrollada por <a href="">Velasco</a></p>
+            </div>
+		</div>
+	</div>
 </body>
 </html>

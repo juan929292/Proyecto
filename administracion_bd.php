@@ -37,7 +37,6 @@ include_once("./db_configuration.php");
 				?>
 			</div>
 </div>
-   
 	<div id="main">
 		<div id="contenido" style="float:right;">
 			<div id="info1">

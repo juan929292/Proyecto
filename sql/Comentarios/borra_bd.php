@@ -30,7 +30,7 @@ include_once("../../db_configuration.php");
 	else {
 		echo "<h2>Acceso denegado, redireccionando...</h2>";
 		echo "<style>page {display:none;}<style>";
-	header('Refresh:1; url=login.php',True,303);
+	header('Refresh:1; url=../../login.php',True,303);
 }
 ?>
 				<h2>Bienvenido <?php
@@ -43,7 +43,7 @@ include_once("../../db_configuration.php");
 						echo "Usted no es Administrador";
 				echo "</h2>";
 				echo "</br>";
-				echo "<h3><p><a href='login.php'>Inicia Sesi&oacute;n</a> o <a href='registro.php'>reg&iacute;strate</a></p></h3>";
+				echo "<h3><p><a href='../../login.php'>Inicia Sesi&oacute;n</a> o <a href='registro.php'>reg&iacute;strate</a></p></h3>";
 				}
 				?>
 			</div>
@@ -61,6 +61,9 @@ include_once("../../db_configuration.php");
             echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
         }
         $result=$connection->query("SELECT * FROM comentarios");
+		
+	echo "<a href='../../../Proyecto/administracion_bd.php'>"."<input type='button' value='Volver a panel administración' style='font-family: Verdana; font-size: 10 pt'></br></a></br>";
+
 
 echo "<h3>Borrar Comentario:</h3></br>";
 		?>
@@ -81,7 +84,9 @@ echo "<h3>Borrar Comentario:</h3></br>";
                 echo "<td>$obj->fecha</td>";
                 echo "<td>$obj->id_usuario</td>";
                 echo "<td>$obj->id_pelicula</td>";
-                echo "<td><a href='borra_bd.php?idd=$obj->id_comentario'><img width=26 src='../../img/borra.png'/></a></td>";
+				$idco=$obj->id_comentario;
+				$idpeli=$obj->id_pelicula;
+                echo "<td><a href='borra_bd.php?idd=$idco&idpelic=$idpeli'><img width=26 src='../../img/borra.png'/></a></td>";
                 echo "</tr>";   
             }
         ?>
@@ -94,9 +99,12 @@ echo "<h3>Borrar Comentario:</h3></br>";
                             echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
 								}
 								$idcom=$_GET['idd'];
+								$idp=$_GET['idpelic'];
 								$consulta="DELETE FROM comentarios WHERE id_comentario=$idcom;";
+								$consulta2="DELETE FROM tienen WHERE id_comentario=$idcom and id_pelicula=$idp;";
 								echo "</br>";
-								if($connection->query($consulta)==true){
+								if($connection->query($consulta2)==true){
+									$result=$connection->query($consulta);
 									echo "<h2>Borrado realizado correctamente, Redireccionando...</h2>";
 								}else{
 									echo $connection->error;   

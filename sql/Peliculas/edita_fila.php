@@ -39,7 +39,7 @@ include_once("../../db_configuration.php");
 								}
 								unset($connection);
 
-								header('Refresh:5; url=/Proyecto/sql/Peliculas/resultado.php',True,303);
+								header('Refresh:3; url=/Proyecto/sql/Peliculas/resultado.php',True,303);
 					?>
 								
 </body>

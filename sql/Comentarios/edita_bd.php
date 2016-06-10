@@ -30,7 +30,7 @@ include_once("../../db_configuration.php");
 	else {
 		echo "<h2>Acceso denegado, redireccionando...</h2>";
 		echo "<style>page {display:none;}<style>";
-	header('Refresh:1; url=login.php',True,303);
+	header('Refresh:1; url=../../login.php',True,303);
 }
 ?>
 				<h2>Bienvenido <?php
@@ -43,7 +43,7 @@ include_once("../../db_configuration.php");
 						echo "Usted no es Administrador";
 				echo "</h2>";
 				echo "</br>";
-				echo "<h3><p><a href='login.php'>Inicia Sesi&oacute;n</a> o <a href='registro.php'>reg&iacute;strate</a></p></h3>";
+				echo "<h3><p><a href='../../login.php'>Inicia Sesi&oacute;n</a> o <a href='registro.php'>reg&iacute;strate</a></p></h3>";
 				}
 				?>
 			</div>
@@ -59,6 +59,7 @@ include_once("../../db_configuration.php");
             echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
         }
         $result=$connection->query("SELECT * FROM comentarios");
+	echo "</br><a href='../../../Proyecto/administracion_bd.php'>"."<input type='button' value='Volver a panel administración' style='font-family: Verdana; font-size: 10 pt'></a></br>";
 
 echo "</br><h3>Comentarios:</h3></br>";
 		?>
@@ -86,6 +87,8 @@ echo "</br><h3>Comentarios:</h3></br>";
         </table>
 	</div>
 	<?php else : ?>
+			<?php echo "</br><a href='../../../Proyecto/administracion_bd.php'>"."<input type='button' value='Volver a panel administración' style='font-family: Verdana; font-size: 10 pt'></br></a></br>"; ?>
+
 	  <?php
         //conexion a la base de datos-peliculas
         $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
@@ -98,12 +101,12 @@ echo "</br><h3>Comentarios:</h3></br>";
 
 							echo "<form method='post' action='edita_fila.php'>";
 							while($obj=$result2->fetch_object()){
-								echo "<h3>Editar Comentario de ".$obj->nombre .":</h3>"."</br>";
+								echo "<h3>Editar Comentario de ".$obj->nombre .":</h3>";
 							}
 								echo "<input required value=".$_GET['idd']." type='hidden' name='val1' readonly='readonly'>"."</br>";
 								echo "<h3>Contenido:</h3>";
 								while($obj2=$result->fetch_object()){
-								echo "<textarea required name='val2' placeholder=".$obj2->contenido ." size=32 style='width:400px;height:100px' cols='60' rows='8'></textarea>"."</br>";
+								echo "<textarea required name='val2' placeholder='".$obj2->contenido ."' size=32 style='width:400px;height:100px' cols='60' rows='8'></textarea>"."</br>";
 							}
 							echo "</br>"."<input type='submit' value='Enviar'>";
 							echo "</form>";

@@ -30,7 +30,7 @@ include_once("../../db_configuration.php");
 	else {
 		echo "<h2>Acceso denegado, redireccionando...</h2>";
 		echo "<style>page {display:none;}<style>";
-	header('Refresh:1; url=login.php',True,303);
+	header('Refresh:1; url=../../login.php',True,303);
 }
 ?>
 				<h2>Bienvenido <?php
@@ -43,7 +43,7 @@ include_once("../../db_configuration.php");
 						echo "Usted no es Administrador";
 				echo "</h2>";
 				echo "</br>";
-				echo "<h3><p><a href='login.php'>Inicia Sesi&oacute;n</a> o <a href='registro.php'>reg&iacute;strate</a></p></h3>";
+				echo "<h3><p><a href='../../login.php'>Inicia Sesi&oacute;n</a> o <a href='registro.php'>reg&iacute;strate</a></p></h3>";
 				}
 				?>
 			</div>
@@ -53,6 +53,7 @@ include_once("../../db_configuration.php");
 	<div id="main">
 		<div id="contenido" style="float:right;">
 				<?php
+					echo "</br><a href='../../../Proyecto/administracion_bd.php'>"."<input type='button' value='Volver a panel administración' style='font-family: Verdana; font-size: 10 pt'></br></a></br>";
         $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
                         if($connection->connect_errno){
                             echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
@@ -62,13 +63,13 @@ include_once("../../db_configuration.php");
 								$consulta="update comentarios set contenido='$cont' WHERE id_comentario=$idcom;";
 								echo "</br>";
 								if($connection->query($consulta)==true){
-									echo "<h2>Actualizacion realizada correctamente, Redireccionando...</h2>";
+									echo "<h2>Actualización realizada correctamente, Redireccionando...</h2>";
 								}else{
 									echo $connection->error;   
 								}
 								unset($connection);
 
-								header('Refresh:5; url=/Proyecto/sql/Comentarios/resultado.php',True,303);
+								header('Refresh:3; url=/Proyecto/sql/Comentarios/resultado.php',True,303);
 					?>
 						</div>
 	</div>
