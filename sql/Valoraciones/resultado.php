@@ -50,8 +50,8 @@ include_once("../../db_configuration.php");
 </div>
    
 	<div id="main">
-		<div id="contenido" style="float:right;">
-	<div id="info1" style="margin-bottom:5px;">
+		<div id="contenido" style="float:right;margin-bottom:20px;">
+	<div id="info1" style="">
 		<?php echo "</br><a href='../../../Proyecto/administracion_bd.php'>"."<input type='button' value='Volver a panel administración' style='font-family: Verdana; font-size: 10 pt'></br></a></br>"; ?>
 
 		    <?php
@@ -60,39 +60,28 @@ include_once("../../db_configuration.php");
         if($connection->connect_errno){
             echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
         }
-        $result=$connection->query("SELECT * FROM valoraciones");
-		$result2=$connection->query("SELECT * FROM usuarios");
+        //$result=$connection->query("SELECT valoraciones.id_valoracion, valoraciones.nota, valoraciones.id_usuario FROM valoraciones join posee on valoraciones.id_valoracion=posee.id_valoracion join peliculas on posee.id_pelicula=peliculas.id_pelicula;");
+		//$result2=$connection->query("SELECT * FROM valoraciones join usuarios on valoraciones.id_usuario=usuarios.id_usuario;");
 		echo "<h3>Valoraciones:</h3></br>";
 		?>
 		<table border=1 class="centered bordered card-panel white" border=1 style="text-align:center;float:left;">
             <tr class="card-panel teal lighten-2 white-text" style="font-weight:bold">
-                <td>Titulo(Peliculas)</td>
-				<td>Id_valoracion</td>
-                <td>nota</td>
-                <td>id_usuario</td>
-				<td>id_usuario(Usuarios)</td>
-				<td>Nombre(Usuarios)</td>
+                <td>Id_valoracion</td>
+				<td>nota</td>
+                <td>Nombre Usuario</td>
+                <td>Titulo</td>
             </tr>
             
         <?php
-		
-            while($obj=$result->fetch_object()){
-                echo "<tr>";
-				$result3=$connection->query("SELECT peliculas.titulo FROM usuarios join valoraciones on
+		$result3=$connection->query("SELECT valoraciones.id_valoracion, valoraciones.nota, usuarios.nombre, peliculas.titulo FROM usuarios join valoraciones on
 					usuarios.id_usuario=valoraciones.id_usuario join posee on
-					valoraciones.id_valoracion=posee.id_valoracion join peliculas on posee.id_pelicula=peliculas.id_pelicula where valoraciones.id_usuario=".$obj->id_usuario .";");
-				while($obj3=$result3->fetch_object()){
-					echo "<td>$obj3->titulo</td>";
-				
-                echo "<td>$obj->id_valoracion</td>";
-                echo "<td>$obj->nota</td>";
-                echo "<td>$obj->id_usuario</td>";
-				$result3=$connection->query("SELECT nombre,id_usuario FROM usuarios where id_usuario=".$obj->id_usuario .";");
-				while($obj2=$result3->fetch_object()){
-				echo "<td>$obj2->id_usuario</td>";
-				echo "<td>$obj2->nombre</td>";
-				}
-				}
+					valoraciones.id_valoracion=posee.id_valoracion join peliculas on posee.id_pelicula=peliculas.id_pelicula;");
+            while($obj=$result3->fetch_object()){
+                echo "<tr>";
+				echo "<td>".$obj->id_valoracion ."</td>";
+				echo "<td>".$obj->nota ."</td>";
+				echo "<td>".$obj->nombre ."</td>";
+				echo "<td>".$obj->titulo."</td>";
                 echo "</tr>";   
             }
 			echo "</table></br>";
