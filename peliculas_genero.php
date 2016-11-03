@@ -72,8 +72,8 @@ include_once("./db_configuration.php");
 					echo "<h2 id='titu'>G&eacute;nero: ".$_GET['id']."</h2>";
 						while($obj=$result->fetch_object()){
 						echo "<div class='cajas'>";
-							echo "<h4>".$obj->titulo."</h4>";
-							echo "<a href='ficha_pelicula.php?id=".$obj->id_pelicula ."'>".$obj->imagen;
+						echo "<a href='ficha_pelicula.php?id=".$obj->id_pelicula ."'>"."<h4>$obj->titulo</h4>"."</a>";
+						echo "<a href='ficha_pelicula.php?id=".$obj->id_pelicula ."'>".$obj->imagen."</a>";
 						echo "</div>";
 						};
 						?>

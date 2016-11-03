@@ -32,7 +32,7 @@ if (isset($_SESSION['tema'])){
 				#main{background: black}
 				#contenido{background: black;}
 				body{background: grey}
-				a{color: black;}
+				a{color: white;}
 				a:hover{color: blue;}
 				#footerright{background: darkgreen;}'></style>";
 		}
