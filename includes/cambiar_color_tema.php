@@ -47,7 +47,7 @@ if (isset($_SESSION['tema'])){
 				#contenido{background: grey;}
 				a{color: black;}
 				a:hover{color: blue;}
-				#footerright{background: #D8D8D8;}'></style>";
+				#footerright{background: #D8D8D8; color: black}'></style>";
 		}
 		else {
 

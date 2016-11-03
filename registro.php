@@ -70,11 +70,11 @@ include_once("./db_configuration.php");
 								echo "<h3>Nombre:</h3>";
 								echo "<input required type='text' name='nombreusu'>"."</br>";
 								
-								echo "<h3>Contraseña:</h3>";
+								echo "<h3>Contrase&ntilde;a:</h3>";
 								echo "<input required type='password' title='La contrasena debe contener al menos 6 caracteres, incluyendo minusculas, mayusculas y numeros' pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}' onchange='this.setCustomValidity(this.validity.patternMismatch ? this.title : '');
 								if(this.checkValidity()) form.pwd2.pattern = this.value;' name='contrasenausu'>"."</br>";
 								
-								echo "<h3>Confirmar Contraseña:</h3>";
+								echo "<h3>Confirmar Contrase&ntilde;a:</h3>";
 								echo "<input required type='password' title='Por favor introduzca la misma contrasena que antes' pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}' name='pwd2' onchange=".'"'."
 								this.setCustomValidity(this.validity.patternMismatch ? this.title : '');>".'"'."</br>";
 								
