@@ -24,7 +24,9 @@ include_once("./db_configuration.php");
 				echo "</h2>";
 				echo "</br>";
 				echo "<h3><p><a href='login.php'>Inicia Sesi&oacute;n</a> o <a href='registro.php'>reg&iacute;strate</a></p></h3>";
+				
 				}
+				include_once("includes/cambiar_color_tema.php");
 				?>
 			</div>
 			</div>
@@ -105,7 +107,7 @@ include_once("./db_configuration.php");
 								}
 								unset($connection);
 
-								header('Refresh:3; url=/Proyecto/login.php',True,303)
+								header('Refresh:5; url=/Proyecto/login.php',True,303)
 						?>
 					<?php endif ?>
 			</div>
