@@ -65,8 +65,8 @@ include_once("db_configuration.php");
 						<form action="login.php" method="POST">
 						<h4>Usuario:</h4> 
 						<input required placeholder="Usuario" type="text" name="nombre"></br>
-						<h4>Contraseña:</h4> 
-						<input required type="password" placeholder="Contraseña" name="clave"></br></br>
+						<h4>Contrase&ntilde;a:</h4> 
+						<input required type="password" placeholder="Contrase&ntilde;a" name="clave"></br></br>
 						<input type="submit" value="Entrar">
 						</form>
 						<?php
@@ -91,7 +91,7 @@ include_once("db_configuration.php");
 							}
 						?>
 					</div>
-					<p>¿No estás registrado? <a href="registro.php">Reg&iacute;strate</a></p>
+					<p>¿No est&aacute;s registrado? <a href="registro.php">Reg&iacute;strate</a></p>
 			</div>
 		</div>
 			<div id="footer">
