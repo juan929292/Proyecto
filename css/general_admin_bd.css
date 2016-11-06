@@ -74,6 +74,9 @@ ul {
 	background: #B0D9F9;
 	color:black;
 	}
+		#login *{
+	margin-left: 5px;
+	}
 #login h4{
 	color: black;
 
