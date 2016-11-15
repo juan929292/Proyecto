@@ -33,7 +33,7 @@ include_once("./db_configuration.php");
 					/*si no ha votado*/if($valoradasino=='0'){
 						echo $_SESSION['nombresesion']."</br>"."</br>";
 							echo "<a href='sesiondestroy.php'>Cerrar Sesi&oacute;n</a>";
-							echo "</br></br><a href='includes/imprimir_pdf.php'>Imprimir actividad</a></br></br>";
+							echo "</br></br><a href='includes/imprimir_pdf.php' target='_blank'>Imprimir actividad</a></br></br>";
 							echo "<style>#estrellas{display:inherit;}#valorada{display:none;}#invitadaso{display:none;}#mostrar1{display:inherit;}</style>";
 									
 					/*si ha votado*/}else{
@@ -62,7 +62,7 @@ include_once("./db_configuration.php");
                     <li><a href="index.php">Inicio</a></li>
 					<?php
 						if (isset($_SESSION['tiposesion'])&&($_SESSION['tiposesion']=='admin')){
-					echo "<li><a href='includes/imprimir_pdf_admin.php'>Imprimir actividad Web</a></li>";
+					echo "<li><a href='includes/imprimir_pdf_admin.php' target='_blank'>Imprimir actividad Web</a></li>";
 					echo "<li><a href='administracion_bd.php'>Panel Administraci&oacute;n</a></li>";
 					
 						}
