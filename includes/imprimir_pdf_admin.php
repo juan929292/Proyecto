@@ -1,7 +1,7 @@
 <?php 
 session_start();
 
-require('fpdf/fpdf.php');
+require('../fpdf/fpdf.php');
 include_once("../db_configuration.php");
 
 $pdf = new FPDF();
