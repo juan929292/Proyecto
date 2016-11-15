@@ -119,10 +119,11 @@ ul {
 	margin-bottom: 10px;
 }
 #login{
-	height:170px;
-	width:200px;
+	height:200px;
+	width:230px;
 	background: #B0D9F9;
-	color:black;
+	color: blue;
+	text-shadow: 3px 3px 3px grey;
 	}
 #login h4{
 	color: black;
@@ -130,6 +131,7 @@ ul {
 	}
 	#login *{
 	margin-left: 5px;
+	font-size: 15px;
 	}
 
 #intro h2 {

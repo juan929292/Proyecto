@@ -18,6 +18,7 @@ include_once("./db_configuration.php");
 				 if (isset($_SESSION["nombresesion"])){  
 					echo $_SESSION['nombresesion']."</br>"."</br>";
 					echo "<a href='sesiondestroy.php'>Cerrar Sesi&oacute;n</a>";
+					echo "</br></br><a href='includes/imprimir_pdf.php'>Imprimir actividad</a></br></br>";
 					}
 					else{
 						echo "Invitado";
@@ -39,6 +40,7 @@ include_once("./db_configuration.php");
                     <li><a href="index.php">Inicio</a></li>
 					<?php
 						if (isset($_SESSION['tiposesion'])&&($_SESSION['tiposesion']=='admin')){
+							echo "<li><a href='includes/imprimir_pdf_admin.php'>Imprimir actividad Web</a></li>";
 					echo "<li><a href='administracion_bd.php'>Panel Administraci&oacute;n</a></li>";
 						}
 						else{
@@ -61,6 +63,7 @@ include_once("./db_configuration.php");
 				echo "</ul>";
 				?>
             </div>
+			<img style="margin: 50px 10px 10px 15px; border: 1px solid black" src="includes/grafica.php"/>
 		</div>
 				<div id="contenido">
 						<?php						

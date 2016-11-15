@@ -18,7 +18,8 @@ include_once("./db_configuration.php");
 				//<?php if (!isset($_GET["idd"])) : 
 				 if (isset($_SESSION["nombresesion"])){  
 					echo $_SESSION['nombresesion']."</br>"."</br>";
-					echo "<a href='sesiondestroy.php'>Cerrar Sesi&oacute;n</a>";
+					echo "<a href='sesiondestroy.php'>Cerrar Sesi&oacute;n</a></br>";
+					echo "</br><a href='includes/imprimir_pdf.php'>Imprimir actividad</a></br></br>";
 					}
 					else{
 						echo "Invitado";
@@ -40,7 +41,8 @@ include_once("./db_configuration.php");
                     <li><a href="index.php">Inicio</a></li>
 					<?php
 						if (isset($_SESSION['tiposesion'])&&($_SESSION['tiposesion']=='admin')){
-					echo "<li><a href='administracion_bd.php'>Panel Administraci&oacute;n</a></li>";
+							echo "<li><a href='includes/imprimir_pdf_admin.php'>Imprimir actividad Web</a></li>";
+							echo "<li><a href='administracion_bd.php'>Panel Administraci&oacute;n</a></li>";
 						}
 						else{
 							echo " ";
@@ -60,21 +62,7 @@ include_once("./db_configuration.php");
 					echo "<li><a href='peliculas_genero.php?id=".$obj7->nombre ."'>".$obj7->nombre ."</a></li>";
 				}
 				echo "</ul>";
-				//$connection = new mysqli($db_host, $db_user, $db_password, $db_name);
-				//		if($connection->connect_errno){
-				//			echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
-				//		}
-				//$result20=$connection->query("select count(valoraciones.id_valoracion) as votos_mes,
-				//monthname(valoraciones.fecha) as mes from valoraciones group by month(valoraciones.fecha)
-				//order by month(valoraciones.fecha);");	
-				//	$columnas=[];
-				//	$votos=[];
-				//while($obj20=$result20->fetch_object()){
-				//	$columnas[]= substr($obj20->mes,0,3);
-				//	$votos[]=$obj20->votos_mes;
-				//	print_r($votos);
-				//	print_r($columnas);
-				//}	
+
 				?>
             </div>
 			

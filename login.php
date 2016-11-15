@@ -59,6 +59,7 @@ include_once("db_configuration.php");
 				echo "</ul>";
 				?>
 				</div>
+				<img style="margin: 50px 10px 10px 15px; border: 1px solid black" src="includes/grafica.php"/>
 			</div>
 
 			<div id="contenido">
