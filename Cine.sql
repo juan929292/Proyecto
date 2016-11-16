@@ -203,7 +203,7 @@ CREATE TABLE `posee` (
 
 LOCK TABLES `posee` WRITE;
 /*!40000 ALTER TABLE `posee` DISABLE KEYS */;
-INSERT INTO `posee` VALUES (35,28),(1,29);
+INSERT INTO `posee` VALUES (35,28),(1,29),(34,30),(4,31),(5,32),(6,33),(1,34);
 /*!40000 ALTER TABLE `posee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -272,10 +272,11 @@ CREATE TABLE `valoraciones` (
   `id_valoracion` int(10) NOT NULL AUTO_INCREMENT,
   `nota` int(10) NOT NULL,
   `id_usuario` int(10) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_valoracion`,`id_usuario`),
   KEY `valoraciones_ibfk_1` (`id_usuario`),
   CONSTRAINT `valoraciones_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -284,7 +285,7 @@ CREATE TABLE `valoraciones` (
 
 LOCK TABLES `valoraciones` WRITE;
 /*!40000 ALTER TABLE `valoraciones` DISABLE KEYS */;
-INSERT INTO `valoraciones` VALUES (28,7,1),(29,6,1);
+INSERT INTO `valoraciones` VALUES (28,7,1,'2016-10-05 18:12:18'),(29,6,1,'2016-09-05 18:12:18'),(30,7,1,'2016-11-05 19:13:08'),(31,7,1,'2016-11-05 21:09:03'),(32,9,1,'2016-11-07 18:23:51'),(33,9,1,'2016-11-07 18:24:10'),(34,8,2,'2016-11-14 23:54:23');
 /*!40000 ALTER TABLE `valoraciones` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -297,4 +298,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-05 20:07:49
+-- Dump completed on 2016-11-16 11:45:19
