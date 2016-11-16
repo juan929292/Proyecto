@@ -14,7 +14,7 @@
       <div>
           <h1 style="margin-left:25px;margin-bottom:25px;color:white";>Instalador Aplicación Web</h1>
     <div class='form-group col-lg-5'>
-            <form action="" method="post">
+            <form action="instalador.php" method="post">
 
     					<div class="form-group" style="border: 5px solid black; border-radius:10px;">
                 <input type="text" name="user" class="form-control input-lg " placeholder="Usuario (para BD)" required>		</div>
