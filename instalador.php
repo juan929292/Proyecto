@@ -65,6 +65,11 @@
               $password=$_POST["pass"];
               $bd=$_POST["formbd"];
               $host=$_POST["formhost"];
+			  echo $contenido;
+			  echo $usuario;
+			  echo $password;
+			  echo $bd;
+			  echo $host;
               	$connection = new mysqli($db_host, $db_user, $db_password, $db_name);
               if ($connection->connect_errno) {
                    printf("Connection failed: %s\n", $connection->connect_error);
