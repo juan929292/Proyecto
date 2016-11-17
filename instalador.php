@@ -88,7 +88,7 @@
 			  else{
                 if($contenido == 'completa'){
                   // Name of the file
-                  $filename = $bd. ".sql";
+                  $filename = "Cine.sql";
                   // MySQL host
                   $mysql_host = $host;
                   // MySQL username
