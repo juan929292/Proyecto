@@ -82,7 +82,7 @@
 			  $dire="";
 			  $dir="Location: index.php";
 			  $dir2="Location: ". $host."/index.php";
-			  $port=$_ENV['OPENSHIFT_instalador_DB_PORT'];
+			  $port=$_ENV['OPENSHIFT_MYSQL_DB_PORT'];
 			  rename("Cine.sql", $bd .".sql");
 			  rename("Cine_estructure.sql", $bd_e .".sql");
 			  rename("Cine_data.sql", $bd_d .".sql");
