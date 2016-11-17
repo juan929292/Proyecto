@@ -92,7 +92,7 @@
 			  echo $host."</br>"."</br>";
 			  echo $bd_e."</br>"."</br>";
 			  echo $bd_d."</br>"."</br>";
-			  echo $SERVER['SERVER_NAME'];
+			  echo $_SERVER['SERVER_NAME'];
 			  $primeraconsulta="create database ". $bd.";";
 			  $connection= mysqli_connect($host,$usuario,$password);
 			  $first_result=$connection->query($primeraconsulta);
@@ -224,7 +224,8 @@
                 unlink($bd. ".sql");
 //                unlink($bd_e. ".sql");
 //				unlink($bd_d. ".sql");
-                header('Location:index.php');
+					$dir="Location: https://". $host ."/index.php";
+                header($dir);
               }
           }
         ?>
