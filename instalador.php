@@ -94,7 +94,7 @@
 			  echo $bd_d."</br>"."</br>";
 			  echo $_SERVER['SERVER_NAME'];
 			  $primeraconsulta="create database ". $bd.";";
-			  $connection= mysqli_connect($host,$usuario,$password);
+			  $connection= mysqli_connect($host,$usuario,$password,$bd);
 			  $first_result=$connection->query($primeraconsulta);
               if ($connection->connect_errno) {
                    printf("Connection failed: %s\n", $connection->connect_error);
