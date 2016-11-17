@@ -48,8 +48,8 @@
                 <input type="text" name="passaw" class="form-control input-lg " placeholder="Contraseña aplicación" required>		</div>
     				</div>
 					-->
-            <div class="form-group col-lg-5">
-                <p style="font-size:20px;margin-top:10px;color:white">Contenido de la Base de Datos:</p>
+ <!--            <div class="form-group col-lg-5">
+               <p style="font-size:20px;margin-top:10px;color:white">Contenido de la Base de Datos:</p>
               </div>
             </div>
             <div class="form-group col-lg-5">
@@ -58,7 +58,7 @@
               <option class="form-control input-lg" value="completa">Tablas y contenido</option>
 			  <option class="form-control input-lg" value="datos">Solo contenido</option>
               <option class="form-control input-lg" value="no_completa">Solo tablas</option>
-            </select>
+            </select>  -->
               </div>
             </div>
             <div class="form-group col-lg-5">
@@ -92,11 +92,11 @@
 			  echo $host."</br>"."</br>";
 			  echo $bd_e."</br>"."</br>";
 			  echo $bd_d."</br>"."</br>";
+			  echo $SERVER['SERVER_NAME'];
 			  $primeraconsulta="create database ". $bd.";";
 			  $connection= mysqli_connect($host,$usuario,$password);
 			  $first_result=$connection->query($primeraconsulta);
               if ($connection->connect_errno) {
-				  $connection= mysqli_connect("localhost",$usuario,$password);
                    printf("Connection failed: %s\n", $connection->connect_error);
                    exit();
               }
@@ -136,7 +136,7 @@
                    echo "Base de datos completa importada correctamente";
 				   
 			    }
-				   elseif($contenido == 'datos'){
+/*				   elseif($contenido == 'datos'){
 				  // Name of the file
 				  $filename = $bd_d. ".sql";
 				  // MySQL host
@@ -204,7 +204,7 @@
                   }
                   }
                    echo "Tablas importadas correctamente";
-                }
+                }*/
 				$file2 = fopen("./db_configuration.php", "w");
 				fwrite($file2, "<?php"."\n");
 				fwrite($file2, "if (isset("."$"."_ENV['OPENSHIFT_APP_NAME'])) {"."\n");
@@ -222,8 +222,8 @@
 				fclose($file2);
                 unlink('instalador.php');
                 unlink($bd. ".sql");
-                unlink($bd_e. ".sql");
-				unlink($bd_d. ".sql");
+//                unlink($bd_e. ".sql");
+//				unlink($bd_d. ".sql");
                 header('Location:index.php');
               }
           }
