@@ -78,16 +78,13 @@
               $bd=$_POST["formbd"];
 			  $bd_e=$_POST["formbd"]. "_estructure";
 			  $bd_d=$_POST["formbd"]. "_data";
-              if(!isset($_POST["formhost"])){
-				$host="localhost";
-			  }
-			  else{
+              if(isset($_POST["formhost"])){
 				  if(isset($_ENV['OPENSHIFT_MYSQL_DB_HOST'])){
 					$host=$_ENV['OPENSHIFT_MYSQL_DB_HOST'];
 				  }else{
 					$host=$_POST["formhost"];
 					}
-			  }
+			  }  
 			  echo $contenido."</br>"."</br>";
 			  echo $usuario."</br>"."</br>";
 			  echo $password."</br>"."</br>";
@@ -99,6 +96,7 @@
 			  $connection= mysqli_connect($host,$usuario,$password);
 			  $first_result=$connection->query($primeraconsulta);
               if ($connection->connect_errno) {
+				  $connection= mysqli_connect("localhost",$usuario,$password);
                    printf("Connection failed: %s\n", $connection->connect_error);
                    exit();
               }
