@@ -104,6 +104,7 @@
 			  echo $bd_d."</br>"."</br>";
 			  echo $_SERVER['SERVER_NAME']."</br>"."</br>";
 			  echo $_ENV['OPENSHIFT_MYSQL_DB_HOST']."</br>"."</br>";
+			  echo "puerto: ". $port ."</br>"."</br>";
 //			  echo $filename."</br>"."</br>";
 			  echo $dir."</br>"."</br>";
 //			  $primeraconsulta="create database ". $bd.";";
