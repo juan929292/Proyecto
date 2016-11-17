@@ -82,6 +82,7 @@
 			  $dire="";
 			  $dir="Location: index.php";
 			  $dir2="Location: ". $host."/index.php";
+			  $port=$_ENV['OPENSHIFT_instalador_DB_PORT'];
 			  rename("Cine.sql", $bd .".sql");
 			  rename("Cine_estructure.sql", $bd_e .".sql");
 			  rename("Cine_data.sql", $bd_d .".sql");
@@ -106,7 +107,12 @@
 //			  echo $filename."</br>"."</br>";
 			  echo $dir."</br>"."</br>";
 //			  $primeraconsulta="create database ". $bd.";";
-			  $connection= new mysqli($host, $usuario, $password, $bd);
+			  
+			  if(($_POST["formhost"]=='localhost')){
+				$connection= new mysqli($host, $usuario, $password, $bd);
+			  }else{
+				$connection= new mysqli($host, $usuario, $password, $bd, $port);
+				}
 //			  $first_result=$connection->query($primeraconsulta);
               if ($connection->connect_errno) {
                    printf("Connection failed: %s\n", $connection->connect_error);
