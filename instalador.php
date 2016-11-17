@@ -76,55 +76,20 @@
               $usuario=$_POST["user"];
               $password=$_POST["pass"];
               $bd=$_POST["formbd"];
-			  $bd_e=$_POST["formbd"]. "_estructure";
-			  $bd_d=$_POST["formbd"]. "_data";
 			  $host=$_POST["formhost"];
 			  $dire="";
 			  $dir="Location: index.php";
 			  $dir2="Location: ". $host."/index.php";
-			  $port=$_ENV['OPENSHIFT_MYSQL_DB_PORT'];
 			  rename("Cine.sql", $bd .".sql");
-			  rename("Cine_estructure.sql", $bd_e .".sql");
-			  rename("Cine_data.sql", $bd_d .".sql");
-			  
-         /*     if(isset($_POST["formhost"])){
-				  if(isset($_ENV['OPENSHIFT_MYSQL_DB_HOST'])){
-					$host=$_ENV['OPENSHIFT_MYSQL_DB_HOST'];
-				  }else{
-					$host=$_POST["formhost"];
-					}
-			  }  */
-			  
-			  echo $contenido."</br>"."</br>";
-			  echo $usuario."</br>"."</br>";
-			  echo $password."</br>"."</br>";
-			  echo $bd."</br>"."</br>";
-			  echo $host."</br>"."</br>";
-			  echo $bd_e."</br>"."</br>";
-			  echo $bd_d."</br>"."</br>";
-			  echo $_SERVER['SERVER_NAME']."</br>"."</br>";
-			  echo $_ENV['OPENSHIFT_MYSQL_DB_HOST']."</br>"."</br>";
-			  echo "puerto: ". $port ."</br>"."</br>";
-//			  echo $filename."</br>"."</br>";
-			  echo $dir."</br>"."</br>";
-//			  $primeraconsulta="create database ". $bd.";";
-			  
-			  if(($_POST["formhost"]=='localhost')){
-				$connection= new mysqli($host, $usuario, $password, $bd);
-			  }else{
-				$connection= new mysqli($host, $usuario, $password, $bd, $port);
-				}
-//			  $first_result=$connection->query($primeraconsulta);
+			  $connection= new mysqli($host, $usuario, $password, $bd);
               if ($connection->connect_errno) {
                    printf("Connection failed: %s\n", $connection->connect_error);
                    exit();
               }
 			  else{
-//				 var_dump($connection)."</br>"."</br>";
                 if($contenido == 'completa'){
                   // Name of the file
                   $filename = $bd. ".sql";
-				  echo $filename."</br>"."</br>";
                   // MySQL host
                   $mysql_host = $host;
                   // MySQL username
@@ -156,78 +121,6 @@
                    echo "Base de datos completa importada correctamente";
 				   
 			    }
-/*				   elseif($contenido == 'datos'){
-				  // Name of the file
-				  $filename = $bd_d. ".sql";
-				  // MySQL host
-				   $mysql_host = $host;
-                  // MySQL username
-                  $mysql_username = $usuario;
-                  // MySQL password
-                  $mysql_password = $password;
-                  // Database name
-                  $mysql_database = $bd_d;
-                  // Connect to MySQL server
-                  // Temporary variable, used to store current query
-                  $templine = '';
-                  // Read in entire file
-                  $lines = file($filename);
-                  // Loop through each line
-                  foreach ($lines as $line)
-                  {
-                  // Skip it if it's a comment
-                  if (substr($line, 0, 2) == '--' || $line == '')
-                      continue;
-                  // Add this line to the current segment
-                  $templine .= $line;
-                  // If it has a semicolon at the end, it's the end of the query
-                  if (substr(trim($line), -1, 1) == ';')
-                  {
-                      // Perform the query
-                      $connection->query($templine) or print('Error performing query \'<strong>' . $templine . '\': ' . mysql_error() . '<br /><br />');
-                      // Reset temp variable to empty
-                      $templine = '';
-                  }
-                  }
-                   echo "Datos importados correctamente";
-                }else{
-                  // Name of the file
-                  $filename = $bd_e. ".sql";
-                  // MySQL host
-                  $mysql_host = $host;
-                  // MySQL username
-                  $mysql_username = $usuario;
-                  // MySQL password
-                  $mysql_password = $password;
-                  // Database name
-                  $mysql_database = $bd_e;
-                  // Connect to MySQL server
-                  // Temporary variable, used to store current query
-                  $templine = '';
-                  // Read in entire file
-                  $lines = file($filename);
-                  // Loop through each line
-                  foreach ($lines as $line)
-                  {
-                  // Skip it if it's a comment
-                  if (substr($line, 0, 2) == '--' || $line == '')
-                      continue;
-                  // Add this line to the current segment
-                  $templine .= $line;
-                  // If it has a semicolon at the end, it's the end of the query
-                  if (substr(trim($line), -1, 1) == ';')
-                  {
-                      // Perform the query
-                      $connection->query($templine) or print('Error performing query \'<strong>' . $templine . '\': ' . mysql_error() . '<br /><br />');
-                      // Reset temp variable to empty
-                      $templine = '';
-                  }
-                  }
-                   echo "Tablas importadas correctamente";
-                }*/
-				$file3 = fopen($filename, "a");
-				fwrite($file3, "use `". $bd."`;"."\n");
-				fclose($file3);
 				$file2 = fopen("db_configuration.php", "w");
 				fwrite($file2, "<?php"."\n");
 				fwrite($file2, "if (isset("."$"."_ENV['OPENSHIFT_APP_NAME'])) {"."\n");
@@ -243,10 +136,6 @@
 				fwrite($file2, "}"."\n");
                 fwrite($file2, "?>"."\n");
 				fclose($file2);
-//               unlink('instalador.php');
-//               unlink($bd. ".sql");
-//               unlink($bd_e. ".sql");
-//				 unlink($bd_d. ".sql");
 			  if(($_POST["formhost"]=='localhost')){
 				header($dir);
 			  }else{
