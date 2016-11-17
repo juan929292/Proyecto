@@ -18,6 +18,7 @@
 --
 -- Table structure for table `comentarios`
 --
+--CREATE DATABASE IF NOT EXISTS `Cine`;
 DROP DATABASE if exists `Cine` ;
 create database `Cine`;
 use `Cine`;

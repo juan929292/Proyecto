@@ -9,39 +9,51 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
   </head>
-  <body style="background-color:darkred; text-shadow:5px 5px black; ">
+  <body style="background-color:darkred; ">
+  
     <div style="width:1000px;margin: 0 auto;margin-top:41px;">
       <div>
-          <h1 style="margin-left:25px;margin-bottom:25px;color:white";>Instalador Aplicación Web</h1>
+          <h1 style="margin-left:25px;margin-bottom:25px;color:white;text-decoration: underline;">Instalador Aplicación Web</h1>
+		  
     <div class='form-group col-lg-5'>
             <form action="instalador.php" method="post">
 
-    					<div class="form-group" style="border: 5px solid black; border-radius:10px;">
-                <input type="text" name="user" class="form-control input-lg " placeholder="Usuario (para BD)" required>		</div>
+    					<div class="form-group">
+                <input type="text" name="user" class="form-control input-lg " placeholder="Usuario (acceso BD)" required>		</div>
     				</div>
     				<div class="form-group col-lg-5">
-    					<div class="form-group" style="border: 5px solid black; border-radius:10px;">
-                    <input type="password" name="pass" class="form-control input-lg" placeholder="Contraseña (para BD)">
+    					<div class="form-group">
+                    <input type="password" name="pass" class="form-control input-lg" placeholder="Contraseña (acceso BD)">
     					</div>
     				</div>
             <div class="form-group col-lg-5">
-    					<div class="form-group" style="border: 5px solid black; border-radius:10px;">
-                  <input type="text" name="formhost" class="form-control input-lg" placeholder="Host de la BD" required>
+    					<div class="form-group">
+                  <input type="text" name="formhost" class="form-control input-lg" placeholder="Host de la BD " required>
                 </div>
     				</div>
 
             <div class="form-group col-lg-5">
-              <div class="form-group" style="border: 5px solid black; border-radius:10px;">
+              <div class="form-group">
                   <input type="text" name="formbd" class="form-control input-lg" placeholder="Nombre de la BD" required>
                 </div>
             </div>
+						 <!-- <div class='form-group col-lg-5'>
+    					<div class="form-group">
+						<p style="font-size:20px;margin-top:10px;color:white">Nuevo USUARIO administrador para aplicación:</p>
+                <input type="text" name="useraw" class="form-control input-lg " placeholder="Usuario aplicación" required>		</div>
+    				</div>
+					<div class='form-group col-lg-5'>
+    					<div class="form-group">
+						<p style="font-size:20px;margin-top:10px;color:white">Nueva CONTRASEÑA administrador para aplicación:</p>
+                <input type="text" name="passaw" class="form-control input-lg " placeholder="Contraseña aplicación" required>		</div>
+    				</div>
+					-->
             <div class="form-group col-lg-5">
-
                 <p style="font-size:20px;margin-top:10px;color:white">Contenido de la Base de Datos:</p>
               </div>
             </div>
             <div class="form-group col-lg-5">
-              <div class="form-group" style="border: 5px solid black; border-radius:10px;">
+              <div class="form-group">
             <select class="form-control input-lg" name="content" required>
               <option class="form-control input-lg" value="completa">Tablas y contenido</option>
 			  <option class="form-control input-lg" value="datos">Solo contenido</option>
@@ -64,20 +76,33 @@
               $usuario=$_POST["user"];
               $password=$_POST["pass"];
               $bd=$_POST["formbd"];
-              $host=$_POST["formhost"];
-			  echo $contenido;
-			  echo $usuario;
-			  echo $password;
-			  echo $bd;
-			  echo $host;
-              	$connection = new mysqli($db_host, $db_user, $db_password, $db_name);
+			  $bd_e=$_POST["formbd"]. "_estructure";
+			  $bd_d=$_POST["formbd"]. "_data";
+              if(!isset($_POST["formhost"])){
+				$host="localhost";
+			  }
+			  else{
+				  $host=$_POST["formhost"];
+			  }
+			  echo $contenido."</br>"."</br>";
+			  echo $usuario."</br>"."</br>";
+			  echo $password."</br>"."</br>";
+			  echo $bd."</br>"."</br>";
+			  echo $host."</br>"."</br>";
+			  echo $bd_e."</br>"."</br>";
+			  echo $bd_d."</br>"."</br>";
+			  $primeraconsulta="create database ". $bd.";";
+			  $connection= mysqli_connect($host,$usuario,$password);
+			  $first_result=$connection->query($primeraconsulta);
               if ($connection->connect_errno) {
                    printf("Connection failed: %s\n", $connection->connect_error);
                    exit();
-              }else{
+              }
+			  else{
+				  
                 if($contenido == 'completa'){
                   // Name of the file
-                  $filename = 'Cine.sql';
+                  $filename = $bd. ".sql";
                   // MySQL host
                   $mysql_host = $host;
                   // MySQL username
@@ -92,26 +117,26 @@
                   // Read in entire file
                   $lines = file($filename);
                   // Loop through each line
-                  foreach ($lines as $line)
-                  {
-                  // Skip it if it's a comment
-                  if (substr($line, 0, 2) == '--' || $line == '')
-                      continue;
-                  // Add this line to the current segment
-                  $templine .= $line;
-                  // If it has a semicolon at the end, it's the end of the query
-                  if (substr(trim($line), -1, 1) == ';')
-                  {
-                      // Perform the query
-                      $connection->query($templine) or print('Error performing query \'<strong>' . $templine . '\': ' . mysql_error() . '<br /><br />');
-                      // Reset temp variable to empty
-                      $templine = '';
-                  }
+                  foreach ($lines as $line){
+					  // Skip it if it's a comment
+					  if (substr($line, 0, 2) == '--' || $line == '')
+						  continue;
+					  // Add this line to the current segment
+					  $templine .= $line;
+					  // If it has a semicolon at the end, it's the end of the query
+					  if (substr(trim($line), -1, 1) == ';'){
+							  // Perform the query
+							  $connection->query($templine) or print('Error performing query \'<strong>' . $templine . '\': ' . mysql_error() . '<br /><br />');
+							  // Reset temp variable to empty
+							  $templine = '';
+						  }
                   }
                    echo "Base de datos completa importada correctamente";
-				   }elseif($contenido == 'datos'){
+				   
+			    }
+				   elseif($contenido == 'datos'){
 				  // Name of the file
-				  $filename = 'Cine_data.sql';
+				  $filename = $bd_d. ".sql";
 				  // MySQL host
 				   $mysql_host = $host;
                   // MySQL username
@@ -145,7 +170,7 @@
                    echo "Datos importados correctamente";
                 }else{
                   // Name of the file
-                  $filename = 'Cine_estructure.sql';
+                  $filename = $bd_e. ".sql";
                   // MySQL host
                   $mysql_host = $host;
                   // MySQL username
@@ -178,32 +203,25 @@
                   }
                    echo "Tablas importadas correctamente";
                 }
-                $file = fopen("db_var.php", "a");
-                fwrite($file, "<?php"."\n");
-                fwrite($file, "$"."usuario="."'".$usuario."';"."\n");
-                fwrite($file, "$"."password="."'".$password."';"."\n");
-                fwrite($file, "$"."bd="."'".$bd."';"."\n");
-                fwrite($file, "$"."host="."'".$host."';"."\n");
-                fwrite($file, "?>"."\n");
-                fclose($file);
-				$file2 = fopen("db_configuration.php", "a");
+				$file2 = fopen("./db_configuration.php", "w");
 				fwrite($file2, "<?php"."\n");
-				fwrite($file2, "if (isset("."$"."_ENV['OPENSHIFT_APP_NAME'])) {");
-				fwrite($file2, "$"."db_user="."$"."_ENV['OPENSHIFT_MYSQL_DB_USERNAME'];");
-				fwrite($file2, "$"."db_host="."$"."_ENV['OPENSHIFT_MYSQL_DB_HOST'];");
-				fwrite($file2, "$"."db_password="."$"."_ENV['OPENSHIFT_MYSQL_DB_PASSWORD'];");
-				fwrite($file2, "$"."db_name="."Cine".";");
-				fwrite($file2, "} else {");
+				fwrite($file2, "if (isset("."$"."_ENV['OPENSHIFT_APP_NAME'])) {"."\n");
+				fwrite($file2, "$"."db_user="."$"."_ENV['OPENSHIFT_MYSQL_DB_USERNAME'];"."\n");
+				fwrite($file2, "$"."db_host="."$"."_ENV['OPENSHIFT_MYSQL_DB_HOST'];"."\n");
+				fwrite($file2, "$"."db_password="."$"."_ENV['OPENSHIFT_MYSQL_DB_PASSWORD'];"."\n");
+				fwrite($file2, "$"."db_name="."Cine".";"."\n");
+				fwrite($file2, "} else {"."\n");
                 fwrite($file2, "$"."db_user="."'".$usuario."';"."\n");
                 fwrite($file2, "$"."db_password="."'".$password."';"."\n");
                 fwrite($file2, "$"."db_name="."'".$bd."';"."\n");
                 fwrite($file2, "$"."db_host="."'".$host."';"."\n");
+				fwrite($file2, "}"."\n");
                 fwrite($file2, "?>"."\n");
 				fclose($file2);
                 unlink('instalador.php');
-                unlink('Cine.sql');
-                unlink('Cine_estructura.sql');
-				unlink('Cine_data.sql');
+                unlink($bd. ".sql");
+                unlink($bd_e. ".sql");
+				unlink($bd_d. ".sql");
                 header('Location:index.php');
               }
           }
