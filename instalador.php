@@ -224,7 +224,7 @@
                 unlink($bd. ".sql");
 //                unlink($bd_e. ".sql");
 //				unlink($bd_d. ".sql");
-					$dir="Location: https://". $host ."/index.php";
+					$dir="Location: ". $host ."/index.php";
                 header($dir);
               }
           }
