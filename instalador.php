@@ -72,8 +72,6 @@
   <?php
 
           if(isset($_POST["user"])){
-
-			  
               $contenido=$_POST["content"];
               $usuario=$_POST["user"];
               $password=$_POST["pass"];
@@ -81,7 +79,9 @@
 			  $bd_e=$_POST["formbd"]. "_estructure";
 			  $bd_d=$_POST["formbd"]. "_data";
 			  $host=$_POST["formhost"];
-			  $dir="Location: ./index.php";
+			  $dire="";
+			  $dir="Location: index.php";
+			  $dir2="Location: ". $host."/index.php";
 			  rename("Cine.sql", $bd .".sql");
 			  rename("Cine_estructure.sql", $bd_e .".sql");
 			  rename("Cine_data.sql", $bd_d .".sql");
@@ -106,15 +106,14 @@
 //			  echo $filename."</br>"."</br>";
 			  echo $dir."</br>"."</br>";
 //			  $primeraconsulta="create database ". $bd.";";
-			  $connection= mysqli_connect($host,$usuario,$password,$bd);
-			  echo $connection."</br>"."</br>";
+			  $connection= new mysqli($host, $usuario, $password, $bd);
 //			  $first_result=$connection->query($primeraconsulta);
               if ($connection->connect_errno) {
                    printf("Connection failed: %s\n", $connection->connect_error);
                    exit();
               }
 			  else{
-				  
+//				 var_dump($connection)."</br>"."</br>";
                 if($contenido == 'completa'){
                   // Name of the file
                   $filename = $bd. ".sql";
@@ -237,11 +236,15 @@
 				fwrite($file2, "}"."\n");
                 fwrite($file2, "?>"."\n");
 				fclose($file2);
-                unlink('instalador.php');
-                unlink($bd. ".sql");
-                unlink($bd_e. ".sql");
-				unlink($bd_d. ".sql");
-                header($dir);
+//               unlink('instalador.php');
+//               unlink($bd. ".sql");
+//               unlink($bd_e. ".sql");
+//				 unlink($bd_d. ".sql");
+			  if(($_POST["formhost"]=='localhost')){
+				header($dir);
+			  }else{
+				header($dir2);
+				}
               }
           }
         ?>
