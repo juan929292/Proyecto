@@ -72,11 +72,11 @@
   <?php
 
           if(isset($_POST["user"])){
-              $contenido=$_POST["content"];
-              $usuario=$_POST["user"];
-              $password=$_POST["pass"];
-              $bd=$_POST["formbd"];
-			  $host=$_POST["formhost"];
+              $contenido="'".$_POST["content"]."'";
+              $usuario="'".$_POST["user"]."'";
+              $password="'".$_POST["pass"]."'";
+              $bd="'".$_POST["formbd"]."'";
+			  $host="'".$_POST["formhost"]."'";
 			  $dire="";
 			  $dir="Location: index.php";
 			  $dir2="Location: ". $host."/index.php";
