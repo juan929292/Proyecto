@@ -82,7 +82,11 @@
 				$host="localhost";
 			  }
 			  else{
-				  $host=$_POST["formhost"];
+				  if(isset($_ENV['OPENSHIFT_MYSQL_DB_HOST'];)){
+					$host=$_ENV['OPENSHIFT_MYSQL_DB_HOST'];
+				  }else{
+					$host=$_POST["formhost"];
+					}
 			  }
 			  echo $contenido."</br>"."</br>";
 			  echo $usuario."</br>"."</br>";
