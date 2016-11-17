@@ -107,6 +107,7 @@
 			  echo $dir."</br>"."</br>";
 //			  $primeraconsulta="create database ". $bd.";";
 			  $connection= mysqli_connect($host,$usuario,$password,$bd);
+			  echo $connection."</br>"."</br>";
 //			  $first_result=$connection->query($primeraconsulta);
               if ($connection->connect_errno) {
                    printf("Connection failed: %s\n", $connection->connect_error);
@@ -221,7 +222,7 @@
 				$file3 = fopen($filename, "a");
 				fwrite($file3, "use `". $bd."`;"."\n");
 				fclose($file3);
-				$file2 = fopen("./db_configuration.php", "w");
+				$file2 = fopen("db_configuration.php", "w");
 				fwrite($file2, "<?php"."\n");
 				fwrite($file2, "if (isset("."$"."_ENV['OPENSHIFT_APP_NAME'])) {"."\n");
 				fwrite($file2, "$"."db_user="."$"."_ENV['OPENSHIFT_MYSQL_DB_USERNAME'];"."\n");
