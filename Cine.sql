@@ -19,9 +19,9 @@
 -- Table structure for table `comentarios`
 --
 --CREATE DATABASE IF NOT EXISTS `Cine`;
-DROP DATABASE if exists `Cine` ;
-create database `Cine`;
-use `Cine`;
+--DROP DATABASE if exists `Cine` ;
+--create database `Cine`;
+--use `Cine`;
 
 DROP TABLE IF EXISTS `comentarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

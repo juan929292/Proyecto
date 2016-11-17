@@ -18,8 +18,8 @@
 --
 -- Dumping data for table `comentarios`
 --
-CREATE DATABASE IF NOT EXISTS `Cine`;
-use `Cine`;
+--CREATE DATABASE IF NOT EXISTS `Cine`;
+--use `Cine`;
 
 LOCK TABLES `comentarios` WRITE;
 /*!40000 ALTER TABLE `comentarios` DISABLE KEYS */;

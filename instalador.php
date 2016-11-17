@@ -37,7 +37,14 @@
                   <input type="text" name="formbd" class="form-control input-lg" placeholder="Nombre de la BD" required>
                 </div>
             </div>
-						 <!-- <div class='form-group col-lg-5'>
+			<div class="form-group col-lg-5">
+            <input style="background-color:white;color:#0C5484; float:right;" type="submit" value="Instalar" class="btn btn-primary pull-left">
+            </div>
+			</div>
+			<!--<div class="form-group col-lg-5">
+				<input type=file size=60 name="archivo1"><br><br>
+            </div>
+						  <div class='form-group col-lg-5'>
     					<div class="form-group">
 						<p style="font-size:20px;margin-top:10px;color:white">Nuevo USUARIO administrador para aplicación:</p>
                 <input type="text" name="useraw" class="form-control input-lg " placeholder="Usuario aplicación" required>		</div>
@@ -48,43 +55,45 @@
                 <input type="text" name="passaw" class="form-control input-lg " placeholder="Contraseña aplicación" required>		</div>
     				</div>
 					-->
- <!--            <div class="form-group col-lg-5">
-               <p style="font-size:20px;margin-top:10px;color:white">Contenido de la Base de Datos:</p>
-              </div>
-            </div>
+
             <div class="form-group col-lg-5">
               <div class="form-group">
+			  <p style="font-size:20px;margin-top:10px;color:white">Contenido de la Base de Datos:</p></br>
             <select class="form-control input-lg" name="content" required>
               <option class="form-control input-lg" value="completa">Tablas y contenido</option>
 			  <option class="form-control input-lg" value="datos">Solo contenido</option>
               <option class="form-control input-lg" value="no_completa">Solo tablas</option>
-            </select>  -->
+            </select>  
               </div>
             </div>
-            <div class="form-group col-lg-5">
-            <input style="background-color:white;color:#0C5484" type="submit" value="Instalar" class="btn btn-primary pull-left">
+            
             </div>
-            </div>
-            </div>
-          </div>
-          </div>
-
         </form>
   <?php
+
           if(isset($_POST["user"])){
+
+			  
               $contenido=$_POST["content"];
               $usuario=$_POST["user"];
               $password=$_POST["pass"];
               $bd=$_POST["formbd"];
 			  $bd_e=$_POST["formbd"]. "_estructure";
 			  $bd_d=$_POST["formbd"]. "_data";
-              if(isset($_POST["formhost"])){
+			  $host=$_POST["formhost"];
+			  $dir="Location: ./index.php";
+			  rename("Cine.sql", $bd .".sql");
+			  rename("Cine_estructure.sql", $bd_e .".sql");
+			  rename("Cine_data.sql", $bd_d .".sql");
+			  
+         /*     if(isset($_POST["formhost"])){
 				  if(isset($_ENV['OPENSHIFT_MYSQL_DB_HOST'])){
 					$host=$_ENV['OPENSHIFT_MYSQL_DB_HOST'];
 				  }else{
 					$host=$_POST["formhost"];
 					}
-			  }  
+			  }  */
+			  
 			  echo $contenido."</br>"."</br>";
 			  echo $usuario."</br>"."</br>";
 			  echo $password."</br>"."</br>";
@@ -92,10 +101,13 @@
 			  echo $host."</br>"."</br>";
 			  echo $bd_e."</br>"."</br>";
 			  echo $bd_d."</br>"."</br>";
-			  echo $_SERVER['SERVER_NAME'];
-			  $primeraconsulta="create database ". $bd.";";
+			  echo $_SERVER['SERVER_NAME']."</br>"."</br>";
+			  echo $_ENV['OPENSHIFT_MYSQL_DB_HOST']."</br>"."</br>";
+//			  echo $filename."</br>"."</br>";
+			  echo $dir."</br>"."</br>";
+//			  $primeraconsulta="create database ". $bd.";";
 			  $connection= mysqli_connect($host,$usuario,$password,$bd);
-			  $first_result=$connection->query($primeraconsulta);
+//			  $first_result=$connection->query($primeraconsulta);
               if ($connection->connect_errno) {
                    printf("Connection failed: %s\n", $connection->connect_error);
                    exit();
@@ -105,6 +117,7 @@
                 if($contenido == 'completa'){
                   // Name of the file
                   $filename = $bd. ".sql";
+				  echo $filename."</br>"."</br>";
                   // MySQL host
                   $mysql_host = $host;
                   // MySQL username
@@ -205,6 +218,9 @@
                   }
                    echo "Tablas importadas correctamente";
                 }*/
+				$file3 = fopen($filename, "a");
+				fwrite($file3, "use `". $bd."`;"."\n");
+				fclose($file3);
 				$file2 = fopen("./db_configuration.php", "w");
 				fwrite($file2, "<?php"."\n");
 				fwrite($file2, "if (isset("."$"."_ENV['OPENSHIFT_APP_NAME'])) {"."\n");
@@ -222,9 +238,8 @@
 				fclose($file2);
                 unlink('instalador.php');
                 unlink($bd. ".sql");
-//                unlink($bd_e. ".sql");
-//				unlink($bd_d. ".sql");
-					$dir="Location: ". $host ."/index.php";
+                unlink($bd_e. ".sql");
+				unlink($bd_d. ".sql");
                 header($dir);
               }
           }
