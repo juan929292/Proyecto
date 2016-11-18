@@ -17,7 +17,8 @@ echo $_ENV['OPENSHIFT_INSTALADOR_DB_SOCKET']."</br></br>";
 echo "<h1>esto es el dolar env db password</h1></br></br>";
 echo $_ENV['OPENSHIFT_INSTALADOR_DB_URL']."</br></br>";
 echo "<h1>esto es el dolar env db socket</h1></br></br>";
-echo $_ENV['OPENSHIFT_MYSQL_DB_USERNAME']."</br></br>";
+echo $OPENSHIFT_MYSQL_DB_PORT."</br></br>";
 echo "<h1>esto es el dolar env db URL</h1></br></br>";
-echo $_ENV['OPENSHIFT_MYSQL_DB_PORT']."</br></br>";
+echo $OPENSHIFT_MYSQL_DB_HOST."</br></br>";
+
 ?>
