@@ -117,6 +117,7 @@
                    echo "Base de datos completa importada correctamente";
 				   
 			    }
+//				include ("db_configuration.php");
 				$file2 = fopen("db_configuration.php", "w");
 				fwrite($file2, "<?php"."\n");
 				fwrite($file2, "if (isset("."$"."_ENV['OPENSHIFT_APP_NAME'])) {"."\n");
