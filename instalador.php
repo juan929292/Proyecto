@@ -123,7 +123,7 @@
 				fwrite($file2, "$"."db_user="."$"."_ENV['OPENSHIFT_MYSQL_DB_USERNAME'];"."\n");
 				fwrite($file2, "$"."db_host="."$"."_ENV['OPENSHIFT_MYSQL_DB_HOST'];"."\n");
 				fwrite($file2, "$"."db_password="."$"."_ENV['OPENSHIFT_MYSQL_DB_PASSWORD'];"."\n");
-				fwrite($file2, "$"."db_name=".$bd.";"."\n");
+				fwrite($file2, "$"."db_name="."'".$bd."'".";"."\n");
 				fwrite($file2, "} else {"."\n");
                 fwrite($file2, "$"."db_user="."'".$usuario."';"."\n");
                 fwrite($file2, "$"."db_host="."'".$host."';"."\n");
