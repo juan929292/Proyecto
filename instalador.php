@@ -10,65 +10,52 @@
 
   </head>
   <body style="background-color:darkred; ">
-  
-    <div style="width:1000px;margin: 0 auto;margin-top:41px;">
-      <div>
-          <h1 style="margin-left:25px;margin-bottom:25px;color:white;text-decoration: underline;">Instalador Aplicación Web</h1>
-		  
-    <div class='form-group col-lg-5'>
-            <form action="instalador.php" method="post">
 
-    					<div class="form-group">
-                <input type="text" name="user" class="form-control input-lg " placeholder="Usuario (acceso BD)" required>		</div>
-    				</div>
-    				<div class="form-group col-lg-5">
-    					<div class="form-group">
-                    <input type="password" name="pass" class="form-control input-lg" placeholder="Contraseña (acceso BD)">
-    					</div>
-    				</div>
-            <div class="form-group col-lg-5">
-    					<div class="form-group">
-                  <input type="text" name="formhost" class="form-control input-lg" placeholder="Host de la BD " required>
-                </div>
-    				</div>
-
-            <div class="form-group col-lg-5">
-              <div class="form-group">
-                  <input type="text" name="formbd" class="form-control input-lg" placeholder="Nombre de la BD" required>
-                </div>
-            </div>
-			<div class="form-group col-lg-5">
-            <input style="background-color:white;color:#0C5484; float:right;" type="submit" value="Instalar" class="btn btn-primary pull-left">
-            </div>
+	<div style="width:1000px;margin: 0 auto;margin-top:41px;">
+		<div>
+			<h1 style="margin-left:25px;margin-bottom:25px;color:white;text-decoration: underline;">Instalador Aplicación Web</h1>
+		</div>
+			  
+		<div class='form-group col-lg-5'>
+			<form action="instalador.php" method="post">
+				<div class="form-group">
+					<input type="text" name="user" class="form-control input-lg " placeholder="Usuario (acceso BD)" required>
+				</div>
+		</div>
+		
+		<div class="form-group col-lg-5">
+			<div class="form-group">
+				<input type="password" name="pass" class="form-control input-lg" placeholder="Contraseña (acceso BD)">
 			</div>
-			<!--<div class="form-group col-lg-5">
-				<input type=file size=60 name="archivo1"><br><br>
-            </div>
-						  <div class='form-group col-lg-5'>
-    					<div class="form-group">
-						<p style="font-size:20px;margin-top:10px;color:white">Nuevo USUARIO administrador para aplicación:</p>
-                <input type="text" name="useraw" class="form-control input-lg " placeholder="Usuario aplicación" required>		</div>
-    				</div>
-					<div class='form-group col-lg-5'>
-    					<div class="form-group">
-						<p style="font-size:20px;margin-top:10px;color:white">Nueva CONTRASEÑA administrador para aplicación:</p>
-                <input type="text" name="passaw" class="form-control input-lg " placeholder="Contraseña aplicación" required>		</div>
-    				</div>
-					-->
-
-            <div class="form-group col-lg-5">
-              <div class="form-group">
-			  <p style="font-size:20px;margin-top:10px;color:white">Contenido de la Base de Datos:</p></br>
-            <select class="form-control input-lg" name="content" required>
-              <option class="form-control input-lg" value="completa">Tablas y contenido</option>
-			  <option class="form-control input-lg" value="datos">Solo contenido</option>
-              <option class="form-control input-lg" value="no_completa">Solo tablas</option>
-            </select>  
-              </div>
-            </div>
-            
-            </div>
-        </form>
+		</div>
+		
+		<div class="form-group col-lg-5">
+			<div class="form-group">
+				<input type="text" name="formhost" class="form-control input-lg" placeholder="Host de la BD " required>
+			</div>
+		</div>
+		
+		<div class="form-group col-lg-5">
+		  <div class="form-group">
+			  <input type="text" name="formbd" class="form-control input-lg" placeholder="Nombre de la BD" required>
+			</div>
+		</div>
+		
+		<div class="form-group col-lg-5">
+			<input style="background-color:white;color:#0C5484; float:right;" type="submit" value="Instalar" class="btn btn-primary pull-left">
+		</div>
+		<div class="form-group col-lg-5">
+			<div class="form-group">
+				<p style="font-size:20px;margin-top:10px;color:white">Contenido de la Base de Datos:</p></br>
+				<select class="form-control input-lg" name="content" required>
+					<option class="form-control input-lg" value="completa">Tablas y contenido</option>
+					<option class="form-control input-lg" value="datos">Solo contenido</option>
+					<option class="form-control input-lg" value="no_completa">Solo tablas</option>
+				</select>  
+			</div>
+		</div>
+	</form>	
+</div>
   <?php
 
           if(isset($_POST["user"])){
@@ -126,10 +113,10 @@
 				fwrite($file2, "$"."db_password="."$"."_ENV['OPENSHIFT_MYSQL_DB_PASSWORD']; //Openshift db password OPENSHIFT_MYSQL_DB_PASSWORD"."\n");
 				fwrite($file2, "$"."db_name="."'".$bd."'"."; //Openshift db name"."\n");
 				fwrite($file2, "} else {"."\n");
-                fwrite($file2, "$"."db_user="."'".$usuario."'; //my db user"."\n");
-                fwrite($file2, "$"."db_host="."'".$host."'; //my db host"."\n");
-                fwrite($file2, "$"."db_password="."'".$password."'; //my db password"."\n");
-                fwrite($file2, "$"."db_name="."'".$bd."'; //my db name"."\n");
+                fwrite($file2, "$"."db_user="."'"."root"."'; //my db user"."\n");
+                fwrite($file2, "$"."db_host="."'"."localhost"."'; //my db host"."\n");
+                fwrite($file2, "$"."db_password="."'".""."'; //my db password"."\n");
+                fwrite($file2, "$"."db_name="."'"."cine"."'; //my db name"."\n");
 				fwrite($file2, "}"."\n");
                 fwrite($file2, "?>"."\n");
 				fclose($file2);
