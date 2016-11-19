@@ -104,7 +104,7 @@
                    echo "Base de datos completa importada correctamente";
 				   
 			    }
-
+				include('database.php')
                 $file = fopen("configurationdb.php", "a");
                 fwrite($file, "<?php"."\n");
                 fwrite($file, "$"."username="."'".$usuario."';"."\n");
@@ -113,8 +113,8 @@
                 fwrite($file, "$"."localhost="."'".$host."';"."\n");
                 fwrite($file, "?>"."\n");
                 fclose($file);
-               unlink("instalador.php");
-//				 unlink("database.php");
+                unlink("instalador.php");
+				unlink("database.php");
 //               rmdir('../installation');
                  header("Location: index.php");
 				
