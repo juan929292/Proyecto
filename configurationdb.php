@@ -1,10 +1,4 @@
 <?php
-$username='';
-$password='';
-$database='';
-$localhost='';
-?>
-<?php
 $username='root';
 $password='';
 $database='cine';
