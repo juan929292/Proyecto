@@ -104,7 +104,7 @@
                    echo "Base de datos completa importada correctamente";
 				   
 			    }
-				include('database.php')
+				include('database.php');
                 $file = fopen("configurationdb.php", "a");
                 fwrite($file, "<?php"."\n");
                 fwrite($file, "$"."username="."'".$usuario."';"."\n");
