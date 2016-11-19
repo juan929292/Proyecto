@@ -15,8 +15,8 @@ include_once("configurationdb.php");
       $db_password=$password; //my db password
       $db_name=$database; //my db name
     }
-  }
-/*$connection = new mysqli($db_host, $db_user, $db_password, $db_name);
+/* }
+$connection = new mysqli($db_host, $db_user, $db_password, $db_name);
    //TESTING IF THE CONNECTION WAS RIGHT
 if ($connection->connect_errno) {
      header("Location: index.php");
