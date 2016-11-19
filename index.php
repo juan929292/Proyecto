@@ -33,7 +33,7 @@ include_once("db_configuration.php");
 			</div>
 		</div>
 		<div id="page2">
-		<?php echo "<h4>". $db_host ."--". $db_user ."--". $db_password ."--". $db_name ."</h4>"; ?>
+		<?php echo "<h4>". $db_host ." -- ". $db_user ." -- ". $db_password ." -- ". $db_name ."</h4>"; ?>
         <div id="main">
 		<div id="sidebaraso">
             <div id="sidebar">
