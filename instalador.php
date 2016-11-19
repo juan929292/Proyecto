@@ -44,22 +44,11 @@
 		<div class="form-group col-lg-5">
 			<input style="background-color:white;color:#0C5484; float:right;" type="submit" value="Instalar" class="btn btn-primary pull-left">
 		</div>
-		<div class="form-group col-lg-5">
-			<div class="form-group">
-				<p style="font-size:20px;margin-top:10px;color:white">Contenido de la Base de Datos:</p></br>
-				<select class="form-control input-lg" name="content" required>
-					<option class="form-control input-lg" value="completa">Tablas y contenido</option>
-					<option class="form-control input-lg" value="datos">Solo contenido</option>
-					<option class="form-control input-lg" value="no_completa">Solo tablas</option>
-				</select>  
-			</div>
-		</div>
 	</form>	
 </div>
   <?php
 
           if(isset($_POST["user"])){
-              $contenido=$_POST["content"];
               $usuario=$_POST["user"];
               $password=$_POST["pass"];
               $bd=$_POST["formbd"];
@@ -70,40 +59,7 @@
                    exit();
               }
 			  else{
-                if($contenido == 'completa'){
-                  // Name of the file
-                  $filename = "cine.sql";
-                  // MySQL host
-                  $mysql_host = $host;
-                  // MySQL username
-                  $mysql_username = $usuario;
-                  // MySQL password
-                  $mysql_password = $password;
-                  // Database name
-                  $mysql_database = $bd;
-                  // Connect to MySQL server
-                  // Temporary variable, used to store current query
-                  $templine = '';
-                  // Read in entire file
-                  $lines = file($filename);
-                  // Loop through each line
-                  foreach ($lines as $line){
-					  // Skip it if it's a comment
-					  if (substr($line, 0, 2) == '--' || $line == '')
-						  continue;
-					  // Add this line to the current segment
-					  $templine .= $line;
-					  // If it has a semicolon at the end, it's the end of the query
-					  if (substr(trim($line), -1, 1) == ';'){
-							  // Perform the query
-							  $connection->query($templine) or print('Error performing query \'<strong>' . $templine . '\': ' . mysql_error() . '<br /><br />');
-							  // Reset temp variable to empty
-							  $templine = '';
-						  }
-                  }
-                   echo "Base de datos completa importada correctamente";
-				   
-			    }
+                
 				include("database.php");
                 $file = fopen("configurationdb.php", "w");
                 fwrite($file, "<?php"."\n");
