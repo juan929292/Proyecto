@@ -57,7 +57,7 @@
                    exit();
               }
 			  else{
-				include("database.php");
+				include_once("database.php");
                 $file = fopen("configurationdb.php", "w");
                 fwrite($file, "<?php"."\n");
                 fwrite($file, "$"."username="."'".$usuario."';"."\n");
@@ -66,9 +66,10 @@
                 fwrite($file, "$"."localhost="."'".$host."';"."\n");
                 fwrite($file, "?>"."\n");
                 fclose($file);
-                unlink("instalador.php");
-				unlink("database.php");
-                header("Location: index.php");
+//              unlink("instalador.php");
+//				unlink("database.php");
+//				unlink("../instalador.php");
+                header("Location: ./Proyecto/index.php");
               }
           }
 	?>

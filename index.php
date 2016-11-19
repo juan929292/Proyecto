@@ -70,22 +70,22 @@ include_once("db_configuration.php");
 			<img style="margin: 50px 10px 10px 15px; border: 1px solid black" src="includes/grafica.php"/>
 			
 		</div>
-				<div id="contenido">
-						<?php
-					$connection = new mysqli($db_host, $db_user, $db_password, $db_name);
-						if($connection->connect_errno){
-							echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
-						}
-					$result=$connection->query("SELECT * FROM peliculas");
-						while($obj=$result->fetch_object()){
-						echo "<div class='cajas'>";
-						echo "<a href='ficha_pelicula.php?id=".$obj->id_pelicula ."'>"."<h4>$obj->titulo</h4>"."</a>";
-						echo "<a href='ficha_pelicula.php?id=".$obj->id_pelicula ."'>".$obj->imagen."</a>";
-						echo "</div>";
-						};
-						?>
-						</div>
-        </div>
+		<div id="contenido">
+				<?php
+			$connection = new mysqli($db_host, $db_user, $db_password, $db_name);
+				if($connection->connect_errno){
+					echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
+				}
+			$result=$connection->query("SELECT * FROM peliculas");
+				while($obj=$result->fetch_object()){
+				echo "<div class='cajas'>";
+				echo "<a href='ficha_pelicula.php?id=".$obj->id_pelicula ."'>"."<h4>$obj->titulo</h4>"."</a>";
+				echo "<a href='ficha_pelicula.php?id=".$obj->id_pelicula ."'>".$obj->imagen."</a>";
+				echo "</div>";
+				};
+				?>
+		</div>
+    </div>
         <div id="footer">
             <div id="footerleft">
           
