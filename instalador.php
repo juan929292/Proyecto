@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
   <head>
     <meta charset="utf-8">
@@ -46,8 +45,7 @@
 		</div>
 	</form>	
 </div>
-  <?php
-
+	<?php
           if(isset($_POST["user"])){
               $usuario=$_POST["user"];
               $password=$_POST["pass"];
@@ -59,7 +57,6 @@
                    exit();
               }
 			  else{
-                
 				include("database.php");
                 $file = fopen("configurationdb.php", "w");
                 fwrite($file, "<?php"."\n");
@@ -71,11 +68,10 @@
                 fclose($file);
                 unlink("instalador.php");
 				unlink("database.php");
-                 header("Location: index.php");
-				
+                header("Location: index.php");
               }
           }
-        ?>
+	?>
     </div>
   </body>
 </html>
