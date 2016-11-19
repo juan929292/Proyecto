@@ -69,7 +69,7 @@
 //              unlink("instalador.php");
 //				unlink("database.php");
 //				unlink("../instalador.php");
-                header("Location: ./Proyecto/index.php");
+                header("Location: index.php");
               }
           }
 	?>
