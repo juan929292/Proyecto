@@ -104,19 +104,23 @@
                    echo "Base de datos completa importada correctamente";
 				   
 			    }
-				include("database.php");
-                $file = fopen("configurationdb.php", "a");
-                fwrite($file, "<?php"."\n");
-                fwrite($file, "$"."username="."'".$usuario."';"."\n");
-                fwrite($file, "$"."password="."'".$password."';"."\n");
-                fwrite($file, "$"."database="."'".$bd."';"."\n");
-                fwrite($file, "$"."localhost="."'".$host."';"."\n");
-                fwrite($file, "?>"."\n");
-                fclose($file);
-//               unlink("instalador.php");
-//				 unlink("database.php");
-//               rmdir('../installation');
-                 header("Location: index.php");
+//				include ("db_configuration.php");
+				$file2 = fopen("db_configuration.php", "w");
+				fwrite($file2, "<?php"."\n");
+				fwrite($file2, "if (isset("."$"."_ENV['OPENSHIFT_APP_NAME'])) {"."\n");
+				fwrite($file2, "$"."db_user="."$"."_ENV['OPENSHIFT_MYSQL_DB_USERNAME']; //Openshift db name OPENSHIFT_MYSQL_DB_USERNAME"."\n");
+				fwrite($file2, "$"."db_host="."$"."_ENV['OPENSHIFT_MYSQL_DB_HOST']; //Openshift db host OPENSHIFT_MYSQL_DB_HOST"."\n");
+				fwrite($file2, "$"."db_password="."$"."_ENV['OPENSHIFT_MYSQL_DB_PASSWORD']; //Openshift db password OPENSHIFT_MYSQL_DB_PASSWORD"."\n");
+				fwrite($file2, "$"."db_name="."'". $bd ."'"."; //Openshift db name"."\n");
+				fwrite($file2, "} else {"."\n");
+                fwrite($file2, "$"."db_user="."'". $usuario ."'; //my db user"."\n");
+                fwrite($file2, "$"."db_host="."'". $host ."'; //my db host"."\n");
+                fwrite($file2, "$"."db_password="."'". $password ."'; //my db password"."\n");
+                fwrite($file2, "$"."db_name="."'". $bd ."'; //my db name"."\n");
+				fwrite($file2, "}"."\n");
+                fwrite($file2, "?>"."\n");
+				fclose($file2);
+				header('Location: index.php');
 				
               }
           }
