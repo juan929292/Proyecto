@@ -113,7 +113,7 @@
                 fwrite($file, "$"."localhost="."'".$host."';"."\n");
                 fwrite($file, "?>"."\n");
                 fclose($file);
-//               unlink("instalador.php");
+               unlink("instalador.php");
 //				 unlink("database.php");
 //               rmdir('../installation');
                  header("Location: index.php");
