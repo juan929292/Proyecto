@@ -63,7 +63,7 @@
 				fwrite($file, "if (isset("."$"."_ENV['OPENSHIFT_APP_NAME'])) {"."\n");
 				fwrite($file, ""."$"."db_user="."$"."_ENV['OPENSHIFT_MYSQL_DB_USERNAME'];"."\n");
 				fwrite($file, ""."$"."db_host="."$"."_ENV['OPENSHIFT_MYSQL_DB_HOST'];"."\n");
-				fwrite($file, "$"."db_name="."'".$bd."';"."\n");
+				fwrite($file, "$"."db_name="."$"."_ENV['OPENSHIFT_APP_NAME'];"."\n");
 				fwrite($file, ""."$"."db_password="."$"."_ENV['OPENSHIFT_MYSQL_DB_PASSWORD'];"."\n");
 				fwrite($file, "}"."\n");  
 				fwrite($file, "else{"."\n");
@@ -76,7 +76,7 @@
 				fclose($file);
                 unlink("instalador.php");
  				unlink("database.php");
-				unlink("../instalador.php");
+//				unlink("../instalador.php");
                 header('Location:index.php');
               }
           }
