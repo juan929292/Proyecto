@@ -57,19 +57,27 @@
                    exit();
               }
 			  else{
-				include_once('database.php');
-				$file = fopen("configurationdb.php", "a");
-                fwrite($file, "<?php"."\n");
-                fwrite($file, "$"."username="."'".$usuario."';"."\n");
-                fwrite($file, "$"."password="."'".$password."';"."\n");
-                fwrite($file, "$"."database="."'".$bd."';"."\n");
-                fwrite($file, "$"."localhost="."'".$host."';"."\n");
-                fwrite($file, "?>"."\n");
-                fclose($file);
+				include('database.php');
+				$file = fopen("db_configuration.php", "w");
+				fwrite($file, "<?php"."\n");
+				fwrite($file, "if (isset("."$"."_ENV['OPENSHIFT_APP_NAME'])) {"."\n");
+				fwrite($file, ""."$"."db_user="."$"."_ENV['OPENSHIFT_MYSQL_DB_USERNAME'];"."\n");
+				fwrite($file, ""."$"."db_host="."$"."_ENV['OPENSHIFT_MYSQL_DB_HOST'];"."\n");
+				fwrite($file, "$"."db_name="."'".$bd."';"."\n");
+				fwrite($file, ""."$"."db_password="."$"."_ENV['OPENSHIFT_MYSQL_DB_PASSWORD'];"."\n");
+				fwrite($file, "}"."\n");  
+				fwrite($file, "else{"."\n");
+				fwrite($file, "$"."db_user="."'".$usuario."';"."\n");
+				fwrite($file, "$"."db_password="."'".$password."';"."\n");
+				fwrite($file, "$"."db_host="."'".$host."';"."\n");
+				fwrite($file, "$"."db_name="."'".$bd."';"."\n");
+				fwrite($file, "}"."\n");  
+				fwrite($file, "?>"."\n");
+				fclose($file);
 //              unlink("instalador.php");
 //				unlink("database.php");
 //				unlink("../instalador.php");
-                header('Location: index.php');
+                header('Location:index.php');
               }
           }
 	?>
