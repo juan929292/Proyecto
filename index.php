@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include_once('db_configuration.php');
+include('db_configuration.php');
 
 ?>
 <html>
@@ -33,7 +33,7 @@ include_once('db_configuration.php');
 			</div>
 		</div>
 		<div id="page2">
-		<?php echo "<h4>". $db_host ." -- ". $db_user ." -- ". $db_password ." -- ". $db_name ."</h4>"; ?>
+		<?php echo "<h4>Las variables para conectar usadas: host:(". $db_host .") -- usuario:(". $db_user .") -- password:(". $db_password .") -- nombre base de datos:(". $db_name .")</h4>"; ?>
         <div id="main">
 		<div id="sidebaraso">
             <div id="sidebar">
