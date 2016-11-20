@@ -57,7 +57,7 @@ include('db_configuration.php');
 						if($connection->connect_errno){
 							echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
 						}
-					$result7=$connection->query("SELECT nombre FROM generos");
+					$result7=$connection->query("select nombre from generos;");
                 echo "<ul>";
 				while($obj7=$result7->fetch_object()){
 					echo "<li><a href='peliculas_genero.php?id=".$obj7->nombre ."'>".$obj7->nombre ."</a></li>";
@@ -76,7 +76,7 @@ include('db_configuration.php');
 				if($connection->connect_errno){
 					echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
 				}
-			$result=$connection->query("SELECT * FROM peliculas");
+			$result=$connection->query("select * from peliculas;");
 				while($obj=$result->fetch_object()){
 				echo "<div class='cajas'>";
 				echo "<a href='ficha_pelicula.php?id=".$obj->id_pelicula ."'>"."<h4>$obj->titulo</h4>"."</a>";
