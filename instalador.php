@@ -58,7 +58,7 @@
               }
 			  else{
 				include_once('database.php');
-				$file = fopen("configurationdb.php", "w");
+				$file = fopen("configurationdb.php", "a");
                 fwrite($file, "<?php"."\n");
                 fwrite($file, "$"."username="."'".$usuario."';"."\n");
                 fwrite($file, "$"."password="."'".$password."';"."\n");
