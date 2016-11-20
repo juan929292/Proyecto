@@ -1,5 +1,6 @@
 <?php 
 session_start();
+include_once('configurationdb.php');
 include_once('db_configuration.php');
 
 ?>
