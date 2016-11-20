@@ -1,5 +1,4 @@
 <?php
-$connection->query("use `cine`;");
 $connection->query("
 CREATE TABLE `comentarios` (
   `id_comentario` int(10) NOT NULL AUTO_INCREMENT,
