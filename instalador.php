@@ -86,10 +86,8 @@
                   $templine = '';
 				  $file_nombre=explode(".sql", $filename);
 				  $file3 = fopen($filename, "r+");
-				  fwrite($file3, "\n");
 				  fwrite($file3, "create database if not exists `".$file_nombre[0]."`;"."\n");
 				  fwrite($file3, "use `".$file_nombre[0]."`;"."\n");
-				  fwrite($file3, "\n");
 				  fclose($file3);
                   // Read in entire file
                   $lines = file($filename);
