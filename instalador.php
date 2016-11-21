@@ -93,9 +93,9 @@
                   $templine = '';
 				  $file_nombre=explode(".sql", $filename);
 //				  $text="create database if not exists `".$file_nombre[0]."`;"."\n"."use `".$file_nombre[0]."`;"."\n"."--"; 
-				  $text2="create database if not exists `".$_POST["newbd"]."`;"."\n"."use `".$_POST["newbd"]."`;"."\n"."--";
+				  $text2="\n"."create database if not exists `".$_POST["newbd"]."`;"."\n"."use `".$_POST["newbd"]."`;"."\n"."\n"."--";
 				  $file3 = fopen($filename, "r+");
-				  fwrite($file3, $text2);
+					fwrite($file3, $text2);
 				  fclose($file3);
                   // Read in entire file
                   $lines = file($filename);
@@ -116,8 +116,6 @@
                   }
                    echo "Base de datos completa importada correctamente";
 				   
-			    
-//				include('database.php');
 				$file = fopen("db_configuration.php", "w");
 					fwrite($file, "<?php"."\n");
 					fwrite($file, "$"."db_user="."'".$usuario."';"."\n");
@@ -141,9 +139,9 @@
 				}
 
 
-//             unlink("instalador.php");
-//			 unlink($filename);
-//			 unlink("favicon.ico");
+//          	unlink("instalador.php");
+//				unlink($filename);
+//				unlink("favicon.ico");
 
                 header('Location:index.php');
               }
