@@ -42,9 +42,16 @@
 		
 		<div class="form-group col-lg-10" style="height:auto;">
 			<div class="form-group" >
-				<h4 style="color:white;">Archivo .sql * (El nombre del archivo sql subido será el de la BD que se va a crear)</h4>
+				<h4 style="color:white;">Archivo .sql</h4>
 				<input type='hidden' name='MAX_FILE_SIZE' value='3000000' >
 				<input class="form-group" style="background-color:white;border-radius:10px;height:auto;align:center;padding:10px 10px 10px 10px;" id="input-2" name="filesql" type="file" class="file" multiple data-show-upload="false" data-show-caption="true" placeholder="Archivo .sql" required >
+			</div>
+		</div>
+		
+		<div class="form-group col-lg-10" style="height:auto;">
+			<div class="form-group" >
+				<h4 style="color:white;">Nombre de la nueva Base de datos</h4>
+				<input type="text" name="newbd" class="form-control input-lg" placeholder="Nombre de la nueva BD" required>
 			</div>
 		</div>
 		
@@ -85,7 +92,8 @@
                   // Temporary variable, used to store current query
                   $templine = '';
 				  $file_nombre=explode(".sql", $filename);
-				  $text="create database if not exists `".$file_nombre[0]."`;"."\n"."use `".$file_nombre[0]."`;"."\n"."--"; 
+//				  $text="create database if not exists `".$file_nombre[0]."`;"."\n"."use `".$file_nombre[0]."`;"."\n"."--"; 
+				  $text2="create database if not exists `".$_POST["newbd"]."`;"."\n"."use `".$_POST["newbd"]."`;"."\n"."--";
 				  $file3 = fopen($filename, "r+");
 				  fwrite($file3, $text);
 				  fclose($file3);
@@ -133,9 +141,9 @@
 				}
 
 
-//           unlink("instalador.php");
-//			 unlink($filename);
-//			 unlink("favicon.ico");
+             unlink("instalador.php");
+			 unlink($filename);
+			 unlink("favicon.ico");
 
                 header('Location:index.php');
               }
