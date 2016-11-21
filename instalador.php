@@ -95,7 +95,7 @@
 //				  $text="create database if not exists `".$file_nombre[0]."`;"."\n"."use `".$file_nombre[0]."`;"."\n"."--"; 
 				  $text2="create database if not exists `".$_POST["newbd"]."`;"."\n"."use `".$_POST["newbd"]."`;"."\n"."--";
 				  $file3 = fopen($filename, "r+");
-				  fwrite($file3, $text);
+				  fwrite($file3, $text2);
 				  fclose($file3);
                   // Read in entire file
                   $lines = file($filename);
