@@ -141,9 +141,9 @@
 				}
 
 
-             unlink("instalador.php");
-			 unlink($filename);
-			 unlink("favicon.ico");
+//             unlink("instalador.php");
+//			 unlink($filename);
+//			 unlink("favicon.ico");
 
                 header('Location:index.php');
               }
