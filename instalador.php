@@ -85,9 +85,9 @@
                   // Temporary variable, used to store current query
                   $templine = '';
 				  $file_nombre=explode(".sql", $filename);
+				  $text="create database if not exists `".$file_nombre[0]."`;"."\n"."use `".$file_nombre[0]."`;"."\n"."--"; 
 				  $file3 = fopen($filename, "r+");
-				  fwrite($file3, "create database if not exists `".$file_nombre[0]."`;"."\n");
-				  fwrite($file3, "use `".$file_nombre[0]."`;"."\n");
+				  fwrite($file3, $text);
 				  fclose($file3);
                   // Read in entire file
                   $lines = file($filename);
@@ -133,9 +133,9 @@
 				}
 
 
-             unlink("instalador.php");
-			 unlink($filename);
-			 unlink("favicon.ico");
+//           unlink("instalador.php");
+//			 unlink($filename);
+//			 unlink("favicon.ico");
 
                 header('Location:index.php');
               }
