@@ -19,7 +19,6 @@
 -- Table structure for table `comentarios`
 --
 
-use `cine`;
 
 DROP TABLE IF EXISTS `comentarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

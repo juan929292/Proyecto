@@ -33,7 +33,6 @@ include('db_configuration.php');
 			</div>
 		</div>
 		<div id="page2">
-		<?php echo "<h4>Las variables para conectar usadas: host:(". $db_host .") -- usuario:(". $db_user .") -- password:(". $db_password .") -- nombre base de datos:(". $db_name .")</h4>"; ?>
         <div id="main">
 		<div id="sidebaraso">
             <div id="sidebar">
