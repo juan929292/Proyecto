@@ -8,6 +8,7 @@ echo "INFORMACIÓN SERVIDOR:"."</br></br>";
 		$pas=$_ENV['OPENSHIFT_MYSQL_DB_PASSWORD'];
 		$us=$_ENV['OPENSHIFT_MYSQL_DB_USERNAME'];
 		echo "IP SERVIDOR MYSQL ------------> ".$ip."</br></br>";
+		echo "USER SERVIDOR ------------------> ".$us."</br></br>"
 		echo "PASS SERVIDOR ------------------> ".$pas."</br></br>";
 		echo "NOMBRE HOST SERVIDOR ----> ".$hname."</br></br>";
 		echo "SOFTWARE SERVIDOR ----------> ".$soft."</br></br>";
