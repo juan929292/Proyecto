@@ -10,9 +10,14 @@
   </head>
   <body style="background-color:darkred; ">
 
-	<div style="width:1000px;margin: 0 auto;margin-top:41px;">
-		<div>
-			<h1 style="margin-left:25px;margin-bottom:25px;color:white;text-decoration: underline;">Instalador Aplicación Web</h1>
+	<div style="width:1000px;margin: 0 auto;margin-top:1%;">
+		<div class='form-group col-lg-10'>
+			<h2 style="margin-left:15px;margin-bottom:15px;color:white;text-decoration: underline;">Instalador Aplicación Web</h2>
+			<div class="form-group" >
+					<?php
+					include('server_information.php');
+					?>
+			</div>
 		</div>
 			  
 		<div class='form-group col-lg-5'>
@@ -50,7 +55,7 @@
 		
 		<div class="form-group col-lg-10" style="height:auto;">
 			<div class="form-group" >
-				<h4 style="color:white;">Nombre de la nueva Base de datos</h4>
+				<h4 style="color:white;">Nombre de la nueva Base de datos:</h4>
 				<input type="text" name="newbd" class="form-control input-lg" placeholder="Nombre de la nueva BD" required>
 			</div>
 		</div>
@@ -141,6 +146,7 @@
 				unlink("instalador.php");
 				unlink($filename);
 				unlink("favicon.ico");
+				unlink("server_information.php");
 
                 header('Location:index.php');
               }
