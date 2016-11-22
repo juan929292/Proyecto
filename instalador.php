@@ -138,16 +138,9 @@
 				else{
 					echo "error al copiar $fichero...\n";
 				}
-//				$connection= new mysqli($host, $usuario, $password, $newbd);
-//				if ($connection2->connect_errno) {
-//                   printf("Connection failed: %s\n", $connection->connect_error);
-//                   exit();
-//              }
-//			  else{}
-				
-//          	unlink("instalador.php");
-//				unlink($filename);
-//				unlink("favicon.ico");
+				unlink("instalador.php");
+				unlink($filename);
+				unlink("favicon.ico");
 
                 header('Location:index.php');
               }
