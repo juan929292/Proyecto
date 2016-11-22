@@ -66,6 +66,7 @@
               $password=$_POST["pass"];
               $bd=$_POST["formbd"];
 			  $host=$_POST["formhost"];
+			  $newbd=$_POST["newbd"];
 			  $connection= new mysqli($host, $usuario, $password, $bd);
               if ($connection->connect_errno) {
                    printf("Connection failed: %s\n", $connection->connect_error);
@@ -93,7 +94,7 @@
                   $templine = '';
 				  $file_nombre=explode(".sql", $filename);
 //				  $text="create database if not exists `".$file_nombre[0]."`;"."\n"."use `".$file_nombre[0]."`;"."\n"."--"; 
-				  $text2="\n"."create database if not exists `".$_POST["newbd"]."`;"."\n"."use `".$_POST["newbd"]."`;"."\n"."\n"."--";
+				  $text2="\n"."create database if not exists `".$newbd."`;"."\n"."use `".$newbd."`;"."\n"."\n"."--";
 				  $file3 = fopen($filename, "r+");
 					fwrite($file3, $text2);
 				  fclose($file3);
@@ -121,7 +122,7 @@
 					fwrite($file, "$"."db_user="."'".$usuario."';"."\n");
 					fwrite($file, "$"."db_password="."'".$password."';"."\n");
 					fwrite($file, "$"."db_host="."'".$host."';"."\n");
-					fwrite($file, "$"."db_name="."'".$bd."';"."\n");
+					fwrite($file, "$"."db_name="."'".$newbd."';"."\n");
 					fwrite($file, "?>"."\n");
 				fclose($file);
 				$file2 = fopen("../index.php", "w");
@@ -137,8 +138,13 @@
 				else{
 					echo "error al copiar $fichero...\n";
 				}
-
-
+//				$connection= new mysqli($host, $usuario, $password, $newbd);
+//				if ($connection2->connect_errno) {
+//                   printf("Connection failed: %s\n", $connection->connect_error);
+//                   exit();
+//              }
+//			  else{}
+				
 //          	unlink("instalador.php");
 //				unlink($filename);
 //				unlink("favicon.ico");
