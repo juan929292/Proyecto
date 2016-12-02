@@ -61,7 +61,7 @@ include_once("../../db_configuration.php");
         if($connection->connect_errno){
             echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
         }
-        $result=$connection->query("SELECT * FROM usuarios");
+        $result=$connection->query("SELECT * FROM usuarios order by id_usuario desc");
 		echo "<h3>Usuarios:</h3></br>";
 		?>
 		<table border=1 class="centered bordered card-panel white" border=1 style="text-align:center;">

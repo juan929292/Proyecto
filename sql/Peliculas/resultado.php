@@ -61,7 +61,7 @@ include_once("../../db_configuration.php");
         }
 	echo "</br><a href='../../../Proyecto/administracion_bd.php'>"."<input type='button' value='Volver a panel administración' style='font-family: Verdana; font-size: 10 pt'></br></a></br>";
 
-        $result=$connection->query("SELECT * FROM peliculas");
+        $result=$connection->query("SELECT * FROM peliculas order by id_pelicula desc;");
 		echo "<h3>Peliculas:</h3></br>";
 		?>
 		<table border=1 class="centered bordered card-panel white"  style="text-align:center;">
