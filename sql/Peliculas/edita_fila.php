@@ -64,7 +64,24 @@ include_once("../../db_configuration.php");
 								$not=$_POST['val5'];
 								$gen=$_POST['val8'];
 								$director=$_POST['val7'];
-								$img= '"'."<img width='150' height='200' src='/Proyecto/img/".$_POST['val6']."'>".'"';
+								$dir_subida ='../../img/';
+							$fichero_subido = $dir_subida . basename($_FILES['val6']['name']);
+							
+							var_dump($fichero_subido);
+							var_dump($_FILES);
+							echo '<pre>';
+							if (move_uploaded_file($_FILES['val6']['tmp_name'], $fichero_subido)) {
+								echo "El fichero es válido y se subió con éxito.\n";
+							} else {
+								echo "¡Posible ataque de subida de ficheros!\n";
+							}
+
+							echo 'Más información de depuración:';
+							print_r($_FILES);
+
+							print "</pre>";
+
+							$img= '"'."<img width='150' height='200' src='/Proyecto/img/".$_FILES['val6']['name']."'>".'"';
 									if (isset($_POST['val9'])){ 
 										$antiguogen=$_POST['val9'];
 										$consulta2="update es set id_pelicula=$idpel, id_genero=$gen WHERE id_pelicula=$idpel and id_genero=$antiguogen;";
@@ -81,7 +98,7 @@ include_once("../../db_configuration.php");
 										$consulta3="insert into dirigida_por (id_pelicula, id_director) values ($idpel,$director);";
 									}
 
-								$consulta="update peliculas set titulo='$titu',duracion='$dura',anio=$ani,nota_media=$not WHERE id_pelicula=$idpel;";
+								$consulta="update peliculas set titulo='$titu',duracion='$dura',anio=$ani,nota_media=$not,imagen=$img WHERE id_pelicula=$idpel;";
 								echo "</br>";
 								if($connection->query($consulta)==true){
 									if($connection->query($consulta2)==true){

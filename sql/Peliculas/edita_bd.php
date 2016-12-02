@@ -100,7 +100,7 @@ echo "<h3>Peliculas:</h3></br>";
             echo "<h1>Se produjo un error a la hora de conectarse a la base de datos: $connection->connect_errno</h1>";
         }
         $result=$connection->query("SELECT * FROM peliculas where id_pelicula=".$_GET['idd'].";");
-							echo "<form method='post' action='edita_fila.php'>";
+							echo "<form method='post' enctype='multipart/form-data' action='edita_fila.php'>";
 							while($obj=$result->fetch_object()){
 								echo "<h3>Editar pelicula: ".$obj->titulo ."</h3>"."</br>";
 								echo $obj->imagen."</br>";
